@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header/>
-        <slot/>
+        <div class="max-w-[1280px] mx-auto">
+            <slot/>
+
+        </div>
         <Footer/>
 
     </div>
