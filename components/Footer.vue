@@ -1,13 +1,9 @@
 <template>
-    <div>
-        <h1>footer</h1>
-    </div>
+  <div>
+    <h1>footer</h1>
+  </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

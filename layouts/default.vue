@@ -1,21 +1,13 @@
 <template>
-    <div>
-        <Header/>
-        <div class="max-w-[1280px] mx-auto">
-            <slot/>
-
-        </div>
-        <Footer/>
-
+  <div class="bg-[#F5F5F5]">
+    <Header />
+    <div class="max-w-[1400px] mx-auto w-[95%] main_section">
+      <slot />
     </div>
+    <Footer />
+  </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style scoped>
-
-</style>
-
-
+<style scoped></style>
