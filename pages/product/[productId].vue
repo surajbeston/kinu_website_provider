@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex gap-8">
+    <div class="flex gap-10">
       <DetailsPageImageSlider />
       <DetailsPageProductInfo />
     </div>
