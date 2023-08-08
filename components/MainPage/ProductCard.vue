@@ -1,10 +1,13 @@
 <template>
-  <div class="bg-white px-6 pt-2 pb-4 max-w-[268px] w-full rounded-[10px]">
+  <div
+    class="bg-white px-3 md:px-6 pt-2 pb-4 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
+  >
     <div class="my-1">
-      <p class="flex gap-1 items-center text-[12px] font-normal text-[#78A962]">
+      <p
+        class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[#78A962]"
+      >
         <svg
-          width="12"
-          height="12"
+          class="w-[8px] h-[8px] md:w-[11px] md:h-[11px]"
           viewBox="0 0 12 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -38,10 +41,10 @@
         check availability
       </p>
     </div>
-    <div class="h-[171px] relative cursor-pointer">
+    <div class="md:h-[171px] h-[100px] relative cursor-pointer">
       <img
         class="max-w-full max-h-full h-full w-full object-cover"
-        src="/images/image_1.jpg"
+        src="/images/image_2.jpeg"
         alt="product image"
       />
       <img
@@ -57,22 +60,30 @@
           :is-filled="review == 5 ? false : true"
         />
       </div>
-      <p class="text-[14px] font-normal text-[#A2A6B0]">Reviews(4)</p>
+      <p class="text-[8px] md:text-[14px] font-normal text-[#A2A6B0]">
+        Reviews(4)
+      </p>
     </div>
-    <h3 class="text-[#231F20] text-[15px] font-normal mt-1 mb-2">T-shirt</h3>
+    <h3 class="text-[#231F20] text-[10px] md:text-[15px] font-normal mt-1 mb-2">
+      T-shirt
+    </h3>
     <div class="flex justify-between items-center mt-3">
       <div>
-        <p class="text-[#666666] text-[16px] font-normal line-through">
+        <p
+          class="text-[#666666] text-[9px] md:text-[16px] font-normal line-through"
+        >
           Rs 699.00
         </p>
-        <p class="text-[#231F20] text-[20px] font-semibold">Rs 499.00</p>
+        <p class="text-[#231F20] text-[12px] md:text-[20px] font-semibold">
+          Rs 499.00
+        </p>
       </div>
       <button
         style="
           box-shadow: 0px 3.763843297958374px 21.642099380493164px 0px
             rgba(255, 108, 25, 0.25);
         "
-        class="bg-[#FE900E] px-[29px] duration-200 hover:scale-[1.02] py-3 text-white text-[14px] font-semibold tracking-wider rounded-[3px]"
+        class="bg-[#FE900E] px-[16px] md:px-[29px] duration-200 hover:scale-[1.02] py-2 md:py-3 text-white text-[8px] md:text-[14px] font-semibold tracking-wider rounded-[3px]"
       >
         Buy
       </button>

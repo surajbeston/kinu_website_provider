@@ -6,6 +6,10 @@
   --yellow-color: #ff6c19;
   --white-color-1: #fefefe;
   --gray-color-1: #9f9f9f;
+  --blue-color-1: #7000d7;
+  --black-color-1: #282f3e;
+  --purple-color-1: #f5f7ff;
+  --gray-color-2: #0b121f;
 }
 body {
   @apply bg-gray-100;

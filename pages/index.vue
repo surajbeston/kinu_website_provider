@@ -1,15 +1,11 @@
 <template>
-    <div class="my-8">
-        <MainPageBanner/>
-        <MainPageSearchSeaction/>
-        <MainPageProductSeaction/>
-    </div>
+  <div class="my-8">
+    <MainPageBanner />
+    <MainPageSearchSeaction />
+    <MainPageProductSeaction />
+  </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style  scoped>
-
-</style>
+<style scoped></style>

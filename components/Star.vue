@@ -1,7 +1,6 @@
 <template>
   <svg
-    width="16"
-    height="16"
+    class="w-[8px] h-[8px] md:w-[14px] md:h-[14px]"
     viewBox="0 0 16 16"
     :fill="isFilled ? '#E9A426' : '#CACDD8'"
     xmlns="http://www.w3.org/2000/svg"

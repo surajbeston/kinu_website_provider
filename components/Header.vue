@@ -55,10 +55,12 @@
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
-        <div>
+        <div class="w-[70px] md:w-[133px]">
           <img src="~assets/images/logo.png " alt="logo" />
         </div>
-        <p class="text-[#373131] text-[24px] font-semibold">Kinu Shop</p>
+        <p class="text-[#373131] text-[13px] md:text-[24px] font-semibold">
+          Kinu Shop
+        </p>
         <p class="hidden md:block"></p>
       </div>
     </div>

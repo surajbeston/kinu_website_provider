@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-[50%]">
     <h1 class="text-[47px] text-black font-normal font-['Poppins']">
       Chino pant
     </h1>
@@ -73,6 +73,7 @@
         </p>
       </div>
       <button
+        @click="$emit('openModal')"
         class="bg-[color:var(--yellow-color)] px-10 py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
       >
         Buy Now

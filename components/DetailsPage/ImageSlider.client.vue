@@ -1,40 +1,27 @@
 <template>
-  <div class="w-[50%]">
+  <div class="w-[40%]">
     <swiper
       :thumbs="{ swiper: thumbsSwiper }"
       :modules="[Thumbs]"
       class="mySwiper2"
     >
-      <swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-      /></swiper-slide>
+      <swiper-slide v-for="(media, index) in medias" :key="index">
+        <div class="aspect-ratio-container">
+          <div class="aspect-ratio-content">
+            <img
+              class="max-w-full max-h-full"
+              v-if="media.type === 'img'"
+              :src="media.src"
+              alt="product image"
+            />
+            <video
+              class="max-w-full max-h-full"
+              v-else
+              :src="media.src"
+            ></video>
+          </div>
+        </div>
+      </swiper-slide>
     </swiper>
     <swiper
       @swiper="setThumbsSwiper"
@@ -44,63 +31,91 @@
       :modules="[Thumbs]"
       class="mySwiper"
     >
-      <swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-      /></swiper-slide>
+      <swiper-slide v-for="(media, index) in medias" :key="index">
+        <img
+          class="!w-[80px] !h-[80px] object-cover rounded-xl cursor-pointer"
+          v-if="media.type === 'img'"
+          :src="media.src"
+          alt="product image"
+        />
+        <video
+          class="!w-[80px] !h-[80px] object-cover overflow-hidden rounded-xl cursor-pointer"
+          else
+          :src="media.src"
+        ></video>
+      </swiper-slide>
     </swiper>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
-import "swiper/css";
-
-// import required modules
 import { Thumbs } from "swiper/modules";
 
-let thumbsSwiper = ref(null);
+import "swiper/css";
+const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper) => {
-  thumbsSwiper = swiper;
+  thumbsSwiper.value = swiper;
 };
+
+const medias = [
+  {
+    src: "/images/image_1.jpg",
+    type: "img",
+  },
+  {
+    src: "/videos/video_2.mp4",
+    type: "video",
+  },
+  {
+    src: "/images/image_2.jpeg",
+    type: "img",
+  },
+  {
+    src: "/images/image_4.jpg",
+    type: "img",
+  },
+  {
+    src: "/videos/video_1.mp4",
+    type: "video",
+  },
+];
 </script>
 
 <style scoped>
 .mySwiper2 {
-  width: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 604px !important;
+  background: rgb(209 213 219 /1);
 }
 .mySwiper {
   margin-top: 1rem;
-  width: 100% !important;
+
+  height: 100px;
+}
+
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain; /* Maintain aspect ratio without cropping */
+}
+img,
+video {
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>
