@@ -1,7 +1,7 @@
 <template>
   <div
     ref="modal"
-    class="bg-[#F8F8F8] w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4"
+    class="bg-[#F8F8F8] w-[calc(100vw-2rem)] h-max md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4"
   >
     <p class="flex justify-end">
       <svg
@@ -22,45 +22,47 @@
         />
       </svg>
     </p>
+    <h1
+      class="text-[18px] md:text-[34px] text-[color:var(--yellow-color)] font-semibold font-['Poppins']"
+    >
+      Please, fill the form
+    </h1>
+    <h4 class="font-['Poppins'] text-[9px] md:text-[17px] font-normal">
+      your order will be placed after you submit the form.
+    </h4>
 
-    <div class="w-full flex gap-14 items-start">
-      <div class="w-[50%] pl-6">
-        <h1
-          class="text-[34px] text-[color:var(--blue-color-1)] font-semibold font-['Poppins']"
-        >
-          Please, fill the form
-        </h1>
-        <h4 class="font-['Poppins'] text-[17px] font-normal">
-          your order will be placed after you submit the form.
-        </h4>
-        <form class="mt-12" action="">
+    <div
+      class="w-full flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-14 items-start"
+    >
+      <div class="w-full md:w-1/2 md:pl-6 order-2 md:order-1">
+        <form class="mt-6 md:mt-12" action="">
           <input
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-6 py-[18px] text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="text"
             placeholder="Enter your name"
           />
           <input
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-6 py-[18px] text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="number"
             placeholder="Enter your phone number"
           />
           <input
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-6 py-[18px] text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="email"
             placeholder="Enter your email"
           />
           <input
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] py-[18px] my-6 text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] py-[18px] my-4 md:my-6 text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="text"
             placeholder="Additional message"
           />
-          <div class="flex gap-2 my-8">
+          <div class="flex items-center gap-2 my-4 md:my-8">
             <input
-              class="w-[22px] h-[22px]"
+              class="w-[18px] md:w-[22px] h-[18px] md:h-[22px]"
               type="checkbox"
               name="checkbox"
               id="checkbox"
@@ -72,39 +74,47 @@
             </p>
           </div>
           <input
-            class="w-full bg-[color:var(--yellow-color)] text-white font-['Poppins'] font-bold text-[26px] cursor-pointer py-3 rounded-[11px]"
+            class="w-full bg-[color:var(--yellow-color)] text-white font-['Poppins'] font-bold text-[15px] md:text-[26px] cursor-pointer py-3 rounded-[11px]"
             type="submit"
             value="Submit"
           />
         </form>
       </div>
-      <div>
+      <div class="w-full md:w-1/2 md:order-2">
         <nuxt-img
           width="482"
           height="350"
-          class="p-8"
+          class="p-8 pt-0 hidden lg:block"
           src="images/form_illustro.png"
         />
         <!-- order summaary -->
-        <div class="bg-white py-4 px-8 rounded-[14px] font-['Poppins'] w-[80%]">
-          <h3 class="text-center pb-2 text-base font-semibold">
+        <div
+          class="bg-white py-4 px-8 rounded-[14px] font-['Poppins'] mt-6 md:mt-auto w-full xl:w-[80%]"
+        >
+          <h3 class="text-center pb-2 text-[10px] md:text-base font-semibold">
             Order Summary
           </h3>
-          <div class="flex justify-between items-center text-base py-1">
+          <div
+            class="flex justify-between items-center text-[10px] md:text-base py-1"
+          >
             <p>Items Name</p>
             <p>Chino pant</p>
           </div>
-          <div class="flex justify-between items-center text-base py-1">
+          <div
+            class="flex justify-between items-center text-[10px] md:text-base py-1"
+          >
             <p>No. of Items</p>
             <p>x2</p>
           </div>
           <div
-            class="flex justify-between items-center text-base py-1 border-b border-black/30"
+            class="flex justify-between items-center text-[10px] md:text-base py-1 border-b border-black/30"
           >
             <p>Price per item</p>
             <p>Rs.2000</p>
           </div>
-          <div class="flex justify-between items-center text-base py-2">
+          <div
+            class="flex justify-between items-center text-[10px] md:text-base py-2"
+          >
             <p>Total Payment</p>
             <p>Rs.4000</p>
           </div>
