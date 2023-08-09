@@ -1,7 +1,7 @@
 <template>
   <div
     @click="toggleVideo"
-    class="relative max-w-[150px] md:max-w-[268px] h-auto md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
+    class="relative max-w-[150px] md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
   >
     <!-- <img class="h-full w-full" src="images/image_1.jpg" alt="into video" /> -->
     <video loop ref="videoElement" src="/videos/video_4.mp4"></video>

@@ -2,7 +2,7 @@
   <div class="my-8">
     <MainPageBanner />
     <MainPageSearchSeaction />
-    <MainPageProductSeaction />
+    <MainPageProductSeaction title="Products for you" />
   </div>
 </template>
 

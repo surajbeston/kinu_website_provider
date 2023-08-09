@@ -1,10 +1,12 @@
 <template>
-  <div class="w-[50%]">
-    <h1 class="text-[47px] text-black font-normal font-['Poppins']">
+  <div class="w-full md:w-[50%]">
+    <h1
+      class="text-[25px] md:text-[47px] text-black font-normal font-['Poppins']"
+    >
       Chino pant
     </h1>
     <h3
-      class="text-[color:var(--gray-color-1)] text-[27px] font-medium font-['Poppins']"
+      class="text-[color:var(--gray-color-1)] text-[15px] md:text-[27px] font-medium font-['Poppins']"
     >
       Rs.2000.00
     </h3>
@@ -12,22 +14,24 @@
       <div class="flex gap-1">
         <Star v-for="each in 5" :isFilled="true" />
       </div>
-      <p class="border-l-2 pl-8 text-[color:var(--gray-color-1)]">
+      <p
+        class="border-l-2 pl-8 text-[8px] md:text-[14px] text-[color:var(--gray-color-1)]"
+      >
         5 customers reviews
       </p>
     </div>
-    <p class="py-2 text-lg font-['Nexa'] font-normal text-black">
+    <p class="py-2 text-[10px] md:text-lg font-['Nexa'] font-normal text-black">
       The best selling Planet Boxy Tee is a one size, season-less, staple piece
       for any wardrobe! The beloved Pima Cotton washes and wears well making
       this a great investment piece that feels as good as it looks.
     </p>
     <div class="py-4">
       <p
-        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-base pb-2"
+        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
       >
         Size
       </p>
-      <div class="flex gap-8">
+      <div class="flex flex-wrap gap-4 md:gap-8">
         <DetailsPageSizeVarient
           @click="handleSizeSelect(index)"
           class="cursor-pointer"
@@ -38,7 +42,7 @@
     </div>
     <div class="py-3">
       <p
-        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-base pb-2"
+        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
       >
         Color
       </p>
@@ -74,44 +78,42 @@
       </div>
       <button
         @click="$emit('openModal')"
-        class="bg-[color:var(--yellow-color)] px-10 py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
+        class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
       >
         Buy Now
       </button>
     </div>
     <div class="border-t pt-10 border-[#D9D9D9]">
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">SKU</p>
         <p class="">:</p>
         <p class="">SS001</p>
       </div>
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Category</p>
         <p class="">:</p>
         <p class="">Chino Pant</p>
       </div>
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Tags</p>
         <p class="">:</p>
         <p class="">chino, pant, men’s, trending</p>
       </div>
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Share</p>
         <p class="">:</p>
-        <div class="flex gap-8 items-center">
+        <div class="flex gap-4 md:gap-8 items-center">
           <!-- facebook -->
           <svg
-            class="cursor-pointer fill-black :hover:fill-green-500"
-            width="22"
-            height="23"
+            class="cursor-pointer fill-black :hover:fill-green-500 w-[15px] h-[15px] nd:w-[22px] md:h-[22px]"
             viewBox="0 0 22 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -136,9 +138,7 @@
           </svg>
           <!-- linkedin -->
           <svg
-            class="cursor-pointer"
-            width="23"
-            height="23"
+            class="cursor-pointer w-[15px] h-[15px] nd:w-[22px] md:h-[22px]"
             viewBox="0 0 23 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -152,9 +152,7 @@
           </svg>
           <!-- twitter -->
           <svg
-            class="cursor-pointer"
-            width="29"
-            height="28"
+            class="cursor-pointer w-[18px] h-[18px] md:w-[26px] md:h-[26px]"
             viewBox="0 0 29 28"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex text-sm bg-white my-10 py-10 pl-20">
+  <div class="hidden md:flex text-sm bg-white my-10 py-10 pl-20">
     <ul class="flex">
       <li v-for="(tag, index) in tags" :key="index" class="flex items-center">
         <span

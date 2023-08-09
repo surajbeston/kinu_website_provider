@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[40%]">
+  <div class="w-full md:w-[40%]">
     <swiper
       :thumbs="{ swiper: thumbsSwiper }"
       :modules="[Thumbs]"
@@ -26,7 +26,7 @@
     <swiper
       @swiper="setThumbsSwiper"
       :spaceBetween="10"
-      :slidesPerView="8"
+      :slidesPerView="6"
       :watchSlidesProgress="true"
       :modules="[Thumbs]"
       class="mySwiper"
@@ -85,13 +85,18 @@ const medias = [
 <style scoped>
 .mySwiper2 {
   width: 100% !important;
-  height: 100% !important;
+  height: 568px !important;
   max-height: 604px !important;
   background: rgb(209 213 219 /1);
 }
+@media screen and (min-width: 768px) {
+  .mySwiper2 {
+    height: 100% !important;
+  }
+}
 .mySwiper {
   margin-top: 1rem;
-
+  width: 100% !important;
   height: 100px;
 }
 

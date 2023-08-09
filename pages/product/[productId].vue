@@ -1,12 +1,12 @@
 <template>
   <div>
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
-    <div class="flex gap-10">
+    <div class="flex flex-col md:flex-row gap-10">
       <DetailsPageImageSlider />
       <DetailsPageProductInfo @openModal="showModal = true" />
     </div>
     <div
-      class="flex justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
+      class="hidden md:flex justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
     >
       <button
         @click="changeTab('Descriptions')"
@@ -36,7 +36,26 @@
     >
       <DetailsPageModalForm @closeModal="showModal = false" />
     </div>
-    <DetailsPageReviewCard />
+    <section class="my-10">
+      <h4 class="text-[24px] font-['Nexa'] font-bold">Video Reviews</h4>
+      <div class="flex gap-4 overflow-x-scroll scrollbar-hidden">
+        <DetailsPageReviewCard v-for="(each, index) in 10" :key="index" />
+      </div>
+    </section>
+    <section>
+      <div class="flex justify-between items-center">
+        <h4 class="text-[24px] font-['Nexa'] font-bold">Text Reviews</h4>
+        <p
+          class="text-base font-['Poppins'] font-semibold underline underline-offset-4 cursor-pointer"
+        >
+          View all
+        </p>
+      </div>
+      <div class="my-6">
+        <DetailsPageTextReviewCard />
+      </div>
+    </section>
+    <MainPageProductSeaction title="You might also like" />
   </div>
 </template>
 

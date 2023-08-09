@@ -1,14 +1,16 @@
 <template>
-  <div class="relative w-max">
-    <div class="w-[234px] h-[357px] bg-green-400 rounded-[15px]">
+  <div class="relative w-max my-5">
+    <div
+      @click="toggleVideo"
+      class="w-[234px] h-[357px] bg-green-400 rounded-[15px] overflow-hidden"
+    >
       <video
-        class="w-full max-h-full"
-        autoplay
-        muted
-        controls
+        ref="videoElement"
+        class="w-full max-h-full object-cover"
         src="/videos/video_2.mp4"
       ></video>
       <svg
+        v-if="!isPlaying"
         class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20"
         width="42"
         height="42"
@@ -25,6 +27,20 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const videoElement = ref(null);
+const isPlaying = ref(false);
+const toggleVideo = () => {
+  if (videoElement.value) {
+    if (videoElement.value.paused) {
+      videoElement.value.play();
+      isPlaying.value = true;
+    } else {
+      videoElement.value.pause();
+      isPlaying.value = false;
+    }
+  }
+};
+</script>
 
 <style scoped></style>

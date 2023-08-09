@@ -6,6 +6,7 @@
   --yellow-color: #ff6c19;
   --white-color-1: #fefefe;
   --gray-color-1: #9f9f9f;
+  --gray-color-2: #6b6b6b;
   --blue-color-1: #7000d7;
   --black-color-1: #282f3e;
   --purple-color-1: #f5f7ff;
@@ -17,5 +18,12 @@ body {
 @layer components {
   .btn {
     @apply bg-[#4e4e4e] text-white px-3 py-2 rounded-md text-sm;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
   }
 }
