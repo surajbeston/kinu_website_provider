@@ -14,11 +14,7 @@
               :src="media.src"
               alt="product image"
             />
-            <video
-              class="max-w-full max-h-full"
-              v-else
-              :src="media.src"
-            ></video>
+            <details-page-video-container v-else :videoSrc="media.src" />
           </div>
         </div>
       </swiper-slide>
