@@ -13,7 +13,7 @@ import { useUserData } from "~~/store/userData";
 
 const userStore = useUserData();
 const { data: userData } = await useFetch(
-  `https://api.kinu.app/website/info/get_info_by_domain/`,
+  `${apiAuthority}/website/info/get_info_by_domain/`,
   {
     method: "POST",
     body: {
@@ -21,6 +21,7 @@ const { data: userData } = await useFetch(
     },
   }
 );
+
 userStore.setSellerInfo(userData.value.website_info);
 userStore.setSellerProduct(userData.value.seller_products);
 </script>

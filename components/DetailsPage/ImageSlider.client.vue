@@ -16,7 +16,7 @@
             />
 
             <details-page-video-container
-              v-else
+              v-else-if="media.format_set.length > 0"
               :videoSrc="`https://api.kinu.app${media.format_set[0].file}`"
             />
           </div>
@@ -40,7 +40,7 @@
         />
         <video
           class="!w-[80px] !h-[80px] object-cover overflow-hidden rounded-xl cursor-pointer border border-green-400"
-          v-else
+          v-else-if="media.format_set.length > 0"
           :videoSrc="`https://api.kinu.app${media.format_set[0].thumbnail}`"
         ></video>
       </swiper-slide>

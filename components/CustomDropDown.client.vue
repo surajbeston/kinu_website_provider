@@ -10,14 +10,14 @@
       >
         <div
           v-for="option in filterOptions"
-          :key="option.value"
+          :key="option"
           class="py-2 px-5 text-base hover:bg-gray-200"
           :class="{
-            'bg-gray-200 text-black font-bold ': selectedOption == option.label,
+            'bg-gray-200 text-black font-bold ': selectedOption == option,
           }"
-          @click.stop="changeOption(option.label)"
+          @click.stop="changeOption(option)"
         >
-          {{ option.label }}
+          {{ option }}
         </div>
       </div>
     </Transition>
@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 const emit = defineEmits(["update"]);
 
 defineProps({

@@ -36,7 +36,7 @@
       <MainPageIntroCard />
       <MainPageProductCard
         @click="handleNavigation(each.id)"
-        v-for="each in seller_products"
+        v-for="each in userStore.seller_products"
         :product="each"
       />
     </div>
@@ -44,21 +44,24 @@
 </template>
 
 <script setup>
+import { useUserData } from "~~/store/userData";
+
+const userStore = useUserData();
 import { ref, onMounted, onBeforeUnmount } from "vue";
-const showOptions = ref(false);
-const filterWrapper = ref(null);
-const filterOptions = ref([
-  { value: "relevance", label: "Relevance" },
-  { value: "highToLow", label: " High to Low" },
-  { value: "lowToHigh", label: " Low to High" },
-]);
-const selectedOption = ref(filterOptions.value[0].label);
-defineProps({
+const props = defineProps({
   title: String,
   seller_products: Array,
 });
+const showOptions = ref(false);
+const filterWrapper = ref(null);
+
+const filterOptions = ref(["Relevance", "High to Low", "Low to High"]);
+const selectedOption = ref(filterOptions.value[0]);
+
 const handleNavigation = async (each) => {
   await navigateTo(`/product/${each}`);
+  // to reset the filter when page changes
+  getProductsByOrdering("Relevance");
 };
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
@@ -67,7 +70,44 @@ const toggleOptions = () => {
 const handleChangeOptions = (option) => {
   showOptions.value = false;
   selectedOption.value = option;
+  getProductsByOrdering(option);
 };
+
+const getProductsByOrdering = async (filterTag) => {
+  const sellerId = userStore.sellerId();
+  let response;
+  if (filterTag === "Relevance") {
+    response = await useFetch(`${apiAuthority}/api/product`, {
+      query: {
+        seller: sellerId,
+        limit: 1000,
+      },
+    });
+  } else if (filterTag === "High to Low") {
+    response = await useFetch(`${apiAuthority}/api/product`, {
+      query: {
+        seller: sellerId,
+        ordering: "-price",
+        limit: 1000,
+      },
+    });
+  } else {
+    response = await useFetch(`${apiAuthority}/api/product`, {
+      query: {
+        seller: sellerId,
+        ordering: "price",
+        limit: 1000,
+      },
+    });
+  }
+
+  // setting products to the store
+  if (response.data.value.results.length > 0) {
+    userStore.setSellerProduct(response.data.value.results);
+  }
+};
+
+// outside click close dropdown
 const closeDropdownOnOutsideClick = (event) => {
   if (filterWrapper.value && !filterWrapper.value.contains(event.target)) {
     showOptions.value = false;
@@ -84,7 +124,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .grip_section {
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 @media screen and (min-width: 768px) {
   .grip_section {

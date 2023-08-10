@@ -2,11 +2,14 @@
   <div>
     <div class="my-5 w-full gap-4 flex">
       <input
+        v-model="inputText"
+        @keyup.enter="getSearchProducts"
         class="w-full indent-6 md:indent-8 md:py-3 outline-none border rounded-[16px] text-[12px] md:text-[16px] font-['Nexa'] font-normal border-black/60 bg-[color:var(--purple-color-1)]"
         type="text"
-        placeholder="Search here"
+        placeholder="Search products here"
       />
       <svg
+        @click="getSearchProducts"
         class="cursor-pointer"
         width="43"
         height="43"
@@ -25,7 +28,7 @@
     </div>
     <div class="flex gap-3 md:gap-6 justify-start md:justify-center flex-wrap">
       <MainPageFilterTag
-        @click="handleFilterTag(tag.name)"
+        @click="handleFilterTag(tag)"
         v-for="(tag, index) in filterTags"
         :tag="tag.name"
         :key="index"
@@ -38,11 +41,42 @@
 import { useUserData } from "~~/store/userData";
 
 const userStore = useUserData();
-
 const filterTags = ref([]);
-filterTags.value = userStore.sellerInfo.seller.categories;
-function handleFilterTag(params) {
-  console.log(params);
+const sellerInfo = ref({});
+const inputText = ref("");
+// getting seller info and products from store
+sellerInfo.value = userStore.sellerInfo;
+filterTags.value = sellerInfo.value.seller.categories;
+
+const getSearchProducts = async () => {
+  if (inputText.value) {
+    const response = await useFetch(`${apiAuthority}/api/product`, {
+      query: {
+        seller: sellerInfo.value.seller.id,
+        name__icontains: inputText.value,
+        limit: 1000,
+      },
+    });
+    // console.log(response);
+    userStore.setSellerProduct(response.data.value.results);
+  }
+};
+const getProductsByCategory = async (categoryId) => {
+  if (categoryId) {
+    const response = await useFetch(`${apiAuthority}/api/product`, {
+      query: {
+        seller: sellerInfo.value.seller.id,
+        category: categoryId,
+        limit: 1000,
+      },
+    });
+    // console.log(response);
+    userStore.setSellerProduct(response.data.value.results);
+  }
+};
+
+function handleFilterTag(category) {
+  getProductsByCategory(category.id);
 }
 </script>
 

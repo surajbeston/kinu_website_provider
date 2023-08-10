@@ -129,7 +129,6 @@
 import { onMounted, onBeforeUnmount } from "vue";
 const emit = defineEmits(["closeModal"]);
 const modal = ref(null);
-const response = ref();
 
 onMounted(() => {
   document.body.addEventListener("click", closeModal);

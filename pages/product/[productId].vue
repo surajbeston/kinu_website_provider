@@ -87,7 +87,7 @@ const changeTab = (tab) => {
 };
 
 const { data: product } = await useFetch(
-  `https://api.kinu.app/api/product/${route.params.productId}/`
+  `${apiAuthority}/api/product/${route.params.productId}/`
 );
 
 const breadcrumbTags = ref([
