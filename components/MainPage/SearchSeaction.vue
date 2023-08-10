@@ -25,25 +25,22 @@
     </div>
     <div class="flex gap-3 md:gap-6 justify-start md:justify-center flex-wrap">
       <MainPageFilterTag
-        @click="handleFilterTag(tag)"
-        v-for="tag in filterTags"
-        :tag="tag"
-        :key="tag"
+        @click="handleFilterTag(tag.name)"
+        v-for="(tag, index) in filterTags"
+        :tag="tag.name"
+        :key="index"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-const filterTags = [
-  "Trending",
-  "New launch",
-  "Men's wears",
-  "Women's wears",
-  "Summer wears",
-  "Branded",
-  "Kids",
-];
+import { useUserData } from "~~/store/userData";
+
+const userStore = useUserData();
+
+const filterTags = ref([]);
+filterTags.value = userStore.sellerInfo.seller.categories;
 function handleFilterTag(params) {
   console.log(params);
 }

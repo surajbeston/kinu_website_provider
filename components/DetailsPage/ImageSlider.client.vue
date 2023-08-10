@@ -10,11 +10,15 @@
           <div class="aspect-ratio-content">
             <img
               class="max-w-full max-h-full"
-              v-if="media.type === 'img'"
-              :src="media.src"
+              v-if="media.image"
+              :src="`https://api.kinu.app${media.image}`"
               alt="product image"
             />
-            <details-page-video-container v-else :videoSrc="media.src" />
+
+            <details-page-video-container
+              v-else
+              :videoSrc="`https://api.kinu.app${media.format_set[0].file}`"
+            />
           </div>
         </div>
       </swiper-slide>
@@ -30,14 +34,14 @@
       <swiper-slide v-for="(media, index) in medias" :key="index">
         <img
           class="!w-[80px] !h-[80px] object-cover rounded-xl cursor-pointer"
-          v-if="media.type === 'img'"
-          :src="media.src"
+          v-if="media.image"
+          :src="`https://api.kinu.app${media.image}`"
           alt="product image"
         />
         <video
-          class="!w-[80px] !h-[80px] object-cover overflow-hidden rounded-xl cursor-pointer"
-          else
-          :src="media.src"
+          class="!w-[80px] !h-[80px] object-cover overflow-hidden rounded-xl cursor-pointer border border-green-400"
+          v-else
+          :videoSrc="`https://api.kinu.app${media.format_set[0].thumbnail}`"
         ></video>
       </swiper-slide>
     </swiper>
@@ -53,29 +57,32 @@ const thumbsSwiper = ref(null);
 const setThumbsSwiper = (swiper) => {
   thumbsSwiper.value = swiper;
 };
+const props = defineProps({
+  medias: Array,
+});
 
-const medias = [
-  {
-    src: "/images/image_1.jpg",
-    type: "img",
-  },
-  {
-    src: "/videos/video_2.mp4",
-    type: "video",
-  },
-  {
-    src: "/images/image_2.jpeg",
-    type: "img",
-  },
-  {
-    src: "/images/image_4.jpg",
-    type: "img",
-  },
-  {
-    src: "/videos/video_1.mp4",
-    type: "video",
-  },
-];
+// const medias = [
+//   {
+//     src: "/images/image_1.jpg",
+//     type: "img",
+//   },
+//   {
+//     src: "/videos/video_2.mp4",
+//     type: "video",
+//   },
+//   {
+//     src: "/images/image_2.jpeg",
+//     type: "img",
+//   },
+//   {
+//     src: "/images/image_4.jpg",
+//     type: "img",
+//   },
+//   {
+//     src: "/videos/video_1.mp4",
+//     type: "video",
+//   },
+// ];
 </script>
 
 <style scoped>

@@ -2,8 +2,11 @@
   <div>
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
     <div class="flex flex-col md:flex-row gap-10">
-      <DetailsPageImageSlider />
-      <DetailsPageProductInfo @openModal="showModal = true" />
+      <DetailsPageImageSlider :medias="medias" />
+      <DetailsPageProductInfo
+        :product="product"
+        @openModal="showModal = true"
+      />
     </div>
     <div
       class="hidden md:flex justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
@@ -55,20 +58,43 @@
         <DetailsPageTextReviewCard />
       </div>
     </section>
-    <MainPageProductSeaction title="You might also like" />
+    <MainPageProductSeaction
+      title="You might also like"
+      :seller_products="products"
+    />
   </div>
 </template>
 
 <script setup>
+import { useUserData } from "~~/store/userData";
+
+const userStore = useUserData();
 const route = useRoute();
 const activeTab = ref("Reviews");
 const showModal = ref(false);
+const products = ref([]);
+
+products.value = userStore.seller_products;
+
+const medias = computed({
+  get() {
+    return [...product.value.image_set, ...product.value.video_set];
+  },
+});
 
 const changeTab = (tab) => {
   activeTab.value = tab;
 };
-const breadcrumbTags = ref(["Home", "Category", "Subcategory", "Current Page"]);
-console.log(route.params.productId);
+
+const { data: product } = await useFetch(
+  `https://api.kinu.app/api/product/${route.params.productId}/`
+);
+
+const breadcrumbTags = ref([
+  "Home",
+  product.value.category.name,
+  product.value.name,
+]);
 </script>
 
 <style scoped></style>

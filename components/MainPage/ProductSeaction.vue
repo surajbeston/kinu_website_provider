@@ -34,7 +34,11 @@
     </div>
     <div class="grid gap-6 w-full my-8 grip_section">
       <MainPageIntroCard />
-      <MainPageProductCard @click="handleNavigation(each)" v-for="each in 10" />
+      <MainPageProductCard
+        @click="handleNavigation(each.id)"
+        v-for="each in seller_products"
+        :product="each"
+      />
     </div>
   </div>
 </template>
@@ -51,6 +55,7 @@ const filterOptions = ref([
 const selectedOption = ref(filterOptions.value[0].label);
 defineProps({
   title: String,
+  seller_products: Array,
 });
 const handleNavigation = async (each) => {
   await navigateTo(`/product/${each}`);

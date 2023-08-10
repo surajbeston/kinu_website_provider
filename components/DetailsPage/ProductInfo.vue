@@ -3,12 +3,12 @@
     <h1
       class="text-[25px] md:text-[47px] text-black font-normal font-['Poppins']"
     >
-      Chino pant
+      {{ product.name }}
     </h1>
     <h3
       class="text-[color:var(--gray-color-1)] text-[15px] md:text-[27px] font-medium font-['Poppins']"
     >
-      Rs.2000.00
+      Rs.{{ product.price }}.00
     </h3>
     <div class="flex gap-6 items-center py-2">
       <div class="flex gap-1">
@@ -20,11 +20,15 @@
         5 customers reviews
       </p>
     </div>
-    <p class="py-2 text-[10px] md:text-lg font-['Nexa'] font-normal text-black">
+    <div
+      v-html="product.description_html"
+      class="my-3 font-['Nexa'] font-normal text-black desc"
+    ></div>
+    <!-- <p class="py-2 text-[10px] md:text-lg font-['Nexa'] font-normal text-black">
       The best selling Planet Boxy Tee is a one size, season-less, staple piece
       for any wardrobe! The beloved Pima Cotton washes and wears well making
       this a great investment piece that feels as good as it looks.
-    </p>
+    </p> -->
     <div class="py-4">
       <p
         class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
@@ -96,7 +100,7 @@
       >
         <p class="w-[100px]">Category</p>
         <p class="">:</p>
-        <p class="">Chino Pant</p>
+        <p class="">{{ product.category.name }}</p>
       </div>
       <div
         class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
@@ -113,7 +117,7 @@
         <div class="flex gap-4 md:gap-8 items-center">
           <!-- facebook -->
           <svg
-            class="cursor-pointer fill-black :hover:fill-green-500 w-[15px] h-[15px] nd:w-[22px] md:h-[22px]"
+            class="cursor-pointer fill-black :hover:fill-green-500 w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
             viewBox="0 0 22 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +142,7 @@
           </svg>
           <!-- linkedin -->
           <svg
-            class="cursor-pointer w-[15px] h-[15px] nd:w-[22px] md:h-[22px]"
+            class="cursor-pointer w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
             viewBox="0 0 23 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -171,6 +175,10 @@
 <script setup>
 import { ref } from "vue";
 const numberOfProduct = ref(1);
+const props = defineProps({
+  product: Object,
+});
+
 const sizeVarients = ref([
   { size: "S", isSelected: false },
   { size: "M", isSelected: true },
@@ -178,19 +186,22 @@ const sizeVarients = ref([
   { size: "XL", isSelected: false },
   { size: "XXL", isSelected: false },
 ]);
+
 const colorVarients = ref([
   {
-    bgColor: "#816DFA",
+    bgColor: props.product.producttype_set[0].extras
+      ? props.product.producttype_set[0].extras.color
+      : "",
     isSelected: true,
   },
-  {
-    bgColor: "#000000",
-    isSelected: false,
-  },
-  {
-    bgColor: "#CDBA7B",
-    isSelected: false,
-  },
+  // {
+  //   bgColor: "#000000",
+  //   isSelected: false,
+  // },
+  // {
+  //   bgColor: "#CDBA7B",
+  //   isSelected: false,
+  // },
 ]);
 
 const decrementNumberOfProduct = () => {
@@ -232,5 +243,12 @@ input[type="number"] {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+.desc h1 {
+  font-size: 30px;
+  padding: 0.3rem 0;
+}
+.desc ul li {
+  font-size: 16px;
 }
 </style>

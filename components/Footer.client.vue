@@ -8,17 +8,14 @@
           >
             Our Shop
           </p>
-          <div class="md:w-[344px] w-full h-[256px]">
-            <img
-              class="w-full h-full object-cover"
-              src="/images/image_2.jpeg"
-              alt="map"
-            />
+          <div class="md:w-[344px] w-full h-[256px] relative">
+            <!-- <MapDisplay address="Dharan Nepal" /> -->
+            <Map :location="website_info.location" />
           </div>
           <p
             class="font-['Nexa'] font-bold text-base text-[color:var(--gray-color-2)] py-2"
           >
-            1234 Street, Dharan, Opposite to Nabil Bank
+            {{ website_info.location }}
           </p>
         </div>
         <div class="w-full md:w-[60%]">
@@ -27,9 +24,9 @@
           >
             <div class="hidden md:block">
               <h1
-                class="font-['Poppins'] text-[65px] font-bold text-[color:var(--gray-color-2)]"
+                class="font-['Poppins'] text-[35px] font-bold text-[color:var(--gray-color-2)]"
               >
-                Shopy
+                {{ website_info.seller.name }}
               </h1>
               <p
                 class="font-['Nexa'] font-bold text-[color:var(--gray-color-2)] text-[14px]"
@@ -81,13 +78,13 @@
               <p
                 class="font-['Nexa'] font-bold text-[16px] text-[color:var(--gray-color-2)] py-2"
               >
-                + 977 9812345678
+                + 977 {{ website_info.primary_phone_number }}
               </p>
-              <p
+              <!-- <p
                 class="font-['Nexa'] font-bold text-[16px] text-[color:var(--gray-color-2)] py-2"
               >
                 + 977 9812345678
-              </p>
+              </p> -->
             </div>
             <div>
               <p
@@ -97,36 +94,36 @@
               </p>
               <ul class="flex gap-3">
                 <li>
-                  <a href=""
-                    ><svg
-                      width="40"
-                      height="40"
-                      viewBox="0 0 40 40"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M21.6571 20.3648H25.3793L25.9637 16.5605H21.6563V14.4813C21.6563 12.901 22.1696 11.4996 23.6389 11.4996H26V8.17974C25.5852 8.12338 24.7078 8 23.05 8C19.5882 8 17.5587 9.8393 17.5587 14.0297V16.5605H14V20.3648H17.5587V30.821C18.2634 30.9276 18.9773 31 19.7101 31C20.3724 31 21.0189 30.9391 21.6571 30.8522V20.3648Z"
-                        fill="#0B121F"
-                      />
-                    </svg>
-                  </a>
+                  <svg
+                    class="cursor-pointer"
+                    @click="openLink(website_info.facebook_link)"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21.6571 20.3648H25.3793L25.9637 16.5605H21.6563V14.4813C21.6563 12.901 22.1696 11.4996 23.6389 11.4996H26V8.17974C25.5852 8.12338 24.7078 8 23.05 8C19.5882 8 17.5587 9.8393 17.5587 14.0297V16.5605H14V20.3648H17.5587V30.821C18.2634 30.9276 18.9773 31 19.7101 31C20.3724 31 21.0189 30.9391 21.6571 30.8522V20.3648Z"
+                      fill="#0B121F"
+                    />
+                  </svg>
                 </li>
                 <li>
-                  <a href=""
-                    ><svg
-                      width="40"
-                      height="40"
-                      viewBox="0 0 40 40"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M30.6 14.9C29.9 15.2 29.1 15.4 28.3 15.5C29.1 15 29.8 14.2 30.1 13.3C29.3 13.8 28.5 14.1 27.5 14.3C26.8 13.5 25.7 13 24.6 13C22.4 13 20.6 14.8 20.6 17C20.6 17.3 20.6 17.6 20.7 17.9C17.4 17.7 14.4 16.1 12.4 13.7C12.1 14.3 11.9 15 11.9 15.7C11.9 17.1 12.6 18.3 13.7 19C13 19 12.4 18.8 11.9 18.5C11.9 20.4 13.3 22.1 15.1 22.4C14.8 22.5 14.4 22.5 14 22.5C13.7 22.5 13.5 22.5 13.2 22.4C13.7 24 15.2 25.2 17 25.2C15.6 26.3 13.9 26.9 12 26.9C11.7 26.9 11.4 26.9 11 26.8C12.8 27.9 14.9 28.6 17.2 28.6C24.6 28.6 28.6 22.5 28.6 17.2V16.7C29.4 16.4 30.1 15.7 30.6 14.9Z"
-                        fill="#0B121F"
-                      />
-                    </svg>
-                  </a>
+                  <svg
+                    class="cursor-pointer"
+                    @click="website_info.instagram_link"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M30.6 14.9C29.9 15.2 29.1 15.4 28.3 15.5C29.1 15 29.8 14.2 30.1 13.3C29.3 13.8 28.5 14.1 27.5 14.3C26.8 13.5 25.7 13 24.6 13C22.4 13 20.6 14.8 20.6 17C20.6 17.3 20.6 17.6 20.7 17.9C17.4 17.7 14.4 16.1 12.4 13.7C12.1 14.3 11.9 15 11.9 15.7C11.9 17.1 12.6 18.3 13.7 19C13 19 12.4 18.8 11.9 18.5C11.9 20.4 13.3 22.1 15.1 22.4C14.8 22.5 14.4 22.5 14 22.5C13.7 22.5 13.5 22.5 13.2 22.4C13.7 24 15.2 25.2 17 25.2C15.6 26.3 13.9 26.9 12 26.9C11.7 26.9 11.4 26.9 11 26.8C12.8 27.9 14.9 28.6 17.2 28.6C24.6 28.6 28.6 22.5 28.6 17.2V16.7C29.4 16.4 30.1 15.7 30.6 14.9Z"
+                      fill="#0B121F"
+                    />
+                  </svg>
                 </li>
               </ul>
             </div>
@@ -162,6 +159,18 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useUserData } from "~~/store/userData";
+
+const website_info = ref({});
+const userStore = useUserData();
+const map = ref(null);
+
+website_info.value = userStore.sellerInfo;
+
+const openLink = (link) => {
+  window.open(link, "_blank");
+};
+</script>
 
 <style scoped></style>

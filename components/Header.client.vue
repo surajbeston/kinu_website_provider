@@ -7,24 +7,30 @@
       >
         <div>
           <p class="text-[#A2A6B0] text-[12px] font-semibold font-['Poppins']">
-            Mon-Thu : <span class="text-white">9:00AM - 5:30PM</span>
+            Sun-Sat :
+            <span class="text-white"
+              >{{ website_info.opening_time }} -
+              {{ website_info.closing_time }}</span
+            >
           </p>
         </div>
         <div>
           <p class="text-[#A2A6B0] text-[12px] font-semibold font-['Poppins']">
-            Visit our showroom in 1234 Street Adress City Address, 1234
+            Visit our showroom in {{ website_info.location }}
             <span
               class="text-white underline underline-offset-8 cursor-pointer pl-1"
-              >Contact Us</span
-            >
+              >Contact Us
+            </span>
           </p>
         </div>
         <div class="flex items-center gap-6 text-[12px] font-semibold">
-          <p>Call Us: 023 57557</p>
+          <p>Call Us: {{ website_info.primary_phone_number }}</p>
           <div class="flex gap-2 items-center">
             <!-- facebook logo -->
+
             <svg
-              class="fill-white hover:fill-[#3b5998] duration-300 cursor-pointer"
+              @click="openLink(website_info.facebook_link)"
+              class="fill-white hover:fill-[#3b5998] cursor-pointer duration-300"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -34,9 +40,12 @@
                 d="M17.1056 2.27661H2.89472C2.55296 2.27661 2.27686 2.55272 2.27686 2.89447V17.1053C2.27686 17.4471 2.55296 17.7232 2.89472 17.7232H17.1056C17.4473 17.7232 17.7234 17.4471 17.7234 17.1053V2.89447C17.7234 2.55272 17.4473 2.27661 17.1056 2.27661ZM15.3215 6.78508H14.0877C13.1204 6.78508 12.9331 7.24462 12.9331 7.92041V9.40907H15.2423L14.9411 11.7396H12.9331V17.7232H10.5253V11.7415H8.51148V9.40907H10.5253V7.69064C10.5253 5.6961 11.7437 4.60905 13.5239 4.60905C14.3773 4.60905 15.1091 4.67276 15.3234 4.70173V6.78508H15.3215Z"
               />
             </svg>
+
             <!-- instagram logo -->
+
             <svg
-              class="hover:fill-[#d62976] cursor-pointer duration-300 fill-white"
+              @click="openLink(website_info.instagram_link)"
+              class="hover:fill-[#d62976] duration-300 cursor-pointer fill-white"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -55,11 +64,14 @@
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
-        <div class="w-[70px] md:w-[133px]">
+        <div
+          @click="$router.push('/')"
+          class="w-[70px] md:w-[133px] cursor-pointer"
+        >
           <img src="~assets/images/logo.png " alt="logo" />
         </div>
         <p class="text-[#373131] text-[13px] md:text-[24px] font-semibold">
-          Kinu Shop
+          {{ website_info.seller.name }}
         </p>
         <p class="hidden md:block"></p>
       </div>
@@ -67,6 +79,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useUserData } from "~~/store/userData";
+
+const website_info = ref({});
+const userStore = useUserData();
+
+website_info.value = userStore.sellerInfo;
+
+const openLink = (link) => {
+  window.open(link, "_blank");
+};
+</script>
 
 <style scoped></style>

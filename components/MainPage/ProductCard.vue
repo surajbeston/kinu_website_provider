@@ -44,14 +44,14 @@
     <div class="md:h-[171px] h-[100px] relative cursor-pointer">
       <img
         class="max-w-full max-h-full h-full w-full object-cover"
-        src="/images/image_2.jpeg"
+        :src="`https://api.kinu.app${product.image_set[0].image}`"
         alt="product image"
       />
-      <img
+      <!-- <img
         class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
         src="~assets/icons/play_button.svg"
         alt="play"
-      />
+      /> -->
     </div>
     <div class="flex gap-3 items-center mb-2 mt-2">
       <div class="flex gap-[0.08rem]">
@@ -65,17 +65,17 @@
       </p>
     </div>
     <h3 class="text-[#231F20] text-[10px] md:text-[15px] font-normal mt-1 mb-2">
-      T-shirt
+      {{ product.name }}
     </h3>
     <div class="flex justify-between items-center mt-3">
       <div>
         <p
           class="text-[#666666] text-[9px] md:text-[16px] font-normal line-through"
         >
-          Rs 699.00
+          Rs {{ product.price + (discountPercent / 100) * product.price }}
         </p>
         <p class="text-[#231F20] text-[12px] md:text-[20px] font-semibold">
-          Rs 499.00
+          Rs {{ product.price }}
         </p>
       </div>
       <button
@@ -92,6 +92,10 @@
 </template>
 
 <script setup>
+defineProps({
+  product: Object,
+});
+const discountPercent = 20;
 const reviews = 5;
 </script>
 

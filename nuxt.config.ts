@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image"],
-  //  css: ["~layouts/global.css"],
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxt/image"],
+  runtimeConfig: {
+    public: {
+      MAPBOX_API_KEY: process.env.MAPBOX_API_KEY,
+    },
+  },
 });
