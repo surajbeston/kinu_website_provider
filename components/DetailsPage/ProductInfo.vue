@@ -81,7 +81,7 @@
         </p>
       </div>
       <button
-        @click="$emit('openModal')"
+        @click="handleBuyNow"
         class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
       >
         Buy Now
@@ -173,11 +173,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useOrderData } from "~~/store/order";
+import { useUserData } from "~~/store/userData";
+const orderData = useOrderData();
+const userData = useUserData();
+
 const numberOfProduct = ref(1);
+
 const props = defineProps({
   product: Object,
 });
+const emit = defineEmits(["openModal"]);
 
 const sizeVarients = ref([
   { size: "S", isSelected: false },
@@ -186,7 +192,18 @@ const sizeVarients = ref([
   { size: "XL", isSelected: false },
   { size: "XXL", isSelected: false },
 ]);
+const handleBuyNow = () => {
+  emit("openModal");
 
+  orderData.setOrderData({
+    productName: props.product.name,
+    numberOfProduct: numberOfProduct.value,
+    pricePerProduct: props.product.price,
+    productId: props.product.id,
+    website_info: userData.sellerInfo.id,
+    totalAmount: props.product.price * numberOfProduct.value,
+  });
+};
 const colorVarients = ref([
   {
     bgColor: props.product.producttype_set[0].extras

@@ -11,6 +11,10 @@
   --black-color-1: #282f3e;
   --purple-color-1: #f5f7ff;
   --gray-color-2: #0b121f;
+  --dark-bg: #181818;
+  --dark-input-field: #212121;
+  --dark-primary-text: #ffffff;
+  --dark-secondary-text: #ffffff;
 }
 body {
   @apply bg-gray-100;

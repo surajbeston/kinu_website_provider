@@ -35,30 +35,67 @@
       class="w-full flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-14 items-start"
     >
       <div class="w-full md:w-1/2 md:pl-6 order-2 md:order-1">
-        <form class="mt-6 md:mt-12" action="">
+        <form @submit.prevent="inputValidator" class="mt-6 md:mt-12">
           <input
+            v-model="name"
+            :class="{
+              '!my-1 ': errors.nameError,
+            }"
             style="background: rgba(255, 108, 25, 0.05)"
             class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="text"
             placeholder="Enter your name"
+            @keypress="errors.nameError = false"
           />
+          <p
+            v-show="errors.nameError"
+            class="text-[12px] font-['Poppins'] text-red-500"
+          >
+            This field is required
+          </p>
           <input
+            v-model="phoneNumber"
             style="background: rgba(255, 108, 25, 0.05)"
+            :class="{
+              '!my-1 ': errors.phoneNumberError,
+            }"
             class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="number"
             placeholder="Enter your phone number"
+            @keypress="errors.phoneNumberError = false"
           />
+          <p
+            v-show="errors.phoneNumberError"
+            class="text-[12px] font-['Poppins'] text-red-500"
+          >
+            This field is required
+          </p>
           <input
+            v-model="email"
+            :class="{
+              '!my-1 ': errors.emailError,
+            }"
             style="background: rgba(255, 108, 25, 0.05)"
             class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="email"
             placeholder="Enter your email"
+            @keypress="errors.emailError = false"
           />
+          <p
+            v-show="errors.emailError"
+            class="text-[12px] font-['Poppins'] text-red-500"
+          >
+            This field is required
+          </p>
           <input
+            v-model="additionalMessage"
+            :class="{
+              '!my-1 ': errors.emailError,
+            }"
             style="background: rgba(255, 108, 25, 0.05)"
             class="px-[28px] py-[18px] my-4 md:my-6 text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
             type="text"
-            placeholder="Additional message"
+            placeholder="Additional message (optional)"
           />
           <div class="flex items-center gap-2 my-4 md:my-8">
             <input
@@ -99,25 +136,25 @@
             class="flex justify-between items-center text-[10px] md:text-base py-1"
           >
             <p>Items Name</p>
-            <p>Chino pant</p>
+            <p>{{ orderInfo.productName }}</p>
           </div>
           <div
             class="flex justify-between items-center text-[10px] md:text-base py-1"
           >
             <p>No. of Items</p>
-            <p>x2</p>
+            <p>x{{ orderInfo.numberOfProduct }}</p>
           </div>
           <div
             class="flex justify-between items-center text-[10px] md:text-base py-1 border-b border-black/30"
           >
             <p>Price per item</p>
-            <p>Rs.2000</p>
+            <p>Rs.{{ orderInfo.pricePerProduct }}</p>
           </div>
           <div
             class="flex justify-between items-center text-[10px] md:text-base py-2"
           >
             <p>Total Payment</p>
-            <p>Rs.4000</p>
+            <p>Rs.{{ orderInfo.totalAmount }}</p>
           </div>
         </div>
       </div>
@@ -127,8 +164,70 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount } from "vue";
+import { useReCaptcha } from "vue-recaptcha-v3";
+import { useOrderData } from "~~/store/order";
+const orderData = useOrderData();
+const orderInfo = orderData.orderData;
+const recaptchaInstance = useReCaptcha();
 const emit = defineEmits(["closeModal"]);
 const modal = ref(null);
+const name = ref(null);
+const phoneNumber = ref(null);
+const email = ref(null);
+const additionalMessage = ref(null);
+const errors = ref({
+  nameError: false,
+  phoneNumberError: false,
+  emailError: false,
+});
+
+const recaptcha = async () => {
+  // optional you can await for the reCaptcha load
+  await recaptchaInstance?.recaptchaLoaded();
+
+  // get the token, a custom action could be added as argument to the method
+  const token = await recaptchaInstance?.executeRecaptcha("yourActionHere");
+
+  return token;
+};
+
+const onSubmit = async () => {
+  console.log("called");
+  const token = await recaptcha();
+  const response = await useFetch(`${apiAuthority}/website/order/`, {
+    method: "POST",
+    body: {
+      recaptcha: token,
+      product: orderInfo.productId,
+      website_info: orderInfo.website_info,
+      unit_price: orderInfo.pricePerProduct,
+      quantity: orderInfo.numberOfProduct,
+      total_amount: orderInfo.totalAmount,
+      phone_number: String(phoneNumber.value),
+      email_address: String(email.value),
+      additional_message: additionalMessage.value,
+      full_name: name.value,
+    },
+  });
+  // close model
+  emit("closeModal");
+  console.log(response);
+};
+function inputValidator() {
+  if (!name.value && !email.value && !phoneNumber.value) {
+    errors.value.emailError = true;
+    errors.value.nameError = true;
+    errors.value.phoneNumberError = true;
+  } else if (!name.value) {
+    errors.value.nameError = true;
+  } else if (!email.value) {
+    errors.value.emailError = true;
+  } else if (!phoneNumber.value) {
+    errors.value.phoneNumberError = true;
+  } else {
+    onSubmit();
+  }
+}
 
 onMounted(() => {
   document.body.addEventListener("click", closeModal);

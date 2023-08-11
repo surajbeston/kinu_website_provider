@@ -60,7 +60,7 @@
       </div>
     </div>
     <!-- links section -->
-    <div class="bg-white shadow-sm py-4 md:py-2">
+    <div class="bg-white shadow-sm border-b py-4 md:py-2">
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
