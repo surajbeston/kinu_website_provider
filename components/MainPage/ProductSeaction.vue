@@ -2,7 +2,7 @@
   <div class="my-8">
     <div class="flex justify-between items-center">
       <h3
-        class="text-[12px] md:text-[24px] text-[#1E1E1E] font-normal font-['Nexa']"
+        class="text-[12px] md:text-[24px] text-[color:var(--black-4)] font-normal font-['Nexa']"
       >
         {{ title }}
       </h3>

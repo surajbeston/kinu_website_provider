@@ -1,10 +1,10 @@
 <template>
   <div
-    class="bg-white px-3 md:px-6 pt-2 pb-4 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
+    class="bg-[color:var(--white)] px-3 md:px-6 pt-2 pb-4 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
   >
     <div class="my-1">
       <p
-        class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[#78A962]"
+        class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[color:var(--green)]"
       >
         <svg
           class="w-[8px] h-[8px] md:w-[11px] md:h-[11px]"
@@ -23,7 +23,7 @@
         in stock
       </p>
       <p
-        class="hidden gap-1 items-center text-[12px] font-normal text-[#C94D3F]"
+        class="hidden gap-1 items-center text-[12px] font-normal text-[color:var(--red-2)]"
       >
         <svg
           width="11"
@@ -60,21 +60,27 @@
           :is-filled="review == 5 ? false : true"
         />
       </div>
-      <p class="text-[8px] md:text-[14px] font-normal text-[#A2A6B0]">
+      <p
+        class="text-[8px] md:text-[14px] font-normal text-[color:var(--gray-color-4)]"
+      >
         Reviews(4)
       </p>
     </div>
-    <h3 class="text-[#231F20] text-[10px] md:text-[15px] font-normal mt-1 mb-2">
+    <h3
+      class="text-[color:var(--black-3)] text-[9px] md:text-[16px] font-normal mt-1 mb-2"
+    >
       {{ product.name }}
     </h3>
     <div class="flex justify-between items-center mt-3">
       <div>
         <p
-          class="text-[#666666] text-[9px] md:text-[16px] font-normal line-through"
+          class="text-[#666666] text-[8px] md:text-[14px] font-normal line-through"
         >
           Rs {{ product.price + (discountPercent / 100) * product.price }}
         </p>
-        <p class="text-[#231F20] text-[12px] md:text-[20px] font-semibold">
+        <p
+          class="text-[color:var(--black-3)] text-[12px] md:text-[18px] font-semibold"
+        >
           Rs {{ product.price }}
         </p>
       </div>
@@ -83,9 +89,9 @@
           box-shadow: 0px 3.763843297958374px 21.642099380493164px 0px
             rgba(255, 108, 25, 0.25);
         "
-        class="bg-[#FE900E] px-[16px] md:px-[29px] duration-200 hover:scale-[1.02] py-2 md:py-3 text-white text-[8px] md:text-[14px] font-semibold tracking-wider rounded-[3px]"
+        class="bg-[color:var(--yellow-color)] px-[10px] md:px-[20px] duration-200 hover:scale-[1.02] py-2 text-[color:var(--white)] text-[8px] md:text-[12px] font-semibold tracking-wider rounded-[3px]"
       >
-        Buy
+        View Details
       </button>
     </div>
   </div>

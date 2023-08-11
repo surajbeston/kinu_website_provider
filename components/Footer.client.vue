@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white py-6">
+  <div class="bg-[color:var(--white)] py-6">
     <div class="max-w-[1400px] w-[90%] md:w-[95%] mx-auto">
       <div class="flex flex-col md:flex-row gap-10 items-center">
         <div class="w-[95%] mx-auto md:w-[40%]">

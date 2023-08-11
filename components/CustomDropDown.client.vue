@@ -6,14 +6,15 @@
     <Transition name="fade">
       <div
         v-if="showOptions"
-        class="absolute top-[2.05rem] bg-white w-[225px] -left-[5.4rem] border rounded-[5px] z-30"
+        class="absolute top-[2.05rem] bg-[color:var(--white)] w-[225px] -left-[5.4rem] border rounded-[5px] z-30"
       >
         <div
           v-for="option in filterOptions"
           :key="option"
           class="py-2 px-5 text-base hover:bg-gray-200"
           :class="{
-            'bg-gray-200 text-black font-bold ': selectedOption == option,
+            'bg-gray-200 text-[color:var(--black)] font-bold ':
+              selectedOption == option,
           }"
           @click.stop="changeOption(option)"
         >

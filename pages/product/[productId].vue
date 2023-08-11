@@ -13,21 +13,23 @@
     >
       <button
         @click="changeTab('Descriptions')"
-        :class="{ 'text-black': activeTab === 'Descriptions' }"
+        :class="{ 'text-[color:var(--black)]': activeTab === 'Descriptions' }"
         class="cursor-pointer"
       >
         Descriptions
       </button>
       <button
         @click="changeTab('Additional Informations')"
-        :class="{ 'text-black': activeTab === 'Additional Informations' }"
+        :class="{
+          'text-[color:var(--black)]': activeTab === 'Additional Informations',
+        }"
         class="cursor-pointer"
       >
         Additional Informations
       </button>
       <button
         @click="changeTab('Reviews')"
-        :class="{ 'text-black': activeTab === 'Reviews' }"
+        :class="{ 'text-[color:var(--black)]': activeTab === 'Reviews' }"
         class="cursor-pointer"
       >
         Reviews[5]

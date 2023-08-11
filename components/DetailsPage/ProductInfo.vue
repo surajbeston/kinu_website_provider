@@ -60,7 +60,9 @@
       </div>
     </div>
     <div class="flex items-center gap-8 pb-10 pt-4">
-      <div class="flex border bg-white w-max px-4 rounded-[11px] py-2">
+      <div
+        class="flex border bg-[color:var(--white)] w-max px-4 rounded-[11px] py-2"
+      >
         <p
           @click="decrementNumberOfProduct"
           class="text-2xl cursor-pointer prevent-select"
@@ -84,7 +86,7 @@
         @click="handleBuyNow"
         class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
       >
-        Buy Now
+        Order Now
       </button>
     </div>
     <div class="border-t pt-10 border-[#D9D9D9]">

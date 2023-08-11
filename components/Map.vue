@@ -15,12 +15,14 @@ const config = useRuntimeConfig();
 
 // geocoding  url
 const response = await fetch(
-  `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+  ` https://nominatim.openstreetmap.org/search.php?q=${encodeURIComponent(
     props.location
-  )}.json?access_token=${config.public.MAPBOX_API_KEY}`
+  )}&format=jsonv2`
 );
 const data = await response.json();
-center.value = data.features[0].center;
+center.value = [data[0].lon, data[0].lat];
+console.log(data[0]);
+// center.value = data.features[0].center;
 
 // map creation
 const createMap = async () => {
