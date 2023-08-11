@@ -2,10 +2,9 @@
   <div class="hidden md:flex text-sm bg-[color:var(--white)] my-10 py-10 pl-20">
     <ul class="flex">
       <li v-for="(tag, index) in tags" :key="index" class="flex items-center">
-        <span
-          class="text-base cursor-pointer text-[color:var(--gray-color-1)]"
-          >{{ tag }}</span
-        >
+        <span class="text-base text-[color:var(--gray-color-1)]">{{
+          tag
+        }}</span>
         <span v-if="index < tags.length - 1" class="mx-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
