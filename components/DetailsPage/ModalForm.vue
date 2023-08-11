@@ -166,6 +166,8 @@
 import { onMounted, onBeforeUnmount } from "vue";
 import { useReCaptcha } from "vue-recaptcha-v3";
 import { useOrderData } from "~~/store/order";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 const orderData = useOrderData();
 const orderInfo = orderData.orderData;
 const recaptchaInstance = useReCaptcha();
@@ -192,7 +194,6 @@ const recaptcha = async () => {
 };
 
 const onSubmit = async () => {
-  console.log("called");
   const token = await recaptcha();
   const response = await useFetch(`${apiAuthority}/website/order/`, {
     method: "POST",
@@ -211,7 +212,15 @@ const onSubmit = async () => {
   });
   // close model
   emit("closeModal");
-  console.log(response);
+  if (response.status.value === "success") {
+    toast.success("Order Placed", {
+      timeout: 2000,
+    });
+  } else {
+    toast.error("Something went Wrong", {
+      timeout: 2000,
+    });
+  }
 };
 function inputValidator() {
   if (!name.value && !email.value && !phoneNumber.value) {

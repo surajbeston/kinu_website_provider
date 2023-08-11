@@ -13,4 +13,7 @@ export default defineNuxtConfig({
       RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
     },
   },
+  build: {
+    transpile: ["vue-toastification"],
+  },
 });
