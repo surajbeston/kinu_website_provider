@@ -3,7 +3,7 @@
     <ul class="flex">
       <li v-for="(tag, index) in tags" :key="index" class="flex items-center">
         <span
-          class="text-gray-500 text-base text-[color:var(--gray-color-1)]"
+          class="text-gray-500 text-base cursor-pointer text-[color:var(--gray-color-1)]"
           >{{ tag }}</span
         >
         <span v-if="index < tags.length - 1" class="mx-4 text- text-gray-300">
