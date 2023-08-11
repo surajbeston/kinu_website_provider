@@ -10,22 +10,6 @@ module.exports = {
         autorestart: true,
         max_memory_restart: '1G', // Restart the app if it exceeds 1GB of memory
       },
-
-
-      
     ],
   };
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
