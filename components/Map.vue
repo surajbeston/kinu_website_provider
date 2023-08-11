@@ -1,17 +1,24 @@
 <template>
-  <div class="w-full h-full" id="map"></div>
+  <div class="w-full h-full">
+    <LMap ref="map" :zoom="zoom" :center="[lat, lon]">
+      <LTileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        layer-type="base"
+        name="OpenStreetMap"
+      />
+      <LMarker :lat-lng="[lat, lon]"> </LMarker>
+    </LMap>
+  </div>
 </template>
 
 <script setup>
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 const props = defineProps({
   location: String,
 });
+const lat = ref(27.700769);
+const lon = ref(85.30014);
 
-const map = ref("");
-const center = ref([85.30014, 27.700769]);
-const config = useRuntimeConfig();
+const zoom = ref(12);
 
 // geocoding  url
 const response = await fetch(
@@ -20,43 +27,8 @@ const response = await fetch(
   )}&format=jsonv2`
 );
 const data = await response.json();
-center.value = [data[0].lon, data[0].lat];
-console.log(data[0]);
-// center.value = data.features[0].center;
-
-// map creation
-const createMap = async () => {
-  try {
-    mapboxgl.accessToken = config.public.MAPBOX_API_KEY;
-    map.value = new mapboxgl.Map({
-      attributionControl: false,
-      container: "map",
-      style: "mapbox://styles/mapbox/outdoors-v12?optimize=true",
-      center: center.value,
-      zoom: 10,
-    });
-    const marker = new mapboxgl.Marker({
-      color: "#ff6c19",
-    })
-      .setLngLat(center.value)
-      .addTo(map.value);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-onMounted(() => createMap());
+lat.value = data[0].lat;
+lon.value = data[0].lon;
 </script>
 
-<style>
-.mapboxgl-ctrl-attrib-inner {
-  display: none !important;
-}
-
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-</style>
+<style></style>

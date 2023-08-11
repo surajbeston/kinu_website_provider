@@ -1,7 +1,7 @@
 <template>
   <div class="w-full md:w-[50%]">
     <h1
-      class="text-[25px] md:text-[47px] text-black font-normal font-['Poppins']"
+      class="text-[25px] md:text-[47px] text-[color:var(--black)] font-normal font-['Poppins']"
     >
       {{ product.name }}
     </h1>
@@ -22,7 +22,7 @@
     </div>
     <div
       v-html="product.description_html"
-      class="my-3 font-['Nexa'] font-normal text-black desc"
+      class="my-3 font-['Nexa'] font-normal text-[color:var(--black)] desc"
     ></div>
     <!-- <p class="py-2 text-[10px] md:text-lg font-['Nexa'] font-normal text-black">
       The best selling Planet Boxy Tee is a one size, season-less, staple piece
