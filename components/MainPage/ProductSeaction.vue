@@ -9,7 +9,7 @@
       <div
         ref="filterWrapper"
         @click="toggleOptions"
-        class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[8px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
+        class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[10px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
       >
         <p class="font-normal">sort by:</p>
         <CustomDropDown

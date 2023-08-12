@@ -4,7 +4,7 @@
       <div class="flex flex-col md:flex-row gap-10 items-center">
         <div class="w-[95%] mx-auto md:w-[40%]">
           <p
-            class="py-2 text-base font-semibold text-[color:var(--gray-color-2)]"
+            class="py-2 font-['Nexa'] text-base font-semibold text-[color:var(--gray-color-2)]"
           >
             Our Shop
           </p>
@@ -92,7 +92,7 @@
               >
                 Connect with us
               </p>
-              <ul class="flex gap-3">
+              <ul class="flex items-center gap-3">
                 <li>
                   <svg
                     class="cursor-pointer"
@@ -112,7 +112,7 @@
                 <li>
                   <svg
                     class="cursor-pointer"
-                    @click="website_info.instagram_link"
+                    @click="openLink(website_info.twitter_link)"
                     width="40"
                     height="40"
                     viewBox="0 0 40 40"
@@ -123,6 +123,22 @@
                       d="M30.6 14.9C29.9 15.2 29.1 15.4 28.3 15.5C29.1 15 29.8 14.2 30.1 13.3C29.3 13.8 28.5 14.1 27.5 14.3C26.8 13.5 25.7 13 24.6 13C22.4 13 20.6 14.8 20.6 17C20.6 17.3 20.6 17.6 20.7 17.9C17.4 17.7 14.4 16.1 12.4 13.7C12.1 14.3 11.9 15 11.9 15.7C11.9 17.1 12.6 18.3 13.7 19C13 19 12.4 18.8 11.9 18.5C11.9 20.4 13.3 22.1 15.1 22.4C14.8 22.5 14.4 22.5 14 22.5C13.7 22.5 13.5 22.5 13.2 22.4C13.7 24 15.2 25.2 17 25.2C15.6 26.3 13.9 26.9 12 26.9C11.7 26.9 11.4 26.9 11 26.8C12.8 27.9 14.9 28.6 17.2 28.6C24.6 28.6 28.6 22.5 28.6 17.2V16.7C29.4 16.4 30.1 15.7 30.6 14.9Z"
                       fill="#0B121F"
                     />
+                  </svg>
+                </li>
+                <li>
+                  <svg
+                    class="cursor-pointer"
+                    @click="openLink(website_info.instagram_link)"
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 30 30"
+                  >
+                    <path
+                      d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"
+                    ></path>
                   </svg>
                 </li>
               </ul>

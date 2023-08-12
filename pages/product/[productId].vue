@@ -1,7 +1,7 @@
 <template>
   <div>
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
-    <div class="flex flex-col md:flex-row gap-10">
+    <div class="flex flex-col md:flex-row gap-10 border-b pb-10">
       <DetailsPageImageSlider :medias="medias" />
       <DetailsPageProductInfo
         :product="product"
@@ -9,7 +9,7 @@
       />
     </div>
     <div
-      class="hidden md:flex justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
+      class="hidden justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
     >
       <button
         @click="changeTab('Descriptions')"
@@ -41,13 +41,13 @@
     >
       <DetailsPageModalForm @closeModal="showModal = false" />
     </div>
-    <section class="my-10">
+    <section class="my-10 hidden">
       <h4 class="text-[24px] font-['Nexa'] font-bold">Video Reviews</h4>
       <div class="flex gap-4 overflow-x-scroll scrollbar-hidden">
         <DetailsPageReviewCard v-for="(each, index) in 10" :key="index" />
       </div>
     </section>
-    <section>
+    <section class="hidden">
       <div class="flex justify-between items-center">
         <h4 class="text-[24px] font-['Nexa'] font-bold">Text Reviews</h4>
         <p
@@ -80,7 +80,7 @@ products.value = userStore.seller_products;
 
 const medias = computed({
   get() {
-    return [...product.value.image_set, ...product.value.video_set];
+    return [...product.value.video_set, ...product.value.image_set];
   },
 });
 
