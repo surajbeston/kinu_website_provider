@@ -73,12 +73,12 @@
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
-        <div
-          @click="$router.push('/')"
-          class="w-[70px] md:w-[133px] cursor-pointer"
-        >
-          <img src="~assets/images/logo.png " alt="logo" />
-        </div>
+        <NuxtLink to="/" no-prefetch>
+          <div class="w-[70px] md:w-[133px] cursor-pointer">
+            <img src="~assets/images/logo.png " alt="logo" />
+          </div>
+        </NuxtLink>
+
         <p
           :style="{ color: `var(--${userStore.paletteName}-text)` }"
           class="text-[13px] md:text-[24px] font-semibold"

@@ -93,7 +93,7 @@ const changeTab = (tab) => {
 const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
-
+console.log(product.value);
 const breadcrumbTags = ref([
   "Home",
   product.value.category.name,
@@ -109,6 +109,11 @@ useHead({
       content: product.value.description_html,
     },
     {
+      name: "keywords",
+      content: `${product.value.category.name},${product.value.name}, ${route.fullPath},${product.value.seller.name}`,
+    },
+    { property: "og:type", content: "website" },
+    {
       property: "og:title",
       content: product.value.name,
     },
@@ -120,8 +125,31 @@ useHead({
       property: "og:image",
       content: apiAuthority + product.value.image_set[0].image,
     },
+    {
+      property: "og:url",
+      content: route.fullPath,
+    },
+    {
+      name: "twitter:card",
+      content: product.value.description_html,
+    },
+    {
+      name: "twitter:title",
+      content: product.value.name,
+    },
+    {
+      name: "twitter:description",
+      content: product.value.description_html,
+    },
+    {
+      name: "twitter:image",
+      content: apiAuthority + product.value.image_set[0].image,
+    },
+    { rel: "canonical", href: `${route.fullPath}` },
+    { name: "language", content: "en" },
   ],
 });
+console.log();
 </script>
 
 <style scoped></style>

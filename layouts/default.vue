@@ -26,6 +26,55 @@ console.log("layout called and api also");
 
 userStore.setSellerInfo(userData.value.website_info);
 userStore.setSellerProduct(userData.value.seller_products);
+useHead({
+  title: "Home page",
+
+  // meta: [
+  //   {
+  //     name: "description",
+  //     content: product.value.description_html,
+  //   },
+  //   {
+  //     name: "keywords",
+  //     content: `${product.value.category.name},${product.value.name}, ${window.location.href},${product.value.seller.name}`,
+  //   },
+  //   { property: "og:type", content: "website" },
+  //   {
+  //     property: "og:title",
+  //     content: product.value.name,
+  //   },
+  //   {
+  //     property: "og:description",
+  //     content: product.value.description_html,
+  //   },
+  //   {
+  //     property: "og:image",
+  //     content: apiAuthority + product.value.image_set[0].image,
+  //   },
+  //   {
+  //     property: "og:url",
+  //     content: window.location.href,
+  //   },
+  //   {
+  //     name: "twitter:card",
+  //     content: product.value.description_html,
+  //   },
+  //   {
+  //     name: "twitter:title",
+  //     content: product.value.name,
+  //   },
+  //   {
+  //     name: "twitter:description",
+  //     content: product.value.description_html,
+  //   },
+  //   {
+  //     name: "twitter:image",
+  //     content: apiAuthority + product.value.image_set[0].image,
+  //   },
+  //   { rel: "canonical", href: `${window.location.href}` },
+  //   { name: "language", content: "en" },
+  // ],
+});
 </script>
 
 <style scoped></style>
