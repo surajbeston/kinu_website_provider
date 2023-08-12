@@ -2,11 +2,16 @@
   <div class="my-8">
     <div class="flex justify-between items-center">
       <h3
+        :style="{ color: `var(--${userStore.paletteName}-text)` }"
         class="text-[12px] md:text-[24px] text-[color:var(--black-4)] font-normal font-['Nexa']"
       >
         {{ title }}
       </h3>
       <div
+        :style="{
+          borderColor: `var(--${userStore.paletteName}-text)`,
+          color: `var(--${userStore.paletteName}-text)`,
+        }"
         ref="filterWrapper"
         @click="toggleOptions"
         class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[10px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
@@ -19,6 +24,8 @@
           @update="handleChangeOptions"
         />
         <svg
+          :style="{ fill: `var(--${userStore.paletteName}-text)` }"
+          class="fill-[#4A4B57]"
           width="12"
           height="8"
           viewBox="0 0 12 8"
@@ -27,7 +34,6 @@
         >
           <path
             d="M10.173 0.595325L5.80883 4.95002L1.44462 0.595325L0.103983 1.93596L5.80883 7.64081L11.5137 1.93596L10.173 0.595325Z"
-            fill="#4A4B57"
           />
         </svg>
       </div>
@@ -38,6 +44,7 @@
         @click="handleNavigation(each.id)"
         v-for="each in userStore.seller_products"
         :product="each"
+        :palette="userStore.paletteName"
       />
     </div>
   </div>

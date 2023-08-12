@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
     "nuxt3-leaflet",
+    "@vee-validate/nuxt",
   ],
   runtimeConfig: {
     public: {

@@ -1,5 +1,6 @@
 <template>
   <div
+    :style="{ backgroundColor: `var(--${palette}-light)` }"
     class="bg-[color:var(--white)] px-3 md:px-6 pt-2 pb-4 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
   >
     <div class="my-1">
@@ -61,6 +62,7 @@
         />
       </div>
       <p
+        :style="{ color: `var(--${palette}-gray-text)` }"
         class="text-[8px] md:text-[14px] font-normal text-[color:var(--gray-color-4)]"
       >
         Reviews(4)
@@ -100,6 +102,7 @@
 <script setup>
 defineProps({
   product: Object,
+  palette: String,
 });
 const discountPercent = 20;
 const reviews = 5;

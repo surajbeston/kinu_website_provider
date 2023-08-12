@@ -7,6 +7,7 @@
       >
         <div>
           <p
+            v-show="website_info.opening_time"
             class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
           >
             Sun-Sat :
@@ -20,8 +21,9 @@
           <p
             class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
           >
-            Visit our showroom in {{ website_info.location }}
+            Visit us {{ website_info.location }}
             <span
+              @click="scrollToBottom"
               class="text-[color:var(--white)] underline underline-offset-8 cursor-pointer pl-1"
               >Contact Us
             </span>
@@ -64,7 +66,10 @@
       </div>
     </div>
     <!-- links section -->
-    <div class="bg-[color:var(--white)] shadow-sm border-b py-4 md:py-2">
+    <div
+      :style="{ backgroundColor: `var(--${userStore.paletteName}-bg)` }"
+      class="shadow-md border-b py-4 md:py-2"
+    >
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
@@ -75,7 +80,8 @@
           <img src="~assets/images/logo.png " alt="logo" />
         </div>
         <p
-          class="text-[color:var(--gray-color-5)] text-[13px] md:text-[24px] font-semibold"
+          :style="{ color: `var(--${userStore.paletteName}-text)` }"
+          class="text-[13px] md:text-[24px] font-semibold"
         >
           {{ website_info.seller.name }}
         </p>
@@ -95,6 +101,9 @@ website_info.value = userStore.sellerInfo;
 
 const openLink = (link) => {
   window.open(link, "_blank");
+};
+const scrollToBottom = () => {
+  window.scrollTo(0, document.body.scrollHeight);
 };
 </script>
 

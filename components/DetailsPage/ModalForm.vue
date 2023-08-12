@@ -1,12 +1,12 @@
 <template>
   <div
     ref="modal"
-    class="bg-[color:var(--white-2)] w-[calc(100vw-2rem)] h-max md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4"
+    class="bg-[color:var(--white-2)] w-[calc(100vw-2rem)] h-[90vh] overflow-y-scroll md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4 z-30 custom-scrollbar"
   >
     <p class="flex justify-end">
       <svg
         class="cursor-pointer"
-        @click="$emit('closeModal')"
+        @click="emitCloseEvent"
         width="41"
         height="41"
         viewBox="0 0 41 41"
@@ -35,70 +35,55 @@
       class="w-full flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-14 items-start"
     >
       <div class="w-full md:w-1/2 md:pl-6 order-2 md:order-1">
-        <form @submit.prevent="inputValidator" class="mt-6 md:mt-12">
-          <input
-            v-model="name"
-            :class="{
-              '!my-1 ': errors.nameError,
-            }"
+        <Form
+          autocomplete="off"
+          @submit="onSubmit"
+          :initial-values="localFormData"
+          class="mt-6 md:mt-12"
+        >
+          <Field
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
-            placeholder="Enter your name"
-            @keypress="errors.nameError = false"
+            name="userName"
+            :rules="validateName"
+            placeholder="Enter your full name"
           />
-          <p
-            v-show="errors.nameError"
-            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
-          >
-            This field is required
-          </p>
-          <input
-            v-model="phoneNumber"
+          <ErrorMessage class="text-[color:var(--red)] my-0" name="userName" />
+
+          <Field
+            title="Please enter a 10-digit phone number"
             style="background: rgba(255, 108, 25, 0.05)"
-            :class="{
-              '!my-1 ': errors.phoneNumberError,
-            }"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="number"
+            name="phoneNumber"
+            :rules="validatePhoneNumber"
             placeholder="Enter your phone number"
-            @keypress="errors.phoneNumberError = false"
           />
-          <p
-            v-show="errors.phoneNumberError"
-            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
-          >
-            This field is required
-          </p>
-          <input
-            v-model="email"
-            :class="{
-              '!my-1 ': errors.emailError,
-            }"
+          <ErrorMessage
+            class="text-[color:var(--red)] my-0"
+            name="phoneNumber"
+          />
+          <Field
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="email"
+            name="email"
+            :rules="validateEmail"
             placeholder="Enter your email"
-            @keypress="errors.emailError = false"
+            title="Please enter valid email"
           />
-          <p
-            v-show="errors.emailError"
-            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
-          >
-            This field is required
-          </p>
-          <input
-            v-model="additionalMessage"
-            :class="{
-              '!my-1 ': errors.emailError,
-            }"
+          <ErrorMessage class="text-[color:var(--red)] my-0" name="email" />
+          <Field
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] py-[18px] my-4 md:my-6 text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] py-[18px] my-4 text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
+            name="additionalMessage"
             placeholder="Additional message (optional)"
           />
           <div class="flex items-center gap-2 my-4 md:my-8">
             <input
+              v-model="rememberMe"
               class="w-[18px] md:w-[22px] h-[18px] md:h-[22px]"
               type="checkbox"
               name="checkbox"
@@ -116,7 +101,7 @@
             type="submit"
             value="Order"
           />
-        </form>
+        </Form>
       </div>
       <div class="w-full md:w-1/2 md:order-2">
         <nuxt-img
@@ -163,8 +148,9 @@
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount } from "vue";
+import { Form, Field, ErrorMessage } from "vee-validate";
 import { useReCaptcha } from "vue-recaptcha-v3";
+import nuxtStorage from "nuxt-storage";
 import { useOrderData } from "~~/store/order";
 import { useToast } from "vue-toastification";
 const toast = useToast();
@@ -173,15 +159,8 @@ const orderInfo = orderData.orderData;
 const recaptchaInstance = useReCaptcha();
 const emit = defineEmits(["closeModal"]);
 const modal = ref(null);
-const name = ref(null);
-const phoneNumber = ref(null);
-const email = ref(null);
-const additionalMessage = ref(null);
-const errors = ref({
-  nameError: false,
-  phoneNumberError: false,
-  emailError: false,
-});
+const localFormData = ref(null);
+const rememberMe = ref(false);
 
 const recaptcha = async () => {
   // optional you can await for the reCaptcha load
@@ -193,7 +172,18 @@ const recaptcha = async () => {
   return token;
 };
 
-const onSubmit = async () => {
+const onSubmit = async (values) => {
+  console.log(values);
+  console.log(rememberMe.value);
+  if (rememberMe.value) {
+    const localData = {
+      phoneNumber: String(values.phoneNumber),
+      email: String(values.email),
+      userName: values.userName,
+    };
+    // storing form data locally
+    storeLocally(localData);
+  }
   const token = await recaptcha();
   const response = await useFetch(`${apiAuthority}/website/order/`, {
     method: "POST",
@@ -204,42 +194,50 @@ const onSubmit = async () => {
       unit_price: orderInfo.pricePerProduct,
       quantity: orderInfo.numberOfProduct,
       total_amount: orderInfo.totalAmount,
-      phone_number: String(phoneNumber.value),
-      email_address: String(email.value),
-      additional_message: additionalMessage.value,
-      full_name: name.value,
+      phone_number: String(values.phoneNumber),
+      email_address: String(values.email),
+      additional_message: values.additionalMessage,
+      full_name: values.userName,
     },
   });
-  // close model
-  emit("closeModal");
+  emitCloseEvent();
   if (response.status.value === "success") {
-    toast.success("Order Placed", {
-      timeout: 2000,
+    // success toast
+    toast.success("Order received, you'll be contacted by seller", {
+      timeout: 4000,
     });
   } else {
     toast.error("Something went Wrong", {
-      timeout: 2000,
+      timeout: 3000,
     });
   }
 };
-function inputValidator() {
-  if (!name.value && !email.value && !phoneNumber.value) {
-    errors.value.emailError = true;
-    errors.value.nameError = true;
-    errors.value.phoneNumberError = true;
-  } else if (!name.value) {
-    errors.value.nameError = true;
-  } else if (!email.value) {
-    errors.value.emailError = true;
-  } else if (!phoneNumber.value) {
-    errors.value.phoneNumberError = true;
-  } else {
-    onSubmit();
-  }
-}
 
+const emitCloseEvent = () => {
+  addScroll();
+  emit("closeModal");
+};
+
+const removeScroll = () => {
+  document.body.style.overflow = "hidden";
+};
+const storeLocally = (data) => {
+  nuxtStorage.localStorage.setData("formData", data, 1, "m");
+};
+
+const addScroll = () => {
+  document.body.style.overflow = "auto";
+};
 onMounted(() => {
+  removeScroll();
   document.body.addEventListener("click", closeModal);
+  // getting data from local storage
+  const data = nuxtStorage.localStorage.getData("formData");
+  console.log(data);
+  if (data) {
+    rememberMe.value = true;
+    localFormData.value = data;
+  }
 });
 onBeforeUnmount(() => {
   document.body.removeEventListener("click", closeModal);
@@ -248,6 +246,39 @@ const closeModal = (event) => {
   if (Array.from(event.target.classList).includes("h-screen")) {
     emit("closeModal");
   }
+};
+const validateEmail = (value) => {
+  // if the field is empty
+  if (!value) {
+    return "This field is required";
+  }
+
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(value)) {
+    return "This field must be a valid email";
+  }
+  // All is good
+  return true;
+};
+const validatePhoneNumber = (value) => {
+  // if the field is empty
+  if (!value) {
+    return "This field is required";
+  }
+  const regex = /^[0-9]{10}$/;
+  if (!regex.test(value)) {
+    return "This field must be a valid phone number";
+  }
+  return true;
+};
+const validateName = (value) => {
+  if (!value) {
+    return "This field is required";
+  }
+  if (value.length < 5) {
+    return "This field must have a vaild full name";
+  }
+  return true;
 };
 </script>
 

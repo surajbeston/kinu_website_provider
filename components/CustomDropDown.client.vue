@@ -1,6 +1,9 @@
 <template>
   <div class="relative w-[55px] md:w-[104px]">
-    <div class="font-['Poppins'] text-[10px] md:text-lg font-semibold">
+    <div
+      :style="{ color: `var(--${userStore.paletteName}-text)` }"
+      class="font-['Poppins'] text-[10px] md:text-lg font-semibold"
+    >
       {{ selectedOption }}
     </div>
     <Transition name="fade">
@@ -26,6 +29,9 @@
 </template>
 
 <script setup>
+import { useUserData } from "~~/store/userData";
+
+const userStore = useUserData();
 const emit = defineEmits(["update"]);
 
 defineProps({

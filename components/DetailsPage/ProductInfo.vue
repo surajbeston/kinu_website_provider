@@ -187,7 +187,6 @@ const numberOfProduct = ref(1);
 const props = defineProps({
   product: Object,
 });
-console.log(props.product);
 const emit = defineEmits(["openModal"]);
 
 const sizeVarients = ref([

@@ -43,7 +43,7 @@
     >
       <DetailsPageModalForm @closeModal="showModal = false" />
     </div>
-    <section class="my-10 hidden">
+    <!-- <section class="my-10 hidden">
       <h4 class="text-[24px] font-['Nexa'] font-bold">Video Reviews</h4>
       <div class="flex gap-4 overflow-x-scroll scrollbar-hidden">
         <DetailsPageReviewCard v-for="(each, index) in 10" :key="index" />
@@ -61,7 +61,7 @@
       <div class="my-6">
         <DetailsPageTextReviewCard />
       </div>
-    </section>
+    </section> -->
     <MainPageProductSeaction
       title="You might also like"
       :seller_products="products"
@@ -94,13 +94,34 @@ const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
 
-
-
 const breadcrumbTags = ref([
   "Home",
   product.value.category.name,
   product.value.name,
 ]);
+
+useHead({
+  title: product.value.name,
+
+  meta: [
+    {
+      name: "description",
+      content: product.value.description_html,
+    },
+    {
+      property: "og:title",
+      content: product.value.name,
+    },
+    {
+      property: "og:description",
+      content: product.value.description_html,
+    },
+    {
+      property: "og:image",
+      content: apiAuthority + product.value.image_set[0].image,
+    },
+  ],
+});
 </script>
 
 <style scoped></style>
