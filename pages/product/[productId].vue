@@ -93,6 +93,7 @@ const { data: product } = await useFetch(
 );
 
 
+
 const breadcrumbTags = ref([
   "Home",
   product.value.category.name,
