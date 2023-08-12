@@ -16,4 +16,5 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vue-toastification"],
   },
+  css: ["~~/layouts/global.css"],
 });

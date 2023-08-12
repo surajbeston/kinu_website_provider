@@ -1,9 +1,12 @@
 <template>
-  <div @click="toggleVideo" class="relative cursor-pointer">
+  <div
+    @click="toggleVideo"
+    class="w-full h-full flex justify-center items-center relative cursor-pointer object-contain"
+  >
     <video
       ref="videoElement"
       loop
-      class="max-w-full max-h-full"
+      class="max-w-full max-h-full object-contain"
       :src="videoSrc"
     ></video>
     <svg

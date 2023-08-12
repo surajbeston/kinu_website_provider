@@ -103,9 +103,18 @@ console.log(props.medias);
 <style scoped>
 .mySwiper2 {
   width: 100% !important;
-  height: 568px !important;
+  height: 588px !important;
   max-height: 604px !important;
-  background: rgb(209 213 219 /1);
+  background-image: linear-gradient(
+    to right,
+    #6f838e,
+    #373d60 400px,
+    #6f838e 800px
+  );
+  background-size: 800px 100%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px;
 }
 @media screen and (min-width: 768px) {
   .mySwiper2 {
@@ -126,9 +135,9 @@ console.log(props.medias);
 }
 
 .aspect-ratio-content {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   height: 100%;
   display: flex;

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Poppins";
-  src: url("~static/fonts/Poppins-Light.ttf") format("truetype");
+  src: url("~/assets/fonts/Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("~static/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("~/assets/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("~static/fonts/Poppins-Medium.ttf") format("truetype");
+  src: url("~/assets/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("~static/fonts/Poppins-SemiBold.ttf") format("truetype");
+  src: url("~/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("~static/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("~/assets/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -40,21 +40,21 @@
 /* nexa font */
 @font-face {
   font-family: "Nexa";
-  src: url("~static/fonts/Nexa Bold.ttf") format("truetype");
+  src: url("~/assets/fonts/Nexa-Bold.otf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Nexa";
-  src: url("~static/fonts/Nexa Regular.ttf") format("truetype");
+  src: url("~/assets/fonts/Nexa-Regular.otf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Nexa";
-  src: url("~static/fonts/Nexa Light.ttf") format("truetype");
+  src: url("~/assets/fonts/Nexa-Light.otf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;

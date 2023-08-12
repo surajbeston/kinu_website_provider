@@ -1,7 +1,9 @@
 <template>
   <div>
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
-    <div class="flex flex-col md:flex-row gap-10 border-b pb-10">
+    <div
+      class="flex flex-col mt-10 md:mt-auto md:flex-row gap-10 justify-between border-b pb-10"
+    >
       <DetailsPageImageSlider :medias="medias" />
       <DetailsPageProductInfo
         :product="product"

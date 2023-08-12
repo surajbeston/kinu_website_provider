@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full md:w-[50%]">
+  <div class="w-full md:w-[50%] min-h-max">
     <h1
       class="text-[25px] md:text-[47px] text-[color:var(--black)] font-normal font-['Poppins']"
     >
@@ -10,7 +10,7 @@
     >
       Rs.{{ product.price }}.00
     </h3>
-    <div class="flex gap-6 items-center py-2">
+    <!-- <div class="flex gap-6 items-center py-2">
       <div class="flex gap-1">
         <Star v-for="each in 5" :isFilled="true" />
       </div>
@@ -19,7 +19,7 @@
       >
         5 customers reviews
       </p>
-    </div>
+    </div> -->
     <div
       v-html="product.description_html"
       class="my-3 font-['Nexa'] font-normal text-[color:var(--black)] desc"
@@ -29,7 +29,7 @@
       for any wardrobe! The beloved Pima Cotton washes and wears well making
       this a great investment piece that feels as good as it looks.
     </p> -->
-    <div class="py-4">
+    <!-- <div class="py-4">
       <p
         class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
       >
@@ -43,8 +43,8 @@
           :size="size"
         />
       </div>
-    </div>
-    <div class="py-3">
+    </div> -->
+    <div v-if="product.producttype_set[0].extras" class="py-3">
       <p
         class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
       >
@@ -89,30 +89,30 @@
         Order Now
       </button>
     </div>
-    <div class="border-t pt-10 border-[#D9D9D9]">
+    <div class="border-t space-y-2 md:space-y-4 pt-10 border-[#D9D9D9]">
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">SKU</p>
         <p class="">:</p>
-        <p class="">SS001</p>
+        <p class="">{{ product.id }}</p>
       </div>
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Category</p>
         <p class="">:</p>
         <p class="">{{ product.category.name }}</p>
       </div>
-      <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
+      <!-- <div
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Tags</p>
         <p class="">:</p>
         <p class="">chino, pant, men’s, trending</p>
-      </div>
+      </div> -->
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[10px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Share</p>
         <p class="">:</p>
@@ -187,6 +187,7 @@ const numberOfProduct = ref(1);
 const props = defineProps({
   product: Object,
 });
+console.log(props.product);
 const emit = defineEmits(["openModal"]);
 
 const sizeVarients = ref([

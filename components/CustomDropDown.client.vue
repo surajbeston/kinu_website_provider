@@ -1,12 +1,12 @@
 <template>
-  <div class="relative w-[55px] md:w-[100px]">
+  <div class="relative w-[55px] md:w-[104px]">
     <div class="font-['Poppins'] text-[10px] md:text-lg font-semibold">
       {{ selectedOption }}
     </div>
     <Transition name="fade">
       <div
         v-if="showOptions"
-        class="absolute top-[1.3rem] md:top-[2.05rem] bg-[color:var(--white)] w-[128px] md:w-[225px] -left-[2.9rem] md:-left-[5.4rem] border rounded-[5px] z-30"
+        class="absolute top-[1.3rem] md:top-[2.05rem] bg-[color:var(--white)] w-[128px] md:w-[233px] -left-[2.9rem] md:-left-[5.65rem] border rounded-[5px] z-30"
       >
         <div
           v-for="option in filterOptions"
