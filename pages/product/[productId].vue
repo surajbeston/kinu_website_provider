@@ -94,6 +94,8 @@ const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
 
+
+
 const breadcrumbTags = ref([
   "Home",
   product.value.category.name,
