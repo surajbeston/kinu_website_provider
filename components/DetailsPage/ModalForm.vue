@@ -1,7 +1,7 @@
 <template>
   <div
     ref="modal"
-    class="bg-[#F8F8F8] w-[calc(100vw-2rem)] h-max md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4"
+    class="bg-[color:var(--white-2)] w-[calc(100vw-2rem)] h-max md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4"
   >
     <p class="flex justify-end">
       <svg
@@ -42,14 +42,14 @@
               '!my-1 ': errors.nameError,
             }"
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             placeholder="Enter your name"
             @keypress="errors.nameError = false"
           />
           <p
             v-show="errors.nameError"
-            class="text-[12px] font-['Poppins'] text-red-500"
+            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
           >
             This field is required
           </p>
@@ -59,14 +59,14 @@
             :class="{
               '!my-1 ': errors.phoneNumberError,
             }"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="number"
             placeholder="Enter your phone number"
             @keypress="errors.phoneNumberError = false"
           />
           <p
             v-show="errors.phoneNumberError"
-            class="text-[12px] font-['Poppins'] text-red-500"
+            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
           >
             This field is required
           </p>
@@ -76,14 +76,14 @@
               '!my-1 ': errors.emailError,
             }"
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 md:my-6 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="email"
             placeholder="Enter your email"
             @keypress="errors.emailError = false"
           />
           <p
             v-show="errors.emailError"
-            class="text-[12px] font-['Poppins'] text-red-500"
+            class="text-[12px] font-['Poppins'] text-[color:var(--red)]"
           >
             This field is required
           </p>
@@ -93,7 +93,7 @@
               '!my-1 ': errors.emailError,
             }"
             style="background: rgba(255, 108, 25, 0.05)"
-            class="px-[28px] py-[18px] my-4 md:my-6 text-[10px] md:text-[16px] font-normal font-['Poppins'] text-[color:var(--gray-color-1)] block outline-none w-full text-center border-none"
+            class="px-[28px] py-[18px] my-4 md:my-6 text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             placeholder="Additional message (optional)"
           />
@@ -112,9 +112,9 @@
           </div>
 
           <input
-            class="w-full bg-[color:var(--yellow-color)] text-white font-['Poppins'] font-bold text-[15px] md:text-[26px] cursor-pointer py-3 rounded-[11px]"
+            class="w-full bg-[color:var(--yellow-color)] text-[color:var(--white)] font-['Poppins'] font-bold text-[15px] md:text-[26px] cursor-pointer py-3 rounded-[11px]"
             type="submit"
-            value="Submit"
+            value="Order"
           />
         </form>
       </div>
@@ -127,7 +127,7 @@
         />
         <!-- order summaary -->
         <div
-          class="bg-white py-4 px-8 rounded-[14px] font-['Poppins'] mt-6 md:mt-auto w-full xl:w-[80%]"
+          class="bg-[color:var(--white)] py-4 px-8 rounded-[14px] font-['Poppins'] mt-6 md:mt-auto w-full xl:w-[80%]"
         >
           <h3 class="text-center pb-2 text-[10px] md:text-base font-semibold">
             Order Summary
@@ -166,6 +166,8 @@
 import { onMounted, onBeforeUnmount } from "vue";
 import { useReCaptcha } from "vue-recaptcha-v3";
 import { useOrderData } from "~~/store/order";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 const orderData = useOrderData();
 const orderInfo = orderData.orderData;
 const recaptchaInstance = useReCaptcha();
@@ -192,7 +194,6 @@ const recaptcha = async () => {
 };
 
 const onSubmit = async () => {
-  console.log("called");
   const token = await recaptcha();
   const response = await useFetch(`${apiAuthority}/website/order/`, {
     method: "POST",
@@ -211,7 +212,15 @@ const onSubmit = async () => {
   });
   // close model
   emit("closeModal");
-  console.log(response);
+  if (response.status.value === "success") {
+    toast.success("Order Placed", {
+      timeout: 2000,
+    });
+  } else {
+    toast.error("Something went Wrong", {
+      timeout: 2000,
+    });
+  }
 };
 function inputValidator() {
   if (!name.value && !email.value && !phoneNumber.value) {

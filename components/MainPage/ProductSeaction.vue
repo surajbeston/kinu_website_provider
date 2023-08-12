@@ -2,14 +2,14 @@
   <div class="my-8">
     <div class="flex justify-between items-center">
       <h3
-        class="text-[12px] md:text-[24px] text-[#1E1E1E] font-normal font-['Nexa']"
+        class="text-[12px] md:text-[24px] text-[color:var(--black-4)] font-normal font-['Nexa']"
       >
         {{ title }}
       </h3>
       <div
         ref="filterWrapper"
         @click="toggleOptions"
-        class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[8px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
+        class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[10px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
       >
         <p class="font-normal">sort by:</p>
         <CustomDropDown

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#F5F5F5]">
+  <div class="bg-[color:var(--white-4)]">
     <Header />
     <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
       <slot />
@@ -7,8 +7,6 @@
     <Footer />
   </div>
 </template>
-
-
 
 <script setup>
 import { useUserData } from "~~/store/userData";
@@ -23,6 +21,7 @@ const { data: userData } = await useFetch(
     },
   }
 );
+console.log("layout called and api also");
 
 userStore.setSellerInfo(userData.value.website_info);
 userStore.setSellerProduct(userData.value.seller_products);

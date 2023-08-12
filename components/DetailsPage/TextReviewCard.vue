@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <p class="font-['Nexa'] font-normal text-base text-[#A4A4A4]">
+      <p class="font-['Nexa'] font-normal text-base text-[--gray-color-4]">
         2 days ago
       </p>
     </div>

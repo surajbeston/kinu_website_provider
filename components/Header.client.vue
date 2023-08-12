@@ -1,24 +1,28 @@
 <template>
   <div>
     <!--  info  section -->
-    <div class="bg-black py-3 hidden md:block">
+    <div class="bg-[color:var(--black)] py-3 hidden md:block">
       <div
-        class="max-w-[1400px] w-[95%] mx-auto text-white flex justify-between items-center"
+        class="max-w-[1400px] w-[95%] mx-auto text-[color:var(--white)] flex justify-between items-center"
       >
         <div>
-          <p class="text-[#A2A6B0] text-[12px] font-semibold font-['Poppins']">
+          <p
+            class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
+          >
             Sun-Sat :
-            <span class="text-white"
+            <span class="text-[color:var(--white)]"
               >{{ website_info.opening_time }} -
               {{ website_info.closing_time }}</span
             >
           </p>
         </div>
         <div>
-          <p class="text-[#A2A6B0] text-[12px] font-semibold font-['Poppins']">
+          <p
+            class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
+          >
             Visit our showroom in {{ website_info.location }}
             <span
-              class="text-white underline underline-offset-8 cursor-pointer pl-1"
+              class="text-[color:var(--white)] underline underline-offset-8 cursor-pointer pl-1"
               >Contact Us
             </span>
           </p>
@@ -60,7 +64,7 @@
       </div>
     </div>
     <!-- links section -->
-    <div class="bg-white shadow-sm border-b py-4 md:py-2">
+    <div class="bg-[color:var(--white)] shadow-sm border-b py-4 md:py-2">
       <div
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
@@ -70,7 +74,9 @@
         >
           <img src="~assets/images/logo.png " alt="logo" />
         </div>
-        <p class="text-[#373131] text-[13px] md:text-[24px] font-semibold">
+        <p
+          class="text-[color:var(--gray-color-5)] text-[13px] md:text-[24px] font-semibold"
+        >
           {{ website_info.seller.name }}
         </p>
         <p class="hidden md:block"></p>
