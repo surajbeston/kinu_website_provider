@@ -29,7 +29,7 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: url.hostname,
+      domain: String(url.hostname),
     },
   }
 );
