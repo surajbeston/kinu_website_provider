@@ -99,6 +99,7 @@ const clearFilter = async () => {
 function handleFilterTag(clickedTag) {
   // setting store
   generalData.setActiveFilterTag(clickedTag.name);
+  generalData.setfilterTagText(`of ${clickedTag.name}`);
 
   getProductsByCategory(clickedTag.id);
 }

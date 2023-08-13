@@ -54,11 +54,12 @@
               >
                 + 977 {{ website_info.primary_phone_number }}
               </p>
-              <!-- <p
-                class="font-['Nexa'] font-bold text-[16px]  py-2"
+              <p
+                v-if="website_info.alternate_phone_number"
+                class="font-['Nexa'] font-bold text-[16px] py-2"
               >
-                + 977 9812345678
-              </p> -->
+                + 977 {{ website_info.alternate_phone_number }}
+              </p>
             </div>
             <div>
               <p
