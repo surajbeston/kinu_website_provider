@@ -21,8 +21,6 @@ const props = defineProps({
   tag: Object,
   palette: String,
 });
-console.log(props.tag);
-console.log(generalData.activeFilterTag);
 </script>
 
 <style scoped></style>

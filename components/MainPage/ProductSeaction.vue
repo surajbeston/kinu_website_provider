@@ -2,15 +2,15 @@
   <div class="my-8">
     <div class="flex justify-between items-center">
       <h3
-        :style="{ color: `var(--${userStore.paletteName}-text)` }"
+        :style="{ color: `var(--${generalData.paletteName}-text)` }"
         class="text-[12px] md:text-[24px] text-[color:var(--black-4)] font-normal font-['Nexa']"
       >
         {{ title }}
       </h3>
       <div
         :style="{
-          borderColor: `var(--${userStore.paletteName}-text)`,
-          color: `var(--${userStore.paletteName}-text)`,
+          borderColor: `var(--${generalData.paletteName}-text)`,
+          color: `var(--${generalData.paletteName}-text)`,
         }"
         ref="filterWrapper"
         @click="toggleOptions"
@@ -24,7 +24,7 @@
           @update="handleChangeOptions"
         />
         <svg
-          :style="{ fill: `var(--${userStore.paletteName}-text)` }"
+          :style="{ fill: `var(--${generalData.paletteName}-text)` }"
           class="fill-[#4A4B57]"
           width="12"
           height="8"
@@ -44,7 +44,7 @@
         @click="handleNavigation(each.id)"
         v-for="each in userStore.seller_products"
         :product="each"
-        :palette="userStore.paletteName"
+        :palette="generalData.paletteName"
       />
     </div>
   </div>
@@ -52,7 +52,8 @@
 
 <script setup>
 import { useUserData } from "~~/store/userData";
-
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
 const userStore = useUserData();
 import { ref, onMounted, onBeforeUnmount } from "vue";
 const props = defineProps({

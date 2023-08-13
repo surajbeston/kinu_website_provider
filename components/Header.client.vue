@@ -67,7 +67,7 @@
     </div>
     <!-- links section -->
     <div
-      :style="{ backgroundColor: `var(--${userStore.paletteName}-bg)` }"
+      :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
       class="shadow-md border-b py-4 md:py-2"
     >
       <div
@@ -80,7 +80,7 @@
         </NuxtLink>
 
         <p
-          :style="{ color: `var(--${userStore.paletteName}-text)` }"
+          :style="{ color: `var(--${generalData.paletteName}-text)` }"
           class="text-[13px] md:text-[24px] font-semibold"
         >
           {{ website_info.seller.name }}
@@ -93,7 +93,8 @@
 
 <script setup>
 import { useUserData } from "~~/store/userData";
-
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
 const website_info = ref({});
 const userStore = useUserData();
 

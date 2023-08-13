@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ backgroundColor: `var(--${store.paletteName}-bg)` }">
+  <div :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }">
     <Header />
     <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
       <slot />
@@ -13,7 +13,7 @@ import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~~/store/index";
 
 const userStore = useUserData();
-const store = useGeneralData();
+const generalData = useGeneralData();
 
 const { data: userData } = await useFetch(
   `${apiAuthority}/website/info/get_info_by_domain/`,

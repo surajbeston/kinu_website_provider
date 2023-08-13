@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-[65px] md:w-[110px]">
     <div
-      :style="{ color: `var(--${userStore.paletteName}-text)` }"
+      :style="{ color: `var(--${generalData.paletteName}-text)` }"
       class="font-['Poppins'] text-[10px] md:text-lg font-semibold"
     >
       {{ selectedOption }}
@@ -14,10 +14,9 @@
         <div
           v-for="option in filterOptions"
           :key="option"
-          class="py-2 px-5 text-[10px] md:text-base hover:bg-gray-200"
+          class="py-2 px-5 text-[10px] text-[color:var(--black)] md:text-base hover:bg-gray-200"
           :class="{
-            'bg-gray-200  text-[color:var(--black)] font-semibold ':
-              selectedOption == option,
+            'bg-gray-200  font-semibold ': selectedOption == option,
           }"
           @click.stop="changeOption(option)"
         >
@@ -31,6 +30,8 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
 const userStore = useUserData();
 const emit = defineEmits(["update"]);
 

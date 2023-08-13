@@ -100,7 +100,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   product: Object,
   palette: String,
 });

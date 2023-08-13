@@ -9,7 +9,7 @@
         placeholder="Search products here"
       />
       <svg
-        :style="{ stroke: `var(--${userStore.paletteName}-text)` }"
+        :style="{ stroke: `var(--${generalData.paletteName}-text)` }"
         @click="getSearchProducts"
         class="cursor-pointer stroke-[#0B121F]"
         width="43"
@@ -32,7 +32,7 @@
         v-for="(tag, index) in filterTags"
         :tag="tag"
         :key="index"
-        :palette="userStore.paletteName"
+        :palette="generalData.paletteName"
       />
       <p @click="clearFilter">clear filter</p>
     </div>

@@ -4,7 +4,7 @@
       <div class="flex flex-col md:flex-row gap-10 items-center">
         <div class="w-[95%] mx-auto md:w-[40%]">
           <p
-            :style="{ color: `var(--${userStore.paletteName}-text)` }"
+            :style="{ color: `var(--${generalData.paletteName}-text)` }"
             class="py-2 font-['Nexa'] text-base font-semibold"
           >
             Our Shop
@@ -14,7 +14,7 @@
             <Map :location="website_info.location" />
           </div>
           <p
-            :style="{ color: `var(--${userStore.paletteName}-text)` }"
+            :style="{ color: `var(--${generalData.paletteName}-text)` }"
             class="font-['Nexa'] font-bold text-base py-2"
           >
             {{ website_info.location }}
@@ -26,13 +26,13 @@
           >
             <div class="hidden md:block">
               <h1
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Poppins'] text-[35px] font-bold"
               >
                 {{ website_info.seller.name }}
               </h1>
               <p
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Nexa'] font-bold text-[14px]"
               >
                 Powered By
@@ -46,13 +46,13 @@
             </div>
             <div>
               <p
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Nexa'] font-bold text-[16px] py-1"
               >
                 Call Us
               </p>
               <p
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Nexa'] font-bold text-[16px] py-2"
               >
                 + 977 {{ website_info.primary_phone_number }}
@@ -65,7 +65,7 @@
             </div>
             <div>
               <p
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Nexa'] font-bold text-[16px] py-2"
               >
                 Connect with us
@@ -73,7 +73,7 @@
               <ul class="flex items-center gap-3">
                 <li>
                   <svg
-                    :style="{ fill: `var(--${userStore.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
                     class="cursor-pointer fill-[#0B121F]"
                     @click="openLink(website_info.facebook_link)"
                     width="40"
@@ -89,7 +89,7 @@
                 </li>
                 <li>
                   <svg
-                    :style="{ fill: `var(--${userStore.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
                     class="cursor-pointer fill-[#0B121F]"
                     @click="openLink(website_info.twitter_link)"
                     width="40"
@@ -105,7 +105,7 @@
                 </li>
                 <li>
                   <svg
-                    :style="{ fill: `var(--${userStore.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
                     class="cursor-pointer"
                     @click="openLink(website_info.instagram_link)"
                     xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@
           >
             <li>
               <a
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="underline underline-offset-4 font-['Nexa'] font-bold text-base"
                 href=""
                 >Privacy policy</a
@@ -136,7 +136,7 @@
             </li>
             <li>
               <a
-                :style="{ color: `var(--${userStore.paletteName}-text)` }"
+                :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="underline underline-offset-4 font-['Nexa'] font-bold text-base"
                 href=""
                 >Terms of use</a
@@ -147,7 +147,7 @@
       </div>
       <div class="flex justify-center pt-8 md:pt-auto md:justify-end">
         <p
-          :style="{ color: `var(--${userStore.paletteName}-text)` }"
+          :style="{ color: `var(--${generalData.paletteName}-text)` }"
           class="font-['Nexa'] font-bold text-[14px]"
         >
           &copy Copyright All rights reserved
@@ -159,18 +159,16 @@
 
 <script setup>
 import { useUserData } from "~~/store/userData";
-
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
 const website_info = ref({});
 const userStore = useUserData();
-
-const palette = ref(null);
 
 website_info.value = userStore.sellerInfo;
 
 const openLink = (link) => {
   window.open(link, "_blank");
 };
-onMounted(() => (palette.value = userStore.paletteName));
 </script>
 
 <style scoped></style>
