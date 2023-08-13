@@ -41,8 +41,10 @@
 
 <script setup>
 import { useUserData } from "~~/store/userData";
+import { useGeneralData } from "~/store/index";
 
 const userStore = useUserData();
+const generalData = useGeneralData();
 
 const sellerInfo = ref({});
 const inputText = ref("");
@@ -50,9 +52,7 @@ const inputText = ref("");
 // getting seller info and products from store
 sellerInfo.value = userStore.sellerInfo;
 
-const filterTags = ref(
-  sellerInfo.value.seller.categories.map((tag) => ({ ...tag, active: false }))
-);
+const filterTags = ref(sellerInfo.value.seller.categories);
 
 // console.log(sellerInfo.value.seller.categories);
 
@@ -84,6 +84,7 @@ const getProductsByCategory = async (categoryId) => {
 };
 const clearFilter = async () => {
   inputText.value = "";
+  generalData.$patch({ activeFilterTag: "" });
   const response = await useFetch(`${apiAuthority}/api/product`, {
     query: {
       seller: sellerInfo.value.seller.id,
@@ -95,11 +96,9 @@ const clearFilter = async () => {
 };
 
 function handleFilterTag(clickedTag) {
-  // Deactivate all filter tags
-  filterTags.value.forEach((tag) => (tag.active = false));
-
-  // Activate the clicked filter tag
-  clickedTag.active = true;
+  // setting store
+  generalData.setActiveFilterTag(clickedTag.name);
+  console.log(generalData.activeFilterTag);
 
   getProductsByCategory(clickedTag.id);
 }

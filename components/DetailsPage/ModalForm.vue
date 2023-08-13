@@ -183,6 +183,10 @@ const onSubmit = async (values) => {
     };
     // storing form data locally
     storeLocally(localData);
+  } else {
+    if (nuxtStorage.localStorage.getData("formData")) {
+      nuxtStorage.localStorage.removeItem("formData");
+    }
   }
   const token = await recaptcha();
   const response = await useFetch(`${apiAuthority}/website/order/`, {
@@ -222,7 +226,7 @@ const removeScroll = () => {
   document.body.style.overflow = "hidden";
 };
 const storeLocally = (data) => {
-  nuxtStorage.localStorage.setData("formData", data, 1, "m");
+  nuxtStorage.localStorage.setData("formData", data, 365, "d");
 };
 
 const addScroll = () => {
@@ -233,7 +237,6 @@ onMounted(() => {
   document.body.addEventListener("click", closeModal);
   // getting data from local storage
   const data = nuxtStorage.localStorage.getData("formData");
-  console.log(data);
   if (data) {
     rememberMe.value = true;
     localFormData.value = data;

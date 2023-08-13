@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="!generalData.activeFilterTag"
     @click="toggleVideo"
     class="relative max-w-[150px] md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
   >
@@ -32,6 +33,8 @@
 </template>
 
 <script setup>
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
 const videoElement = ref(null);
 const isPlaying = ref(false);
 const toggleVideo = () => {

@@ -122,9 +122,9 @@ const postLandingPageView = async (session_key) => {
   const response = await $fetch(`${apiAuthority}/website/product-view/`, {
     method: "POST",
     body: {
-      domain: userStore.domainName(),
+      domain: userStore.domainName,
       session_key: session_key,
-      website_info: userStore.websiteId(),
+      website_info: userStore.websiteId,
       product: product.value.id,
     },
   });

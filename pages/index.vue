@@ -28,9 +28,9 @@ const postLandingPageView = async (session_key) => {
   await $fetch(`${apiAuthority}/website/landing-page-view/`, {
     method: "POST",
     body: {
-      domain: userData.domainName(),
+      domain: userData.domainName,
       session_key: session_key,
-      website_info: userData.websiteId(),
+      website_info: userData.websiteId,
     },
   });
 };

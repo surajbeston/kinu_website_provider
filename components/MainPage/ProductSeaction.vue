@@ -38,7 +38,7 @@
         </svg>
       </div>
     </div>
-    <div class="grid gap-6 w-full my-8 grip_section">
+    <div class="grid gap-6 my-8 md:min-h-[200px] grip_section">
       <MainPageIntroCard />
       <MainPageProductCard
         @click="handleNavigation(each.id)"
@@ -81,7 +81,7 @@ const handleChangeOptions = (option) => {
 };
 
 const getProductsByOrdering = async (filterTag) => {
-  const sellerId = userStore.sellerId();
+  const sellerId = userStore.sellerId;
   let response;
   if (filterTag === "All Products") {
     response = await useFetch(`${apiAuthority}/api/product`, {
@@ -131,11 +131,11 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .grip_section {
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 @media screen and (min-width: 768px) {
   .grip_section {
-    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
   }
 }
 </style>
