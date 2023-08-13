@@ -1,5 +1,7 @@
 <template>
-  <div class="hidden md:flex text-sm bg-[color:var(--white)] my-10 py-10 pl-20">
+  <div
+    class="hidden md:flex text-sm bg-[color:var(--white-4)] my-10 py-10 pl-20"
+  >
     <ul class="flex">
       <li v-for="(tag, index) in tags" :key="index" class="flex items-center">
         <span class="text-base text-[color:var(--gray-color-1)]">{{

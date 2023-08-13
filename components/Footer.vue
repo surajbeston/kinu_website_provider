@@ -37,11 +37,8 @@
               >
                 Powered By
               </p>
-              <a href="https://kinu.app/"
-                ><img
-                  src="~/assets/images/kinu_logo.png"
-                  alt="kinu logo"
-                  target="_blank"
+              <a href="https://kinu.app/" target="_blank"
+                ><img src="~/assets/images/kinu_logo.png" alt="kinu logo"
               /></a>
             </div>
             <div>
@@ -74,7 +71,7 @@
                 <li>
                   <svg
                     :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
-                    class="cursor-pointer fill-[#0B121F]"
+                    class="cursor-pointer fill-[#0B121F] hover:!fill-[#3b5998] duration-300"
                     @click="openLink(website_info.facebook_link)"
                     width="40"
                     height="40"
@@ -90,7 +87,7 @@
                 <li>
                   <svg
                     :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
-                    class="cursor-pointer fill-[#0B121F]"
+                    class="cursor-pointer fill-[#0B121F] hover:!fill-[#00acee] duration-300"
                     @click="openLink(website_info.twitter_link)"
                     width="40"
                     height="40"
@@ -106,7 +103,7 @@
                 <li>
                   <svg
                     :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
-                    class="cursor-pointer"
+                    class="cursor-pointer hover:!fill-[#d62976] duration-300"
                     @click="openLink(website_info.instagram_link)"
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"

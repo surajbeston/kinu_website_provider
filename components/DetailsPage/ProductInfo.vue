@@ -84,7 +84,7 @@
       </div>
       <button
         @click="handleBuyNow"
-        class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl"
+        class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl hover:scale-[1.01] duration-300 hover:shadow-md"
       >
         Order Now
       </button>
@@ -120,7 +120,7 @@
           <!-- facebook -->
           <svg
             @click="shareOnFacebook"
-            class="cursor-pointer fill-black :hover:fill-green-500 w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
+            class="cursor-pointer fill-black hover:!fill-[#3b5998] duration-300 w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
             viewBox="0 0 22 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -160,14 +160,13 @@
           <!-- twitter -->
           <svg
             @click="shareOnTwitter"
-            class="cursor-pointer w-[18px] h-[18px] md:w-[26px] md:h-[26px]"
+            class="cursor-pointer w-[18px] h-[18px] md:w-[26px] md:h-[26px] fill-black hover:!fill-[#00acee] duration-300"
             viewBox="0 0 29 28"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M14.2847 2.31506C7.65655 2.31506 2.28223 7.68214 2.28223 14.3014C2.28223 20.9206 7.65655 26.2877 14.2847 26.2877C20.9129 26.2877 26.2872 20.9206 26.2872 14.3014C26.2872 7.68214 20.9129 2.31506 14.2847 2.31506ZM20.0529 11.3503C20.0609 11.476 20.0609 11.6071 20.0609 11.7355C20.0609 15.6632 17.0656 20.1875 11.5922 20.1875C9.90434 20.1875 8.33973 19.6979 7.0216 18.8551C7.26272 18.8818 7.49312 18.8925 7.7396 18.8925C9.13275 18.8925 10.4134 18.4217 11.4341 17.6244C10.1267 17.5976 9.02826 16.7414 8.65318 15.5642C9.11131 15.6311 9.5239 15.6311 9.99543 15.5107C9.32223 15.3741 8.71715 15.009 8.28297 14.4774C7.8488 13.9457 7.61231 13.2804 7.61368 12.5944V12.5569C8.00752 12.779 8.471 12.9154 8.95593 12.9342C8.54828 12.6629 8.21396 12.2953 7.98263 11.8641C7.7513 11.4328 7.63009 10.9512 7.62976 10.462C7.62976 9.90817 7.77443 9.4025 8.03431 8.96372C8.78152 9.88232 9.71393 10.6336 10.7709 11.1688C11.8279 11.7039 12.9859 12.011 14.1695 12.07C13.7489 10.05 15.2599 8.41523 17.0764 8.41523C17.9337 8.41523 18.7053 8.77375 19.2491 9.35166C19.9216 9.22592 20.5646 8.97442 21.1379 8.6373C20.9155 9.32491 20.4494 9.9055 19.8305 10.272C20.4306 10.2078 21.0093 10.0419 21.5451 9.80918C21.1406 10.4031 20.6342 10.9302 20.0529 11.3503Z"
-              fill="black"
             />
           </svg>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50">
+  <div class="">
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
     <div
       class="flex flex-col mt-10 md:mt-auto md:flex-row gap-10 justify-between border-b pb-10"

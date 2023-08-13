@@ -18,7 +18,7 @@ const props = defineProps({
 const lat = ref(27.700769);
 const lon = ref(85.30014);
 
-const zoom = ref(12);
+const zoom = ref(15);
 
 // geocoding  url
 const response = await fetch(

@@ -4,7 +4,7 @@
       <input
         v-model="inputText"
         @keyup.enter="getSearchProducts"
-        class="w-full indent-6 md:indent-8 md:py-3 outline-none border rounded-[16px] text-[12px] md:text-[16px] font-['Nexa'] font-normal border-black/60 bg-[color:var(--white)]"
+        class="w-full indent-6 md:indent-8 md:py-3 outline-none border rounded-[16px] text-[12px] md:text-[16px] font-['Poppins'] font-normal border-black/60 bg-[color:var(--white)]"
         type="text"
         placeholder="Search products here"
       />
@@ -26,15 +26,22 @@
         />
       </svg>
     </div>
-    <div class="flex gap-3 md:gap-6 justify-start md:justify-center flex-wrap">
+    <div
+      class="flex items-center gap-3 md:gap-6 justify-start md:justify-center flex-wrap"
+    >
       <MainPageFilterTag
         @click="handleFilterTag(tag)"
-        v-for="(tag, index) in filterTags"
+        v-for="(tag, index) in userStore.sellerInfo.seller.categories"
         :tag="tag"
         :key="index"
         :palette="generalData.paletteName"
       />
-      <p @click="clearFilter">clear filter</p>
+      <button
+        class="bg-[color:var(--red)] hover:scale-[1.02] text-[10px] font-semibold md:text-base duration-500 hover:shadow-sm text-[var(--white)] p-[8px] rounded-md"
+        @click="clearFilter"
+      >
+        Clear filters
+      </button>
     </div>
   </div>
 </template>
@@ -46,13 +53,7 @@ import { useGeneralData } from "~/store/index";
 const userStore = useUserData();
 const generalData = useGeneralData();
 
-const sellerInfo = ref({});
 const inputText = ref("");
-
-// getting seller info and products from store
-sellerInfo.value = userStore.sellerInfo;
-
-const filterTags = ref(sellerInfo.value.seller.categories);
 
 // console.log(sellerInfo.value.seller.categories);
 
@@ -60,7 +61,7 @@ const getSearchProducts = async () => {
   if (inputText.value) {
     const response = await useFetch(`${apiAuthority}/api/product`, {
       query: {
-        seller: sellerInfo.value.seller.id,
+        seller: userStore.sellerId,
         name__icontains: inputText.value,
         limit: 1000,
       },
@@ -73,7 +74,7 @@ const getProductsByCategory = async (categoryId) => {
   if (categoryId) {
     const response = await useFetch(`${apiAuthority}/api/product`, {
       query: {
-        seller: sellerInfo.value.seller.id,
+        seller: userStore.sellerId,
         category: categoryId,
         limit: 1000,
       },
@@ -87,7 +88,7 @@ const clearFilter = async () => {
   generalData.$patch({ activeFilterTag: "" });
   const response = await useFetch(`${apiAuthority}/api/product`, {
     query: {
-      seller: sellerInfo.value.seller.id,
+      seller: userStore.sellerId,
       limit: 1000,
     },
   });
@@ -98,7 +99,6 @@ const clearFilter = async () => {
 function handleFilterTag(clickedTag) {
   // setting store
   generalData.setActiveFilterTag(clickedTag.name);
-  console.log(generalData.activeFilterTag);
 
   getProductsByCategory(clickedTag.id);
 }

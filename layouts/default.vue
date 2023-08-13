@@ -9,13 +9,14 @@
 </template>
 
 <script setup>
-import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~~/store/index";
-
-const userStore = useUserData();
 const generalData = useGeneralData();
+const url = useRequestURL();
 
-const { data: userData } = await useFetch(
+import { useUserData } from "~~/store/userData";
+const userStore = useUserData();
+
+const response = await useFetch(
   `${apiAuthority}/website/info/get_info_by_domain/`,
   {
     method: "POST",
@@ -24,10 +25,14 @@ const { data: userData } = await useFetch(
     },
   }
 );
+if (response.status.value === "success") {
+  userStore.setSellerInfo(response.data.value.website_info);
+  userStore.setSellerProduct(response.data.value.seller_products);
+} else {
+  throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+}
 console.log("layout called and api also");
 
-userStore.setSellerInfo(userData.value.website_info);
-userStore.setSellerProduct(userData.value.seller_products);
 useHead({
   title: "Home page",
 

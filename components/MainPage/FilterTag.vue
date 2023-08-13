@@ -8,7 +8,7 @@
       'bg-[color:var(--yellow-2)] border':
         tag.name == generalData.activeFilterTag,
     }"
-    class="text-[10px] md:text-base text-black rounded-xl p-[8px] md:p-[10px] cursor-pointer"
+    class="text-[10px] md:text-base text-black rounded-xl p-[8px] md:p-[10px] cursor-pointer hover:scale-[1.02] duration-500 hover:shadow-sm"
   >
     {{ tag.name }}
   </p>
