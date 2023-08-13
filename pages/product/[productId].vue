@@ -10,7 +10,7 @@
         @openModal="showModal = true"
       />
     </div>
-    <div
+    <!-- <div
       class="hidden justify-center items-center gap-14 my-6 text-[color:var(--gray-color-1)] font-['Nexa'] font-[400] text-[24px]"
     >
       <button
@@ -36,7 +36,7 @@
       >
         Reviews[5]
       </button>
-    </div>
+    </div> -->
     <div
       v-if="showModal"
       class="bg-black/40 flex justify-center items-center h-screen w-screen fixed top-0 left-0 z-50"
@@ -72,12 +72,18 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 import removeMarkdown from "~/utils/markDownRemove";
+import nuxtStorage from "nuxt-storage";
+import generateRandomString from "~/utils/randomKeyGenerator";
+// initilization
 const url = useRequestURL();
 const userStore = useUserData();
 const route = useRoute();
-const activeTab = ref("Reviews");
+
+// refs
+// const activeTab = ref("Reviews");
 const showModal = ref(false);
 const products = ref([]);
+const breadcrumbTags = ref(["Home"]);
 
 products.value = userStore.seller_products;
 
@@ -87,20 +93,44 @@ const medias = computed({
   },
 });
 
-const changeTab = (tab) => {
-  activeTab.value = tab;
-};
+// const changeTab = (tab) => {
+//   activeTab.value = tab;
+// };
 
 const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
-// console.log(product.value);
-const breadcrumbTags = ref([
-  "Home",
-  product.value.category.name,
-  product.value.name,
-]);
 
+// setting breadcrumb values
+breadcrumbTags.value.push(product.value.category.name);
+breadcrumbTags.value.push(product.value.name);
+
+// analytics
+onMounted(() => {
+  let userKey;
+  // getting userkey
+  userKey = nuxtStorage.localStorage.getData("userKey");
+  if (!userKey) {
+    userKey = generateRandomString();
+    // store session key
+    nuxtStorage.localStorage.setData("userKey", userKey, 365, "d");
+  }
+  postLandingPageView(userKey);
+});
+
+const postLandingPageView = async (session_key) => {
+  const response = await $fetch(`${apiAuthority}/website/product-view/`, {
+    method: "POST",
+    body: {
+      domain: userStore.domainName(),
+      session_key: session_key,
+      website_info: userStore.websiteId(),
+      product: product.value.id,
+    },
+  });
+};
+
+// meta tags
 const plainText = removeMarkdown(product.value.description);
 
 useHead({

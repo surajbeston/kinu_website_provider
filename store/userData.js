@@ -14,6 +14,12 @@ export const useUserData = defineStore("userData", () => {
   function sellerId() {
     return sellerInfo.value.seller.id;
   }
+  function domainName() {
+    return sellerInfo.value.domain;
+  }
+  function websiteId() {
+    return sellerInfo.value.id;
+  }
   return {
     sellerInfo,
     setSellerInfo,
@@ -21,5 +27,7 @@ export const useUserData = defineStore("userData", () => {
     setSellerProduct,
     sellerId,
     paletteName,
+    domainName,
+    websiteId,
   };
 });
