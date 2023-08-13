@@ -1,17 +1,22 @@
 <template>
-  <div :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }">
+  <div
+    v-if="!showNotFound"
+    :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
+  >
     <Header />
     <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
       <slot />
     </div>
     <Footer />
   </div>
+  <NotFound v-else />
 </template>
 
 <script setup>
 import { useGeneralData } from "~~/store/index";
 const generalData = useGeneralData();
-const url = useRequestURL();
+
+const showNotFound = ref(false);
 
 import { useUserData } from "~~/store/userData";
 const userStore = useUserData();
@@ -21,7 +26,7 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: "kinu-women.kinu.app",
+      domain: useRequestURL().hostname,
     },
   }
 );
@@ -29,9 +34,10 @@ if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
 } else {
-  throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+  showNotFound.value = true;
 }
-console.log("layout called and api also");
+
+// console.log("layout called and api also");
 </script>
 
 <style scoped></style>
