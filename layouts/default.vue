@@ -1,12 +1,15 @@
 <template>
-  <div :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }">
+  <div
+    v-if="!showNotFound"
+    :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
+  >
     <Header />
     <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
       <slot />
     </div>
     <Footer />
   </div>
-  <!-- <NotFound v-else /> -->
+  <NotFound v-else />
 </template>
 
 <script setup>
@@ -17,6 +20,12 @@ const showNotFound = ref(false);
 
 const url = useRequestURL();
 console.log(url.hostname);
+let domain = "";
+if (url.hostname === "localhost") {
+  domain = "kinu-women.kinu.app";
+} else {
+  domain = url.domain;
+}
 
 import { useUserData } from "~~/store/userData";
 const userStore = useUserData();
@@ -26,17 +35,17 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: url.hostname,
+      domain: domain,
     },
   }
 );
 console.log(response);
-// if (response.status.value === "success") {
-userStore.setSellerInfo(response.data.value.website_info);
-userStore.setSellerProduct(response.data.value.seller_products);
-// } else {
-//   showNotFound.value = true;
-// }
+if (response.status.value === "success") {
+  userStore.setSellerInfo(response.data.value.website_info);
+  userStore.setSellerProduct(response.data.value.seller_products);
+} else {
+  showNotFound.value = true;
+}
 
 // console.log("layout called and api also");
 </script>
