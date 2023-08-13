@@ -29,10 +29,11 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: url.hostname,
+      domain: "kinu-women.kinu.app",
     },
   }
 );
+console.log(response);
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
