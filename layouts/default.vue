@@ -1,15 +1,12 @@
 <template>
-  <div
-    v-if="!showNotFound"
-    :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
-  >
+  <div :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }">
     <Header />
     <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
       <slot />
     </div>
     <Footer />
   </div>
-  <NotFound v-else />
+  <!-- <NotFound v-else /> -->
 </template>
 
 <script setup>
@@ -29,17 +26,17 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: String(url.hostname),
+      domain: url.hostname,
     },
   }
 );
 console.log(response);
-if (response.status.value === "success") {
-  userStore.setSellerInfo(response.data.value.website_info);
-  userStore.setSellerProduct(response.data.value.seller_products);
-} else {
-  showNotFound.value = true;
-}
+// if (response.status.value === "success") {
+userStore.setSellerInfo(response.data.value.website_info);
+userStore.setSellerProduct(response.data.value.seller_products);
+// } else {
+//   showNotFound.value = true;
+// }
 
 // console.log("layout called and api also");
 </script>
