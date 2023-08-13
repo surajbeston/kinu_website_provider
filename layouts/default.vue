@@ -20,14 +20,8 @@ const showNotFound = ref(false);
 
 const url = useRequestURL();
 console.log(url.hostname);
-let domain = "";
-if (url.hostname === "localhost") {
-  console.log("local");
-  domain = "kinu-women.kinu.app";
-} else {
-  console.log("url");
-  domain = url.domain;
-}
+
+const domain = url.hostname;
 
 import { useUserData } from "~~/store/userData";
 const userStore = useUserData();
