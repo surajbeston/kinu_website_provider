@@ -1,9 +1,9 @@
 <template>
   <div
     :style="{ backgroundColor: `var(--${palette}-light)` }"
-    class="bg-[color:var(--white)] px-3 md:px-6 pt-2 pb-4 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
+    class="bg-[color:var(--white)] h-min px-3 md:px-6 pt-6 pb-6 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
   >
-    <div class="my-1">
+    <!-- <div class="my-1">
       <p
         class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[color:var(--green)]"
       >
@@ -41,7 +41,7 @@
         </svg>
         check availability
       </p>
-    </div>
+    </div> -->
     <div class="md:h-[171px] h-[100px] relative cursor-pointer">
       <img
         class="max-w-full max-h-full h-full w-full object-cover"
@@ -54,7 +54,7 @@
         alt="play"
       /> -->
     </div>
-    <div class="flex gap-3 items-center mb-2 mt-2">
+    <!-- <div class="flex gap-3 items-center mb-2 mt-2">
       <div class="flex gap-[0.08rem]">
         <Star
           v-for="review in reviews"
@@ -67,9 +67,9 @@
       >
         Reviews(4)
       </p>
-    </div>
+    </div> -->
     <h3
-      class="text-[color:var(--black-3)] text-[9px] md:text-[16px] font-normal mt-1 mb-2"
+      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] py-3 font-normal mt-1 mb-2"
     >
       {{ product.name }}
     </h3>

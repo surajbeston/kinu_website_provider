@@ -62,13 +62,13 @@ const props = defineProps({
 const showOptions = ref(false);
 const filterWrapper = ref(null);
 
-const filterOptions = ref(["Relevance", "High to Low", "Low to High"]);
+const filterOptions = ref(["All Products", "High to Low", "Low to High"]);
 const selectedOption = ref(filterOptions.value[0]);
 
 const handleNavigation = async (each) => {
   await navigateTo(`/product/${each}`);
   // to reset the filter when page changes
-  getProductsByOrdering("Relevance");
+  getProductsByOrdering("All Products");
 };
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
@@ -83,7 +83,7 @@ const handleChangeOptions = (option) => {
 const getProductsByOrdering = async (filterTag) => {
   const sellerId = userStore.sellerId();
   let response;
-  if (filterTag === "Relevance") {
+  if (filterTag === "All Products") {
     response = await useFetch(`${apiAuthority}/api/product`, {
       query: {
         seller: sellerId,

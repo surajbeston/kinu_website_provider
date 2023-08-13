@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-[55px] md:w-[104px]">
+  <div class="relative w-[65px] md:w-[110px]">
     <div
       :style="{ color: `var(--${userStore.paletteName}-text)` }"
       class="font-['Poppins'] text-[10px] md:text-lg font-semibold"
@@ -9,14 +9,14 @@
     <Transition name="fade">
       <div
         v-if="showOptions"
-        class="absolute top-[1.3rem] md:top-[2.05rem] bg-[color:var(--white)] w-[128px] md:w-[233px] -left-[2.9rem] md:-left-[5.65rem] border rounded-[5px] z-30"
+        class="absolute top-[1.3rem] md:top-[2.05rem] bg-[color:var(--white)] w-[140px] md:w-[239px] -left-[3.1rem] md:-left-[5.65rem] border rounded-[5px] z-30"
       >
         <div
           v-for="option in filterOptions"
           :key="option"
           class="py-2 px-5 text-[10px] md:text-base hover:bg-gray-200"
           :class="{
-            'bg-gray-200  text-[color:var(--black)] font-bold ':
+            'bg-gray-200  text-[color:var(--black)] font-semibold ':
               selectedOption == option,
           }"
           @click.stop="changeOption(option)"

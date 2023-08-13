@@ -74,7 +74,6 @@ const setThumbsSwiper = (swiper) => {
 const props = defineProps({
   medias: Array,
 });
-console.log(props.medias);
 
 // const medias = [
 //   {

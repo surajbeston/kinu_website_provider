@@ -34,6 +34,7 @@
         :key="index"
         :palette="userStore.paletteName"
       />
+      <p @click="clearFilter">clear filter</p>
     </div>
   </div>
 </template>
@@ -53,7 +54,7 @@ const filterTags = ref(
   sellerInfo.value.seller.categories.map((tag) => ({ ...tag, active: false }))
 );
 
-console.log(sellerInfo.value.seller.categories);
+// console.log(sellerInfo.value.seller.categories);
 
 const getSearchProducts = async () => {
   if (inputText.value) {
@@ -80,6 +81,17 @@ const getProductsByCategory = async (categoryId) => {
     // console.log(response);
     userStore.setSellerProduct(response.data.value.results);
   }
+};
+const clearFilter = async () => {
+  inputText.value = "";
+  const response = await useFetch(`${apiAuthority}/api/product`, {
+    query: {
+      seller: sellerInfo.value.seller.id,
+      limit: 1000,
+    },
+  });
+  // console.log(response);
+  userStore.setSellerProduct(response.data.value.results);
 };
 
 function handleFilterTag(clickedTag) {

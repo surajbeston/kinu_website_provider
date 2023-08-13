@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-gray-50">
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
     <div
       class="flex flex-col mt-10 md:mt-auto md:flex-row gap-10 justify-between border-b pb-10"
@@ -71,7 +71,8 @@
 
 <script setup>
 import { useUserData } from "~~/store/userData";
-
+import removeMarkdown from "~/utils/markDownRemove";
+const url = useRequestURL();
 const userStore = useUserData();
 const route = useRoute();
 const activeTab = ref("Reviews");
@@ -93,12 +94,14 @@ const changeTab = (tab) => {
 const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
-console.log(product.value);
+// console.log(product.value);
 const breadcrumbTags = ref([
   "Home",
   product.value.category.name,
   product.value.name,
 ]);
+
+const plainText = removeMarkdown(product.value.description);
 
 useHead({
   title: product.value.name,
@@ -106,11 +109,11 @@ useHead({
   meta: [
     {
       name: "description",
-      content: product.value.description_html,
+      content: plainText,
     },
     {
       name: "keywords",
-      content: `${product.value.category.name},${product.value.name}, ${route.fullPath},${product.value.seller.name}`,
+      content: `${product.value.category.name},${product.value.name},${product.value.seller.name}`,
     },
     { property: "og:type", content: "website" },
     {
@@ -119,7 +122,7 @@ useHead({
     },
     {
       property: "og:description",
-      content: product.value.description_html,
+      content: plainText,
     },
     {
       property: "og:image",
@@ -127,11 +130,11 @@ useHead({
     },
     {
       property: "og:url",
-      content: route.fullPath,
+      content: url.href,
     },
     {
       name: "twitter:card",
-      content: product.value.description_html,
+      content: plainText,
     },
     {
       name: "twitter:title",
@@ -139,17 +142,16 @@ useHead({
     },
     {
       name: "twitter:description",
-      content: product.value.description_html,
+      content: plainText,
     },
     {
       name: "twitter:image",
       content: apiAuthority + product.value.image_set[0].image,
     },
-    { rel: "canonical", href: `${route.fullPath}` },
+    { rel: "canonical", href: url.href },
     { name: "language", content: "en" },
   ],
 });
-console.log();
 </script>
 
 <style scoped></style>
