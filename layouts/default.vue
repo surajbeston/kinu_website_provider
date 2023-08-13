@@ -18,6 +18,9 @@ const generalData = useGeneralData();
 
 const showNotFound = ref(false);
 
+const url = useRequestURL();
+console.log(url.hostname);
+
 import { useUserData } from "~~/store/userData";
 const userStore = useUserData();
 
@@ -26,7 +29,7 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: useRequestURL().hostname,
+      domain: url.hostname,
     },
   }
 );
