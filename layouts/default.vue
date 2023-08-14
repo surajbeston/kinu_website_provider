@@ -14,15 +14,12 @@
 
 <script setup>
 import { useGeneralData } from "~~/store/index";
+import { useUserData } from "~~/store/userData";
 const generalData = useGeneralData();
+const userStore = useUserData();
+const url = useRequestURL();
 
 const showNotFound = ref(false);
-
-const url = useRequestURL();
-console.log(url.hostname);
-
-import { useUserData } from "~~/store/userData";
-const userStore = useUserData();
 
 const response = await useFetch(
   `${apiAuthority}/website/info/get_info_by_domain/`,
@@ -33,7 +30,7 @@ const response = await useFetch(
     },
   }
 );
-console.log(response);
+
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
