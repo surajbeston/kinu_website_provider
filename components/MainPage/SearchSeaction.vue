@@ -37,6 +37,7 @@
         :palette="generalData.paletteName"
       />
       <button
+        v-if="generalData.activeFilterTag"
         class="bg-[color:var(--red)] hover:scale-[1.02] text-[10px] font-semibold md:text-base duration-500 hover:shadow-sm text-[var(--white)] p-[8px] rounded-md"
         @click="clearFilter"
       >
