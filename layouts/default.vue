@@ -39,6 +39,7 @@ if (domain === "kinu.app") {
   );
 } else {
   console.log("unslug");
+  console.log(url.hostname);
   response = await useFetch(
     `${apiAuthority}/website/info/get_info_by_domain/`,
     {
@@ -49,6 +50,7 @@ if (domain === "kinu.app") {
     }
   );
 }
+console.log(response);
 
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
