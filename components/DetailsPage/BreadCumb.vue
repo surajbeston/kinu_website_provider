@@ -1,6 +1,9 @@
 <template>
   <div
-    class="hidden md:flex text-sm bg-[color:var(--white-4)] my-10 py-10 pl-20"
+    :style="{
+      backgroundColor: `var(--${generalData.paletteName}-light)`,
+    }"
+    class="hidden md:flex text-sm my-10 py-10 pl-20"
   >
     <ul class="flex">
       <li
@@ -9,9 +12,11 @@
         :key="index"
         class="flex items-center cursor-pointer"
       >
-        <span class="text-base text-[color:var(--gray-color-1)]">{{
-          tag
-        }}</span>
+        <span
+          :style="{ color: `var(--${generalData.paletteName}-gray-text)` }"
+          class="text-base font-normal font-['Nexa'] hover:font-black"
+          >{{ tag }}</span
+        >
         <span v-if="index < tags.length - 1" class="mx-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"

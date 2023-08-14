@@ -16,11 +16,13 @@
           </div>
         </div>
       </div>
-      <p class="font-['Nexa'] font-normal text-base text-[--gray-color-4]">
+      <p class="font-['Nexa'] font-normal text-base text-[--gray-color-2]">
         2 days ago
       </p>
     </div>
-    <p class="font-['Nexa'] font-normal py-4 text-[color:var(--gray-color-2)]">
+    <p
+      class="font-['Nexa'] font-normal py-4 text-[color:var(--kinu-light-gray-text)]"
+    >
       “I got a pair of boots from store X and I’m very satisfied. They are
       high-quality and worth the money. The store also offered free shipping at
       that price so that’s a plus!”

@@ -5,7 +5,7 @@
   >
     <!-- <div class="my-1">
       <p
-        class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[color:var(--green)]"
+        class="flex gap-1 items-center text-[7.5px] md:text-[12px] font-['Nexa'] font-normal text-[color:var(--kinu-light-instock)]"
       >
         <svg
           class="w-[8px] h-[8px] md:w-[11px] md:h-[11px]"
@@ -24,7 +24,7 @@
         in stock
       </p>
       <p
-        class="hidden gap-1 items-center text-[12px] font-normal text-[color:var(--red-2)]"
+        class="hidden gap-1 items-center text-[12px] font-normal text-[color:var(--red)]"
       >
         <svg
           width="11"
@@ -63,25 +63,28 @@
       </div>
       <p
         :style="{ color: `var(--${palette}-gray-text)` }"
-        class="text-[8px] md:text-[14px] font-normal text-[color:var(--gray-color-4)]"
+        class="text-[8px] md:text-[14px] font-normal text-[color:var(--gray-color-2)]"
       >
         Reviews(4)
       </p>
     </div> -->
     <h3
-      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] font-normal mt-1 mb-2 text-ellipsis overflow-hidden line-clamp-2"
+      :style="{ color: `var(--${palette}-text)` }"
+      class="text-[12px] md:text-[18px] font-normal mt-1 mb-2 text-ellipsis overflow-hidden line-clamp-2"
     >
       {{ product.name }}
     </h3>
     <div class="flex justify-between items-center mt-3">
       <div>
         <p
-          class="text-[#666666] text-[8px] md:text-[14px] font-normal line-through"
+          :style="{ color: `var(--${palette}-gray-text)` }"
+          class="text-[8px] md:text-[14px] font-normal line-through"
         >
           Rs {{ product.price + (discountPercent / 100) * product.price }}
         </p>
         <p
-          class="text-[color:var(--black-3)] text-[12px] md:text-[18px] font-semibold"
+          :style="{ color: `var(--${palette}-text)` }"
+          class="text-[12px] md:text-[18px] font-semibold"
         >
           Rs {{ product.price }}
         </p>
@@ -91,7 +94,11 @@
           box-shadow: 0px 3.763843297958374px 21.642099380493164px 0px
             rgba(255, 108, 25, 0.25);
         "
-        class="bg-[color:var(--yellow-color)] px-[10px] md:px-[20px] duration-200 hover:scale-[1.02] py-2 text-[color:var(--white)] text-[8px] md:text-[12px] font-semibold tracking-wider rounded-[3px]"
+        :style="{
+          backgroundColor: `var(--${palette}-cta)`,
+          color: `var(--${palette}-light)`,
+        }"
+        class="px-[10px] md:px-[20px] duration-200 hover:scale-[1.02] py-2 text-[color:var(--white)] text-[8px] md:text-[12px] font-semibold tracking-wider rounded-[3px]"
       >
         View Details
       </button>

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div class="max-w-[1400px] w-[90%] md:w-[95%] mx-auto border-t py-6">
       <div class="flex flex-col md:flex-row gap-10 items-center">
         <div class="w-[95%] mx-auto md:w-[40%]">
@@ -11,13 +11,13 @@
           </p>
           <div class="md:w-[344px] w-full h-[256px] relative">
             <!-- <MapDisplay address="Dharan Nepal" /> -->
-            <Map :location="website_info.location" />
+            <Map :lat="1212" :log="434" />
           </div>
           <p
             :style="{ color: `var(--${generalData.paletteName}-text)` }"
             class="font-['Nexa'] font-bold text-base py-2"
           >
-            {{ website_info.location }}
+            {{ "formattedLocation" }}
           </p>
         </div>
         <div class="w-full md:w-[60%]">
@@ -29,7 +29,7 @@
                 :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Poppins'] text-[35px] font-bold"
               >
-                {{ website_info.seller.name }}
+                {{ sellerInfo.seller.name }}
               </h1>
               <p
                 :style="{ color: `var(--${generalData.paletteName}-text)` }"
@@ -52,13 +52,13 @@
                 :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="font-['Nexa'] font-bold text-[16px] py-2"
               >
-                + 977 {{ website_info.primary_phone_number }}
+                + 977 {{ sellerInfo.seller.phone_number }}
               </p>
               <p
-                v-if="website_info.alternate_phone_number"
+                v-if="sellerInfo.alternate_phone_number"
                 class="font-['Nexa'] font-bold text-[16px] py-2"
               >
-                + 977 {{ website_info.alternate_phone_number }}
+                + 977 {{ sellerInfo.alternate_phone_number }}
               </p>
             </div>
             <div>
@@ -71,9 +71,9 @@
               <ul class="flex items-center gap-3">
                 <li>
                   <svg
-                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-text)` }"
                     class="cursor-pointer fill-[#0B121F] hover:!fill-[#3b5998] duration-300"
-                    @click="openLink(website_info.facebook_link)"
+                    @click="openLink(sellerInfo.facebook_link)"
                     width="40"
                     height="40"
                     viewBox="0 0 40 40"
@@ -87,9 +87,9 @@
                 </li>
                 <li>
                   <svg
-                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-text)` }"
                     class="cursor-pointer fill-[#0B121F] hover:!fill-[#00acee] duration-300"
-                    @click="openLink(website_info.twitter_link)"
+                    @click="openLink(sellerInfo.twitter_link)"
                     width="40"
                     height="40"
                     viewBox="0 0 40 40"
@@ -103,9 +103,9 @@
                 </li>
                 <li>
                   <svg
-                    :style="{ fill: `var(--${generalData.paletteName}-icon)` }"
+                    :style="{ fill: `var(--${generalData.paletteName}-text)` }"
                     class="cursor-pointer hover:!fill-[#d62976] duration-300"
-                    @click="openLink(website_info.instagram_link)"
+                    @click="openLink(sellerInfo.instagram_link)"
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
                     y="0px"
@@ -158,11 +158,16 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
+import { locationFormatter } from "~/utils/constant";
 const generalData = useGeneralData();
-const website_info = ref({});
-const userStore = useUserData();
 
-website_info.value = userStore.sellerInfo;
+const { sellerInfo } = useUserData();
+// formatting location
+// const formattedLocation = computed(() =>
+//   locationFormatter(generalData.location)
+// );
+
+console.log(generalData.location);
 
 const openLink = (link) => {
   window.open(link, "_blank");

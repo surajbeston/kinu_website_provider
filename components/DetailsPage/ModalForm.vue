@@ -1,10 +1,14 @@
 <template>
   <div
+    :style="{ backgroundColor: `var(--${generalData.paletteName}-form-bg)` }"
     ref="modal"
-    class="bg-[color:var(--white-2)] w-[calc(100vw-2rem)] h-[90vh] overflow-y-scroll md:h-auto max-w-[1100px] rounded-[20px] pb-6 z-30 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4 z-30 custom-scrollbar"
+    class="w-[calc(100vw-2rem)] h-[90vh] overflow-y-scroll md:h-auto max-w-[1100px] rounded-[20px] pb-6 shadow-[0px_28.290908813476562px_42.436363220214844px_0px_rgba(102, 106, 245, 0.13)] px-6 py-4 custom-scrollbar z-100"
   >
     <p class="flex justify-end">
       <svg
+        :style="{
+          stroke: `var(--${generalData.paletteName}-form-title)`,
+        }"
         class="cursor-pointer"
         @click="emitCloseEvent"
         width="41"
@@ -15,7 +19,6 @@
       >
         <path
           d="M11.9584 11.9583L29.0417 29.0417M11.9584 29.0417L29.0417 11.9583"
-          stroke="black"
           stroke-width="3.41667"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -23,26 +26,33 @@
       </svg>
     </p>
     <h1
-      class="text-[18px] md:text-[34px] text-[color:var(--yellow-color)] font-semibold font-['Poppins']"
+      :style="{ color: `var(--${generalData.paletteName}-form-title)` }"
+      class="text-[18px] md:text-[34px] font-semibold font-['Poppins']"
     >
       Please, fill the form
     </h1>
-    <h4 class="font-['Poppins'] text-[9px] md:text-[17px] font-normal">
+    <h4
+      :style="{ color: `var(--${generalData.paletteName}-form-text)` }"
+      class="font-['Poppins'] text-[9px] md:text-[17px] font-normal"
+    >
       your order will be placed after you submit the form.
     </h4>
 
     <div
       class="w-full flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-14 items-start"
     >
-      <div class="w-full md:w-1/2 md:pl-6 order-2 md:order-1">
+      <div class="w-full md:!w-1/2 md:pl-6 order-2 md:order-1">
         <Form
           autocomplete="off"
           @submit="onSubmit"
           :initial-values="localFormData"
-          class="mt-6 md:mt-12"
+          class="mt-6 md:mt-12 w-full"
         >
           <Field
-            style="background: rgba(255, 108, 25, 0.05)"
+            :style="{
+              color: `var(--${generalData.paletteName}-form-placeholder-text)`,
+              backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
+            }"
             class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             name="userName"
@@ -52,8 +62,11 @@
           <ErrorMessage class="text-[color:var(--red)] my-0" name="userName" />
 
           <Field
+            :style="{
+              color: `var(--${generalData.paletteName}-form-placeholder-text)`,
+              backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
+            }"
             title="Please enter a 10-digit phone number"
-            style="background: rgba(255, 108, 25, 0.05)"
             class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="number"
             name="phoneNumber"
@@ -65,7 +78,10 @@
             name="phoneNumber"
           />
           <Field
-            style="background: rgba(255, 108, 25, 0.05)"
+            :style="{
+              color: `var(--${generalData.paletteName}-form-placeholder-text)`,
+              backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
+            }"
             class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="email"
             name="email"
@@ -75,7 +91,10 @@
           />
           <ErrorMessage class="text-[color:var(--red)] my-0" name="email" />
           <Field
-            style="background: rgba(255, 108, 25, 0.05)"
+            :style="{
+              color: `var(--${generalData.paletteName}-form-placeholder-text)`,
+              backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
+            }"
             class="px-[28px] py-[18px] my-4 text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             name="additionalMessage"
@@ -90,14 +109,21 @@
               id="checkbox"
             />
             <p
-              class="text-base font-['Nexa'] font-[400] text-[color:var(--black-color-1)]"
+              :style="{
+                color: `var(--${generalData.paletteName}-form-text)`,
+              }"
+              class="text-base font-['Nexa'] font-[400]"
             >
               Remember details
             </p>
           </div>
 
           <input
-            class="w-full bg-[color:var(--yellow-color)] text-[color:var(--white)] font-['Poppins'] font-bold text-[15px] md:text-[26px] cursor-pointer py-3 rounded-[11px]"
+            :style="{
+              color: `var(--${generalData.paletteName}-form-text)`,
+              backgroundColor: `var(--${generalData.paletteName}-form-title)`,
+            }"
+            class="w-full bg-[color:var(--kinu-light-cta)] text-[color:var(--white)] font-['Poppins'] font-bold text-[15px] md:text-[26px] cursor-pointer py-3 rounded-[11px]"
             type="submit"
             value="Order"
           />
@@ -112,7 +138,7 @@
         />
         <!-- order summaary -->
         <div
-          class="bg-[color:var(--white)] py-4 px-8 rounded-[14px] font-['Poppins'] mt-6 md:mt-auto w-full xl:w-[80%]"
+          class="bg-[color:var(--white)] py-4 px-6 rounded-[14px] font-['Poppins'] mt-6 md:mt-auto w-full xl:w-full"
         >
           <h3 class="text-center pb-2 text-[10px] md:text-base font-semibold">
             Order Summary
@@ -120,8 +146,8 @@
           <div
             class="flex justify-between items-center text-[10px] md:text-base py-1"
           >
-            <p>Items Name</p>
-            <p>{{ orderInfo.productName }}</p>
+            <p class="min-w-[35%]">Items Name</p>
+            <p class="clip">{{ orderInfo.productName }}</p>
           </div>
           <div
             class="flex justify-between items-center text-[10px] md:text-base py-1"
@@ -152,9 +178,11 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import { useReCaptcha } from "vue-recaptcha-v3";
 import nuxtStorage from "nuxt-storage";
 import { useOrderData } from "~~/store/order";
+import { useGeneralData } from "~~/store/index";
 import { useToast } from "vue-toastification";
 const toast = useToast();
 const orderData = useOrderData();
+const generalData = useGeneralData();
 const orderInfo = orderData.orderData;
 const recaptchaInstance = useReCaptcha();
 const emit = defineEmits(["closeModal"]);

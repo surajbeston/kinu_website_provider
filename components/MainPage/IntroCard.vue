@@ -13,7 +13,7 @@
       alt="play"
     />
     <p
-      class="absolute bottom-4 left-4 font-semibold text-[color:var(--black-2)] rounded-[8px] text-[10px] bg-[color:var(--white-3)] px-4"
+      class="absolute bottom-4 left-4 font-semibold text-[color:var(--default-text)] rounded-[8px] text-[10px] bg-[color:var(--white-2)] px-4"
     >
       badu is here
     </p>

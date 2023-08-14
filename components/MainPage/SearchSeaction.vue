@@ -35,7 +35,6 @@
         v-for="(tag, index) in userStore.sellerInfo.seller.categories"
         :tag="tag"
         :key="index"
-        :palette="generalData.paletteName"
       />
       <button
         v-if="generalData.activeFilterTag"
@@ -99,11 +98,11 @@ const clearFilter = async () => {
 
 onMounted(() => {
   if (generalData.activeFilterTag) {
-    const filterTag = userStore.sellerInfo.seller.categories.filter(
+    const filterTag = userStore.sellerInfo.seller.categories.find(
       (each) => each.name === generalData.activeFilterTag
     );
 
-    getProductsByCategory(filterTag[0].id);
+    getProductsByCategory(filterTag.id);
   }
 });
 function handleFilterTag(clickedTag) {

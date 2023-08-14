@@ -1,12 +1,14 @@
 <template>
   <div class="w-full md:w-[50%] min-h-max">
     <h1
-      class="text-[25px] md:text-[47px] text-[color:var(--black)] font-normal font-['Poppins']"
+      :style="{ color: `var(--${generalData.paletteName}-text)` }"
+      class="text-[25px] md:text-[47px] font-normal font-['Poppins']"
     >
       {{ product.name }}
     </h1>
     <h3
-      class="text-[color:var(--gray-color-1)] text-[15px] md:text-[27px] font-medium font-['Poppins']"
+      :style="{ color: `var(--${generalData.paletteName}-gray-text)` }"
+      class="text-[18px] md:text-[30px] font-medium font-['Poppins']"
     >
       Rs.{{ product.price }}.00
     </h3>
@@ -15,14 +17,15 @@
         <Star v-for="each in 5" :isFilled="true" />
       </div>
       <p
-        class="border-l-2 pl-8 text-[8px] md:text-[14px] text-[color:var(--gray-color-1)]"
+        class="border-l-2 pl-8 text-[8px] md:text-[14px] "
       >
         5 customers reviews
       </p>
     </div> -->
     <div
+      :style="{ color: `var(--${generalData.paletteName}-text)` }"
       v-html="product.description_html"
-      class="my-3 font-['Nexa'] font-normal text-[color:var(--black)] desc"
+      class="my-3 font-['Nexa'] font-normal desc"
     ></div>
     <!-- <p class="py-2 text-[10px] md:text-lg font-['Nexa'] font-normal text-black">
       The best selling Planet Boxy Tee is a one size, season-less, staple piece
@@ -31,7 +34,7 @@
     </p> -->
     <!-- <div class="py-4">
       <p
-        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
+        class="font-['Poppins']  font-normal text-[10px] md:text-base pb-2"
       >
         Size
       </p>
@@ -46,7 +49,7 @@
     </div> -->
     <!-- <div v-if="product.producttype_set[0].extras " class="py-3">
       <p
-        class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
+        class="font-['Poppins']  font-normal text-[10px] md:text-base pb-2"
       >
         Color
       </p>
@@ -82,37 +85,45 @@
           +
         </p>
       </div>
+
       <button
+        :style="{
+          backgroundColor: `var(--${generalData.paletteName}-cta)`,
+          color: `var(--${generalData.paletteName}-light)`,
+        }"
         @click="handleBuyNow"
-        class="bg-[color:var(--yellow-color)] px-10 text-[12px] md:text-[20px] py-3 text-[color:var(--white-color-1)] font-['Nexa'] font-bold rounded-2xl hover:scale-[1.01] duration-300 hover:shadow-md"
+        class="bg-[color:var(--kinu-light-cta)] px-10 text-[12px] md:text-[20px] py-3 font-['Nexa'] font-bold rounded-2xl hover:scale-[1.01] duration-300 hover:shadow-md"
       >
         Order Now
       </button>
     </div>
-    <div class="border-t space-y-2 md:space-y-4 pt-10 border-[#D9D9D9]">
+    <div
+      :style="{ color: `var(--${generalData.paletteName}-gray-text)` }"
+      class="border-t space-y-2 md:space-y-4 pt-10 border-[#D9D9D9]"
+    >
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">SKU</p>
         <p class="">:</p>
         <p class="">{{ product.id }}</p>
       </div>
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Category</p>
         <p class="">:</p>
         <p class="">{{ product.category.name }}</p>
       </div>
       <!-- <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4  text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Tags</p>
         <p class="">:</p>
         <p class="">chino, pant, men’s, trending</p>
       </div> -->
       <div
-        class="flex gap-4 text-[color:var(--gray-color-1)] text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
+        class="flex gap-4 text-[12px] md:text-lg font-normal font-['Nexa'] my-1"
       >
         <p class="w-[100px]">Share</p>
         <p class="">:</p>
@@ -120,7 +131,8 @@
           <!-- facebook -->
           <svg
             @click="shareOnFacebook"
-            class="cursor-pointer fill-black hover:!fill-[#3b5998] duration-300 w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
+            :style="{ fill: `var(--${generalData.paletteName}-text)` }"
+            class="cursor-pointer hover:!fill-[#3b5998] duration-300 w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
             viewBox="0 0 22 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +159,8 @@
           <!-- twitter -->
           <svg
             @click="shareOnTwitter"
-            class="cursor-pointer w-[18px] h-[18px] md:w-[26px] md:h-[26px] fill-black hover:!fill-[#00acee] duration-300"
+            :style="{ fill: `var(--${generalData.paletteName}-text)` }"
+            class="cursor-pointer w-[18px] h-[18px] md:w-[26px] md:h-[26px] hover:!fill-[#00acee] duration-300"
             viewBox="0 0 29 28"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -165,8 +178,10 @@
 <script setup>
 import { useOrderData } from "~~/store/order";
 import { useUserData } from "~~/store/userData";
+import { useGeneralData } from "~~/store/index";
 const orderData = useOrderData();
 const userData = useUserData();
+const generalData = useGeneralData();
 
 const numberOfProduct = ref(1);
 

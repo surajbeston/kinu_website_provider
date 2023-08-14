@@ -34,6 +34,7 @@ const response = await useFetch(
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
+  generalData.setPaletteName(response.data.value.website_info.theme);
 } else {
   showNotFound.value = true;
 }

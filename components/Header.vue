@@ -7,21 +7,21 @@
       >
         <div>
           <p
-            v-show="website_info.opening_time"
-            class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
+            v-show="sellerInfo.opening_time"
+            class="text-[color:var(--gray-color-2)] text-[12px] font-semibold font-['Poppins']"
           >
             Sun-Sat :
             <span class="text-[color:var(--white)]"
-              >{{ website_info.opening_time }} -
-              {{ website_info.closing_time }}</span
+              >{{ sellerInfo.opening_time }} -
+              {{ sellerInfo.closing_time }}</span
             >
           </p>
         </div>
         <div>
           <p
-            class="text-[color:var(--gray-color-4)] text-[12px] font-semibold font-['Poppins']"
+            class="text-[color:var(--gray-color-2)] text-[12px] font-semibold font-['Poppins']"
           >
-            Visit us {{ website_info.location }}
+            Visit us {{ formattedLocation }}
             <span
               @click="scrollToBottom"
               class="text-[color:var(--white)] underline underline-offset-8 cursor-pointer pl-1"
@@ -30,12 +30,12 @@
           </p>
         </div>
         <div class="flex items-center gap-6 text-[12px] font-semibold">
-          <p>Call Us: {{ website_info.primary_phone_number }}</p>
+          <p>Call Us: {{ sellerInfo.seller.phone_number }}</p>
           <div class="flex gap-2 items-center">
             <!-- facebook logo -->
 
             <svg
-              @click="openLink(website_info.facebook_link)"
+              @click="openLink(sellerInfo.facebook_link)"
               class="fill-white hover:fill-[#3b5998] cursor-pointer duration-300"
               width="20"
               height="20"
@@ -50,7 +50,7 @@
             <!-- instagram logo -->
 
             <svg
-              @click="openLink(website_info.instagram_link)"
+              @click="openLink(sellerInfo.instagram_link)"
               class="hover:fill-[#d62976] duration-300 cursor-pointer fill-white"
               width="20"
               height="20"
@@ -83,7 +83,7 @@
           :style="{ color: `var(--${generalData.paletteName}-text)` }"
           class="text-[13px] md:text-[24px] font-semibold"
         >
-          {{ website_info.seller.name }}
+          {{ sellerInfo.seller.name }}
         </p>
         <p class="hidden md:block"></p>
       </div>
@@ -94,12 +94,19 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
+import { locationFormatter } from "~/utils/constant";
 const generalData = useGeneralData();
-const website_info = ref({});
-const userStore = useUserData();
+const { sellerInfo } = useUserData();
 
-website_info.value = userStore.sellerInfo;
+const { data: location } = await useFetch(
+  `${apiAuthority}/api/address/${sellerInfo.seller.address}/`
+);
 
+// setting location to the store
+generalData.setLocation(location.value);
+
+// formatting location
+const formattedLocation = computed(() => locationFormatter(location.value));
 const openLink = (link) => {
   window.open(link, "_blank");
 };
