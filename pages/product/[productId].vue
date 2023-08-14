@@ -90,7 +90,10 @@ products.value = userStore.seller_products;
 
 const medias = computed({
   get() {
-    return [...product.value.video_set, ...product.value.image_set];
+    const videos = product.value.video_set.filter(
+      (each) => each.format_set.length > 0
+    );
+    return [...videos, ...product.value.image_set];
   },
 });
 

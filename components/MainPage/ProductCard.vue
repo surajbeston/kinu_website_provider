@@ -69,7 +69,7 @@
       </p>
     </div> -->
     <h3
-      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] py-3 font-normal mt-1 mb-2"
+      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] min-h-[60px] font-normal mt-1 mb-2 text-ellipsis overflow-hidden line-clamp-2"
     >
       {{ product.name }}
     </h3>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full md:w-[40%]">
+  <div class="w-full md:w-[40%] md:min-h-[700px]">
     <swiper
       :thumbs="{ swiper: thumbsSwiper }"
       :modules="[Thumbs]"

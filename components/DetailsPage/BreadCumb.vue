@@ -3,7 +3,12 @@
     class="hidden md:flex text-sm bg-[color:var(--white-4)] my-10 py-10 pl-20"
   >
     <ul class="flex">
-      <li v-for="(tag, index) in tags" :key="index" class="flex items-center">
+      <li
+        @click="handleClick(index)"
+        v-for="(tag, index) in tags"
+        :key="index"
+        class="flex items-center cursor-pointer"
+      >
         <span class="text-base text-[color:var(--gray-color-1)]">{{
           tag
         }}</span>
@@ -24,8 +29,19 @@
 </template>
 
 <script setup>
-defineProps({
+import { useGeneralData } from "~/store/index";
+const generalData = useGeneralData();
+const props = defineProps({
   tags: Array,
   required: true,
 });
+
+const handleClick = async (index) => {
+  if (index === 0) {
+    await navigateTo("/");
+  } else if (index === 1) {
+    generalData.setActiveFilterTag(props.tags[1]);
+    await navigateTo("/");
+  }
+};
 </script>

@@ -26,6 +26,7 @@
         />
       </svg>
     </div>
+
     <div
       class="flex items-center gap-3 md:gap-6 justify-start md:justify-center flex-wrap"
     >
@@ -53,7 +54,6 @@ import { useGeneralData } from "~/store/index";
 
 const userStore = useUserData();
 const generalData = useGeneralData();
-
 const inputText = ref("");
 
 // console.log(sellerInfo.value.seller.categories);
@@ -97,6 +97,15 @@ const clearFilter = async () => {
   userStore.setSellerProduct(response.data.value.results);
 };
 
+onMounted(() => {
+  if (generalData.activeFilterTag) {
+    const filterTag = userStore.sellerInfo.seller.categories.filter(
+      (each) => each.name === generalData.activeFilterTag
+    );
+
+    getProductsByCategory(filterTag[0].id);
+  }
+});
 function handleFilterTag(clickedTag) {
   // setting store
   generalData.setActiveFilterTag(clickedTag.name);

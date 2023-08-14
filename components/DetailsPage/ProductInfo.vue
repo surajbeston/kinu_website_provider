@@ -44,7 +44,7 @@
         />
       </div>
     </div> -->
-    <div v-if="product.producttype_set[0].extras" class="py-3">
+    <!-- <div v-if="product.producttype_set[0].extras " class="py-3">
       <p
         class="font-['Poppins'] text-[color:var(--gray-color-1)] font-normal text-[10px] md:text-base pb-2"
       >
@@ -58,7 +58,7 @@
           :color="color"
         />
       </div>
-    </div>
+    </div> -->
     <div class="flex items-center gap-8 pb-10 pt-4">
       <div
         class="flex border bg-[color:var(--white)] w-max px-4 rounded-[11px] py-2"
@@ -143,20 +143,7 @@
               </clipPath>
             </defs>
           </svg>
-          <!-- linkedin -->
-          <!-- <svg
-            class="cursor-pointer w-[15px] h-[15px] md:w-[22px] md:h-[22px]"
-            viewBox="0 0 23 23"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M1.2959 3.38618C1.2959 2.94101 1.47298 2.51406 1.78819 2.19928C2.10341 1.88449 2.53093 1.70764 2.9767 1.70764H19.7317C19.9526 1.70728 20.1714 1.75044 20.3756 1.83465C20.5798 1.91885 20.7654 2.04245 20.9217 2.19836C21.078 2.35428 21.2019 2.53945 21.2865 2.74327C21.371 2.94709 21.4145 3.16557 21.4143 3.38618V20.1186C21.4146 20.3393 21.3713 20.5578 21.2868 20.7617C21.2024 20.9656 21.0786 21.1509 20.9224 21.307C20.7662 21.4631 20.5807 21.5869 20.3765 21.6713C20.1724 21.7557 19.9536 21.7991 19.7326 21.799H2.9767C2.7559 21.799 2.53726 21.7555 2.33328 21.6711C2.12929 21.5867 1.94396 21.463 1.78787 21.307C1.63178 21.1511 1.50799 20.9659 1.42358 20.7621C1.33917 20.5584 1.29578 20.34 1.2959 20.1195V3.38618ZM9.25914 9.36792H11.9834V10.7341C12.3766 9.94874 13.3825 9.24189 14.8941 9.24189C17.7921 9.24189 18.4789 10.8063 18.4789 13.6766V18.9935H15.5462V14.3305C15.5462 12.6958 15.1529 11.7734 14.1543 11.7734C12.7689 11.7734 12.1928 12.7679 12.1928 14.3305V18.9935H9.25914V9.36792ZM4.22953 18.8684H7.16317V9.24189H4.22953V18.8675V18.8684ZM7.58291 6.10216C7.58844 6.35301 7.54375 6.60243 7.45145 6.83579C7.35915 7.06914 7.2211 7.28174 7.04541 7.4611C6.86972 7.64046 6.65993 7.78296 6.42835 7.88025C6.19676 7.97754 5.94805 8.02766 5.69681 8.02766C5.44557 8.02766 5.19685 7.97754 4.96527 7.88025C4.73368 7.78296 4.52389 7.64046 4.3482 7.4611C4.17251 7.28174 4.03447 7.06914 3.94217 6.83579C3.84987 6.60243 3.80517 6.35301 3.8107 6.10216C3.82156 5.60979 4.02504 5.14124 4.37757 4.79686C4.7301 4.45247 5.20365 4.25962 5.69681 4.25962C6.18996 4.25962 6.66351 4.45247 7.01604 4.79686C7.36857 5.14124 7.57205 5.60979 7.58291 6.10216Z"
-              fill="black"
-            />
-          </svg> -->
+
           <!-- twitter -->
           <svg
             @click="shareOnTwitter"
@@ -207,22 +194,15 @@ const handleBuyNow = () => {
     totalAmount: props.product.price * numberOfProduct.value,
   });
 };
-const colorVarients = ref([
-  {
-    bgColor: props.product.producttype_set[0].extras
-      ? props.product.producttype_set[0].extras.color
-      : "",
-    isSelected: true,
-  },
-  // {
-  //   bgColor: "#000000",
-  //   isSelected: false,
-  // },
-  // {
-  //   bgColor: "#CDBA7B",
-  //   isSelected: false,
-  // },
-]);
+// const colorVarients = ref([
+//   {
+//     bgColor: props.product.producttype_set[0].extras
+//       ? props.product.producttype_set[0].extras.color
+//       : "",
+//     isSelected: true,
+//   },
+
+// ]);
 
 const decrementNumberOfProduct = () => {
   if (numberOfProduct.value > 1) {
