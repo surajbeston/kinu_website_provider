@@ -98,15 +98,10 @@ import { locationFormatter } from "~/utils/constant";
 const generalData = useGeneralData();
 const { sellerInfo } = useUserData();
 
-const { data: location } = await useFetch(
-  `${apiAuthority}/api/address/${sellerInfo.seller.address}/`
-);
-
-// setting location to the store
-generalData.setLocation(location.value);
-
 // formatting location
-const formattedLocation = computed(() => locationFormatter(location.value));
+const formattedLocation = computed(() =>
+  locationFormatter(generalData.location)
+);
 const openLink = (link) => {
   window.open(link, "_blank");
 };

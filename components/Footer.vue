@@ -11,13 +11,16 @@
           </p>
           <div class="md:w-[344px] w-full h-[256px] relative">
             <!-- <MapDisplay address="Dharan Nepal" /> -->
-            <Map :lat="1212" :log="434" />
+            <Map
+              :lat="generalData.location.latitude"
+              :lon="generalData.location.longitude"
+            />
           </div>
           <p
             :style="{ color: `var(--${generalData.paletteName}-text)` }"
             class="font-['Nexa'] font-bold text-base py-2"
           >
-            {{ "formattedLocation" }}
+            {{ formattedLocation }}
           </p>
         </div>
         <div class="w-full md:w-[60%]">
@@ -163,11 +166,7 @@ const generalData = useGeneralData();
 
 const { sellerInfo } = useUserData();
 // formatting location
-// const formattedLocation = computed(() =>
-//   locationFormatter(generalData.location)
-// );
-
-console.log(generalData.location);
+const formattedLocation = locationFormatter(generalData.location);
 
 const openLink = (link) => {
   window.open(link, "_blank");

@@ -14,13 +14,18 @@
 <script setup>
 const props = defineProps({
   lat: Number,
-  log: Number,
+  lon: Number,
 });
 // console.log(props.location);
-const lat = ref(27.700769);
-const lon = ref(85.30014);
+let lat = ref(27.700769);
+let lon = ref(85.30014);
 
-console.log(props.lat, props.log);
+onMounted(() => {
+  if ((props.lat, props.log)) {
+    lat = props.lat;
+    lon = props.lon;
+  }
+});
 
 // geocoding  url
 // const response = await fetch(

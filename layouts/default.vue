@@ -35,6 +35,13 @@ if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
   generalData.setPaletteName(response.data.value.website_info.theme);
+
+  const { data: location } = await useFetch(
+    `${apiAuthority}/api/address/${userStore.sellerInfo.seller.address}/`
+  );
+
+  // setting location to the store
+  generalData.setLocation(location.value);
 } else {
   showNotFound.value = true;
 }
