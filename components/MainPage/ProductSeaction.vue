@@ -133,6 +133,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .grip_section {
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  align-items: stretch;
 }
 @media screen and (min-width: 768px) {
   .grip_section {

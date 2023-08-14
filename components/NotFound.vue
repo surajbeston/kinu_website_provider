@@ -11,9 +11,9 @@
         <a href="https://kinu.app/"
           ><button
             name="login"
-            class="bg-[color:var(--yellow-color)] text-white font-['Poppins'] text-lg font-semibold hover:shadow-lg hover:scale-[1.01] duration-300 px-10 pt-[16px] pb-4 rounded-lg"
+            class="bg-[color:var(--yellow-color)] text-white font-['Poppins'] text-sm md:text-lg font-semibold hover:shadow-lg hover:scale-[1.01] duration-300 px-4 md:px-10 pt-[16px] pb-4 rounded-lg"
           >
-            Create your own website
+            Create your own e-commerce website
           </button></a
         >
       </div>
@@ -48,6 +48,9 @@
 @media screen and (max-width: 500px) {
   .text-404 {
     font-size: 150px;
+  }
+  .text {
+    font-size: 18px;
   }
 }
 

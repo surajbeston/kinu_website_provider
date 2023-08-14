@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{ backgroundColor: `var(--${palette}-light)` }"
-    class="bg-[color:var(--white)] h-min px-3 md:px-6 pt-6 pb-6 max-w-[150px] md:max-w-[268px] w-full rounded-[10px]"
+    class="bg-[color:var(--white)] px-3 md:px-6 pt-6 pb-6 max-w-[150px] md:max-w-[268px] w-full rounded-[10px] h-full"
   >
     <!-- <div class="my-1">
       <p
@@ -69,7 +69,7 @@
       </p>
     </div> -->
     <h3
-      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] min-h-[60px] font-normal mt-1 mb-2 text-ellipsis overflow-hidden line-clamp-2"
+      class="text-[color:var(--black-3)] text-[12px] md:text-[18px] font-normal mt-1 mb-2 text-ellipsis overflow-hidden line-clamp-2"
     >
       {{ product.name }}
     </h3>
