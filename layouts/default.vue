@@ -21,15 +21,34 @@ const url = useRequestURL();
 
 const showNotFound = ref(false);
 
-const response = await useFetch(
-  `${apiAuthority}/website/info/get_info_by_domain/`,
-  {
-    method: "POST",
-    body: {
-      domain: url.hostname,
-    },
-  }
-);
+const parts = url.hostname.split(".");
+const domain = parts.length > 1 ? parts.slice(-2).join(".") : parts[0];
+const subDomainpParts = url.hostname.split(".kinu.app");
+const subdomain = subDomainpParts[0];
+let response;
+if (domain === "kinu.app") {
+  console.log("slug");
+  response = await useFetch(
+    `${apiAuthority}/website/info/get_info_by_domain/`,
+    {
+      method: "POST",
+      body: {
+        subdomain_slug: subdomain,
+      },
+    }
+  );
+} else {
+  console.log("unslug");
+  response = await useFetch(
+    `${apiAuthority}/website/info/get_info_by_domain/`,
+    {
+      method: "POST",
+      body: {
+        domain: url.hostname,
+      },
+    }
+  );
+}
 
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);

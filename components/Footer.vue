@@ -57,12 +57,12 @@
               >
                 + 977 {{ sellerInfo.seller.phone_number }}
               </p>
-              <p
+              <!-- <p
                 v-if="sellerInfo.alternate_phone_number"
                 class="font-['Nexa'] font-bold text-[16px] py-2"
               >
                 + 977 {{ sellerInfo.alternate_phone_number }}
-              </p>
+              </p> -->
             </div>
             <div>
               <p
