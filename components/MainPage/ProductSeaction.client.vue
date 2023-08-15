@@ -41,7 +41,8 @@
     <div class="grid gap-6 my-8 md:min-h-[200px] grip_section">
       <MainPageIntroCard
         v-if="userStore.sellerVideo.length > 0"
-        :videoSrc="userStore.sellerVideo[0].sellerformat_set[0].file"
+        :videoSrc="userStore.sellerVideo[0].file"
+        :introText="userStore.sellerVideo[0].text"
       />
       <MainPageProductCard
         @click="handleNavigation(each.id)"
@@ -131,9 +132,19 @@ const getProducts = async () => {
 
   userStore.setSellerProduct(response.results);
 };
+const getSellerVideo = async () => {
+  const response = await $fetch(`${apiAuthority}/api/seller-video/`, {
+    query: {
+      seller: userStore.sellerId,
+    },
+  });
+  console.log(response);
+  userStore.setSellerVideo(response.results);
+};
 
 onMounted(() => {
   getProducts();
+  getSellerVideo();
   document.addEventListener("click", closeDropdownOnOutsideClick);
 });
 

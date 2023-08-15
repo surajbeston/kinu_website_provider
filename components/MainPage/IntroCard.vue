@@ -4,7 +4,7 @@
     @click="toggleVideo"
     class="relative max-w-[150px] flex justify-center items-center md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer border border-green-400 bg_gradient"
   >
-    <video ref="videoElement" :src="apiAuthority + videoSrc"></video>
+    <video ref="videoElement" :src="videoSrc"></video>
     <img
       v-show="!isPlaying"
       class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
@@ -12,9 +12,9 @@
       alt="play"
     />
     <p
-      class="absolute bottom-4 left-4 font-semibold text-[color:var(--default-text)] rounded-[8px] text-[10px] bg-[color:var(--white-2)] px-4"
+      class="absolute bottom-4 left-4 max-w-[90%] font-semibold text-[color:var(--default-text)] rounded-[8px] text-[10px] bg-[color:var(--white-2)] px-4"
     >
-      badu is here
+      {{ introText }}
     </p>
     <svg
       v-show="isPlaying"
@@ -38,6 +38,7 @@ const videoElement = ref(null);
 const isPlaying = ref(false);
 const props = defineProps({
   videoSrc: String,
+  introText: String,
 });
 
 const toggleVideo = () => {
