@@ -40,7 +40,7 @@
     </div>
     <div class="grid gap-6 my-8 md:min-h-[200px] grip_section">
       <MainPageIntroCard
-        v-if="userStore.sellerVideo"
+        v-if="userStore.sellerVideo.length > 0"
         :videoSrc="userStore.sellerVideo[0].sellerformat_set[0].file"
       />
       <MainPageProductCard
