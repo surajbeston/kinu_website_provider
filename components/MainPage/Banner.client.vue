@@ -12,11 +12,15 @@
         class="w-full h-[224px] hidden md:block md:h-[448px]"
         :src="apiAuthority + each.src"
         alt=""
+        width="100%"
+        height="100%"
       />
       <nuxt-img
         class="w-full h-[224px] md:h-[448px] md:hidden"
         :src="apiAuthority + each.mblSrc"
         alt=""
+        width="100%"
+        height="100%"
       />
     </SwiperSlide>
   </swiper>
