@@ -133,7 +133,7 @@ const getProducts = async () => {
 };
 
 onMounted(() => {
-  // getProducts();
+  getProducts();
   document.addEventListener("click", closeDropdownOnOutsideClick);
 });
 
