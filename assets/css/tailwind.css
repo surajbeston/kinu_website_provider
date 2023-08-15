@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  scrollbar-color: transparent transparent;
+
   /* general */
   --white: #ffffff;
   --black: #000000;
@@ -118,4 +120,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+body {
+  overflow: overlay;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(82, 77, 77);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(212, 26, 26, 0);
 }

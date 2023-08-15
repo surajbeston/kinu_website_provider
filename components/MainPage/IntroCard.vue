@@ -39,7 +39,7 @@ const isPlaying = ref(false);
 const props = defineProps({
   videoSrc: String,
 });
-console.log(props.videoSrc);
+
 const toggleVideo = () => {
   if (videoElement.value) {
     if (videoElement.value.paused) {

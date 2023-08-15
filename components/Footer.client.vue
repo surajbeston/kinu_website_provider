@@ -74,7 +74,8 @@
               <ul class="flex items-center gap-3">
                 <li>
                   <svg
-                    class="cursor-pointer fill-[#0B121F] hover:!fill-[#3b5998] duration-300"
+                    :style="{ fill: `var(--${generalData.paletteName}-text)` }"
+                    class="cursor-pointer hover:!fill-[#3b5998] duration-300"
                     @click="openLink(sellerInfo.facebook_link)"
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
@@ -117,7 +118,7 @@
                     class="cursor-pointer group"
                     height="20"
                     viewBox="0,0,256,256"
-                    style="fill: #ffffff"
+                    :style="{ fill: `var(--${generalData.paletteName}-bg)` }"
                   >
                     <g
                       fill-rule="nonzero"
@@ -137,7 +138,10 @@
                       <path d="M0,256v-256h256v256z" id="bgRectangle"></path>
                     </g>
                     <g
-                      class="group-hover:!fill-[#ff0050] duration-300 fill-[#000000]"
+                      :style="{
+                        fill: `var(--${generalData.paletteName}-text)`,
+                      }"
+                      class="group-hover:!fill-[#ff0050] duration-300"
                       fill-rule="nonzero"
                       stroke="none"
                       stroke-width="1"
@@ -171,11 +175,13 @@
                     height="20"
                     class="cursor-pointer group"
                     viewBox="0,0,256,256"
-                    style="fill: #000000"
+                    :style="{ fill: `var(--${generalData.paletteName}-bg)` }"
                   >
                     <g transform="">
                       <g
-                        fill="#ffffff"
+                        :style="{
+                          fill: `var(--${generalData.paletteName}-bg)`,
+                        }"
                         fill-rule="nonzero"
                         stroke="none"
                         stroke-width="1"
@@ -193,7 +199,10 @@
                         <path d="M0,256v-256h256v256z" id="bgRectangle"></path>
                       </g>
                       <g
-                        class="group-hover:!fill-[#c4302b] duration-300 fill-[#000000]"
+                        :style="{
+                          fill: `var(--${generalData.paletteName}-text)`,
+                        }"
+                        class="group-hover:!fill-[#c4302b] duration-300"
                         fill-rule="nonzero"
                         stroke="none"
                         stroke-width="1"
