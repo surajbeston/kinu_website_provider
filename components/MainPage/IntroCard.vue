@@ -2,10 +2,10 @@
   <div
     v-show="!generalData.activeFilterTag"
     @click="toggleVideo"
-    class="relative max-w-[150px] md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
+    class="relative max-w-[150px] flex justify-center items-center md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
   >
     <!-- <img class="h-full w-full" src="images/image_1.jpg" alt="into video" /> -->
-    <video ref="videoElement" src="/videos/video_4.mp4"></video>
+    <video ref="videoElement" :src="apiAuthority + videoSrc"></video>
     <img
       v-show="!isPlaying"
       class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
@@ -37,6 +37,10 @@ import { useGeneralData } from "~/store/index";
 const generalData = useGeneralData();
 const videoElement = ref(null);
 const isPlaying = ref(false);
+const props = defineProps({
+  videoSrc: String,
+});
+console.log(props.videoSrc);
 const toggleVideo = () => {
   if (videoElement.value) {
     if (videoElement.value.paused) {

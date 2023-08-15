@@ -39,7 +39,10 @@
       </div>
     </div>
     <div class="grid gap-6 my-8 md:min-h-[200px] grip_section">
-      <MainPageIntroCard />
+      <MainPageIntroCard
+        v-if="userStore.sellerVideo"
+        :videoSrc="userStore.sellerVideo[0].sellerformat_set[0].file"
+      />
       <MainPageProductCard
         @click="handleNavigation(each.id)"
         v-for="each in userStore.seller_products"

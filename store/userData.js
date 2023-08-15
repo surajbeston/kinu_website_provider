@@ -4,12 +4,16 @@ export const useUserData = defineStore("userData", () => {
   const paletteName = ref("default");
   const sellerInfo = ref({});
   const seller_products = ref([]);
+  const sellerVideo = ref([]);
 
   function setSellerInfo(info) {
     sellerInfo.value = info;
   }
   function setSellerProduct(products) {
     seller_products.value = products;
+  }
+  function setSellerVideo(value) {
+    sellerVideo.value = value;
   }
   const sellerId = computed(() => sellerInfo.value.seller.id);
 
@@ -26,5 +30,7 @@ export const useUserData = defineStore("userData", () => {
     paletteName,
     domainName,
     websiteId,
+    setSellerVideo,
+    sellerVideo,
   };
 });
