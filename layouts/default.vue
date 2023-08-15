@@ -4,7 +4,9 @@
     :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
   >
     <Header />
-    <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section">
+    <div
+      class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section min-h-screen"
+    >
       <slot />
     </div>
     <Footer />
@@ -29,10 +31,11 @@ const response = await useFetch(
   }
 );
 
+// console.log(response);
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
-  userStore.setSellerProduct(response.data.value.seller_products);
-  userStore.setSellerVideo(response.data.value.seller_videos);
+  // userStore.setSellerProduct(response.data.value.seller_products);
+  // userStore.setSellerVideo(response.data.value.seller_videos);
   generalData.setPaletteName(response.data.value.website_info.theme);
 
   const { data: location } = await useFetch(

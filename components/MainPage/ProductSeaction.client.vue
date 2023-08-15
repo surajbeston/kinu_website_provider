@@ -124,7 +124,17 @@ const closeDropdownOnOutsideClick = (event) => {
     showOptions.value = false;
   }
 };
+const getProducts = async () => {
+  const response = await $fetch(
+    `${apiAuthority}/api/product/?seller=${userStore.sellerId}`,
+    {}
+  );
+
+  userStore.setSellerProduct(response.results);
+};
+
 onMounted(() => {
+  getProducts();
   document.addEventListener("click", closeDropdownOnOutsideClick);
 });
 
