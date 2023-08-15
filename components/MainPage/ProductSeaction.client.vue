@@ -113,9 +113,9 @@ const getProductsByOrdering = async (filterTag) => {
   }
 
   // setting products to the store
-  // if (response.data.value.results.length > 0) {
-  //   userStore.setSellerProduct(response.data.value.results);
-  // }
+  if (response.data.value.results.length > 0) {
+    userStore.setSellerProduct(response.data.value.results);
+  }
 };
 
 // outside click close dropdown

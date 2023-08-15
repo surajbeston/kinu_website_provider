@@ -2,7 +2,7 @@
   <div class="my-8">
     <MainPageBanner />
     <MainPageSearchSeaction />
-    <MainPageProductSeaction :title="'Products ' + generalData.filterTagText" />
+    <!-- <MainPageProductSeaction :title="'Products ' + generalData.filterTagText" /> -->
   </div>
 </template>
 
