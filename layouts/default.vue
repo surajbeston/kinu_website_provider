@@ -18,40 +18,16 @@ import { useUserData } from "~~/store/userData";
 const generalData = useGeneralData();
 const userStore = useUserData();
 const url = useRequestURL();
-
 const showNotFound = ref(false);
-
-const parts = url.hostname.split(".");
-const domain = parts.length > 1 ? parts.slice(-2).join(".") : parts[0];
-const subDomainpParts = url.hostname.split(".kinu.app");
-const subdomain = subDomainpParts[0];
-let response;
-if (domain === "kinu.app") {
-  console.log("slug");
-  response = await useFetch(
-    `${apiAuthority}/website/info/get_info_by_domain/`,
-    {
-      method: "POST",
-      body: {
-        subdomain_slug: subdomain,
-      },
-    }
-  );
-} else {
-  console.log("unslug");
-  console.log(url.hostname);
-  response = await useFetch(
-    `${apiAuthority}/website/info/get_info_by_domain/`,
-    {
-      method: "POST",
-      body: {
-        domain: url.hostname,
-      },
-    }
-  );
-}
-console.log(response);
-
+const response = await useFetch(
+  `${apiAuthority}/website/info/get_info_by_domain/`,
+  {
+    method: "POST",
+    body: {
+      domain: url.hostname,
+    },
+  }
+);
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
@@ -61,6 +37,7 @@ if (response.status.value === "success") {
     `${apiAuthority}/api/address/${userStore.sellerInfo.seller.address}/`
   );
 
+  console.log(userStore.sellerInfo);
   // setting location to the store
   generalData.setLocation(location.value);
 } else {

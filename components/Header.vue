@@ -75,7 +75,7 @@
       >
         <NuxtLink to="/" no-prefetch>
           <div class="w-[70px] md:w-[133px] cursor-pointer">
-            <img src="~assets/images/logo.png " alt="logo" />
+            <img :src="`${apiAuthority}${sellerInfo.icon}`" alt="logo" />
           </div>
         </NuxtLink>
 
