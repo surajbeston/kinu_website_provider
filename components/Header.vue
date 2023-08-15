@@ -74,11 +74,12 @@
         class="max-w-[1400px] w-[95%] mx-auto flex justify-between items-center"
       >
         <NuxtLink to="/" no-prefetch>
-          <div class="w-[70px] md:w-[133px] cursor-pointer">
-            <img
+          <div
+            class="w-[70px] h-[20px] md:h-[40px] md:max-w-[133px] cursor-pointer"
+          >
+            <nuxt-img
               :src="`${apiAuthority}${sellerInfo.icon}`"
-              width="100%"
-              height="100%"
+              class="w-full h-full object-contain"
               alt="logo"
             />
           </div>
