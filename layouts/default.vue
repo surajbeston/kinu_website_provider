@@ -43,7 +43,6 @@ if (response.status.value === "success") {
     `${apiAuthority}/api/address/${userStore.sellerInfo.seller.address}/`
   );
 
-  // console.log(response.data);
   // setting location to the store
   generalData.setLocation(location.value);
 } else {

@@ -21,10 +21,8 @@ let lat = ref(27.700769);
 let lon = ref(85.30014);
 
 onMounted(() => {
-  if ((props.lat, props.log)) {
-    lat = props.lat;
-    lon = props.lon;
-  }
+  lat.value = props.lat;
+  lon.value = props.lon;
 });
 
 // geocoding  url

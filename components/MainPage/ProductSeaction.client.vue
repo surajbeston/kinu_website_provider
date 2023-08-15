@@ -138,7 +138,7 @@ const getSellerVideo = async () => {
       seller: userStore.sellerId,
     },
   });
-  console.log(response);
+  // console.log(response);
   userStore.setSellerVideo(response.results);
 };
 
