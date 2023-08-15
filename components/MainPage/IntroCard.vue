@@ -2,9 +2,8 @@
   <div
     v-show="!generalData.activeFilterTag"
     @click="toggleVideo"
-    class="relative max-w-[150px] flex justify-center items-center md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer"
+    class="relative max-w-[150px] flex justify-center items-center md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer border border-green-400 bg_gradient"
   >
-    <!-- <img class="h-full w-full" src="images/image_1.jpg" alt="into video" /> -->
     <video ref="videoElement" :src="apiAuthority + videoSrc"></video>
     <img
       v-show="!isPlaying"
@@ -86,4 +85,16 @@ const toggleFullScreen = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bg_gradient {
+  background-image: linear-gradient(
+    to right,
+    #6f838e,
+    #373d60 400px,
+    #6f838e 800px
+  );
+  background-size: 800px 100%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+}
+</style>
