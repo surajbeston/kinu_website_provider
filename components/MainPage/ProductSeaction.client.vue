@@ -126,8 +126,7 @@ const closeDropdownOnOutsideClick = (event) => {
 };
 const getProducts = async () => {
   const response = await $fetch(
-    `${apiAuthority}/api/product/?seller=${userStore.sellerId}`,
-    {}
+    `${apiAuthority}/api/product/?seller=${userStore.sellerId}`
   );
 
   userStore.setSellerProduct(response.results);
