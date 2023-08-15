@@ -24,7 +24,7 @@ const response = await useFetch(
   {
     method: "POST",
     body: {
-      domain: "kinu-men.kinu.app",
+      domain: url.hostname,
     },
   }
 );
