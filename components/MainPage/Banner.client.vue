@@ -8,12 +8,12 @@
     class="mySwiper"
   >
     <SwiperSlide v-for="each in banners" :key="each">
-      <img
+      <nuxt-img
         class="w-full h-[224px] hidden md:block md:h-[448px]"
         :src="apiAuthority + each.src"
         alt=""
       />
-      <img
+      <nuxt-img
         class="w-full h-[224px] md:h-[448px] md:hidden"
         :src="apiAuthority + each.mblSrc"
         alt=""

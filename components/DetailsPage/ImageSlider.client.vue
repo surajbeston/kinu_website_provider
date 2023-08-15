@@ -8,7 +8,7 @@
       <swiper-slide v-for="(media, index) in medias" :key="index">
         <div class="aspect-ratio-container">
           <div class="aspect-ratio-content">
-            <img
+            <nuxt-img
               class="max-w-full max-h-full"
               v-if="media.image"
               :src="`https://api.kinu.app${media.image}`"
@@ -32,7 +32,7 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(media, index) in medias" :key="index">
-        <img
+        <nuxt-img
           class="!w-[80px] !h-[80px] object-cover rounded-xl cursor-pointer"
           v-if="media.image"
           :src="`https://api.kinu.app${media.image}`"

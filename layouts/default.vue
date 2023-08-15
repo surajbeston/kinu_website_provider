@@ -28,6 +28,7 @@ const response = await useFetch(
     },
   }
 );
+console.log(response);
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   userStore.setSellerProduct(response.data.value.seller_products);
@@ -37,7 +38,7 @@ if (response.status.value === "success") {
     `${apiAuthority}/api/address/${userStore.sellerInfo.seller.address}/`
   );
 
-  console.log(userStore.sellerInfo);
+  // console.log(response.data);
   // setting location to the store
   generalData.setLocation(location.value);
 } else {

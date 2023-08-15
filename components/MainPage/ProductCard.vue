@@ -43,7 +43,7 @@
       </p>
     </div> -->
     <div class="md:h-[171px] h-[100px] relative cursor-pointer">
-      <img
+      <nuxt-img
         class="max-w-full max-h-full h-full w-full object-cover"
         :src="`https://api.kinu.app${product.image_set[0].image}`"
         alt="product image"
