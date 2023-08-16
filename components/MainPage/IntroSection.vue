@@ -3,7 +3,7 @@
     <div>
       <h1
         :style="{ color: `var(--${generalData.paletteName}-text)` }"
-        class="text-[24px] py-2 font-['Nexa'] font-bold"
+        class="text-[18px] md:text-[24px] py-2 font-['Nexa'] font-bold"
       >
         Our Intro
       </h1>
@@ -24,12 +24,12 @@
 
         <h1
           :style="{ color: `var(--${generalData.paletteName}-text)` }"
-          class="text-[24px] py-2 font-['Nexa'] font-bold text-end"
+          class="text-[18px] md:text-[24px] py-2 font-['Nexa'] font-bold text-end"
         >
           Visit Us
         </h1>
       </div>
-      <div class="h-[345px] w-full">
+      <div class="h-[345px] w-full rounded-[8px] overflow-hidden">
         <Map
           :lat="generalData.location.latitude"
           :lon="generalData.location.longitude"

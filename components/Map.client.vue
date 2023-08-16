@@ -39,4 +39,8 @@ onMounted(() => {
 // }
 </script>
 
-<style></style>
+<style>
+.leaflet-control-attribution.leaflet-control {
+  display: none;
+}
+</style>
