@@ -12,3 +12,16 @@ export const locationFormatter = (location) => {
 
   return fullLocation;
 };
+
+export const productsGrouper = (products) => {
+  const groupedProducts = {};
+  for (const product of products) {
+    const categoryName = product.category.name;
+    if (groupedProducts[categoryName]) {
+      groupedProducts[categoryName].push(product);
+    } else {
+      groupedProducts[categoryName] = [product];
+    }
+  }
+  return groupedProducts;
+};

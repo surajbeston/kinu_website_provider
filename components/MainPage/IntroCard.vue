@@ -2,7 +2,7 @@
   <div
     v-show="!generalData.activeFilterTag"
     @click="toggleVideo"
-    class="relative max-w-[150px] flex justify-center items-center md:max-w-[268px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer border border-green-400 bg_gradient"
+    class="relative max-w-[150px] flex justify-center items-center md:max-w-[368px] h-[229px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer border border-green-400 bg_gradient"
   >
     <video ref="videoElement" :src="videoSrc"></video>
     <img

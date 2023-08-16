@@ -42,11 +42,7 @@ const props = defineProps({
 });
 
 const handleClick = async (index) => {
-  if (index === 0) {
-    await navigateTo("/");
-  } else if (index === 1) {
-    generalData.setActiveFilterTag(props.tags[1]);
-    await navigateTo("/");
-  }
+  if (index == 2) return;
+  await navigateTo("/");
 };
 </script>

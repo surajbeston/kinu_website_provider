@@ -1,166 +1,104 @@
 <template>
-  <div class="my-8">
-    <div class="flex justify-between items-center">
-      <h3
-        :style="{ color: `var(--${generalData.paletteName}-text)` }"
-        class="text-[12px] md:text-[24px] text-[color:var(--black-4)] font-normal font-['Nexa']"
-      >
-        {{ title }}
-      </h3>
-      <div
-        :style="{
-          borderColor: `var(--${generalData.paletteName}-text)`,
-          color: `var(--${generalData.paletteName}-text)`,
-        }"
-        ref="filterWrapper"
-        @click="toggleOptions"
-        class="flex items-center gap-1 md:gap-3 border px-2 md:px-3 py-1 cursor-pointer text-[10px] md:text-lg font-['Poppins'] rounded-[5px] border-black/60"
-      >
-        <p class="font-normal">sort by:</p>
-        <CustomDropDown
-          :showOptions="showOptions"
-          :selectedOption="selectedOption"
-          :filterOptions="filterOptions"
-          @update="handleChangeOptions"
-        />
-        <svg
-          :style="{ fill: `var(--${generalData.paletteName}-text)` }"
-          class="fill-[#4A4B57]"
-          width="12"
-          height="8"
-          viewBox="0 0 12 8"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10.173 0.595325L5.80883 4.95002L1.44462 0.595325L0.103983 1.93596L5.80883 7.64081L11.5137 1.93596L10.173 0.595325Z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div class="grid gap-6 my-8 md:min-h-[200px] grip_section">
-      <MainPageIntroCard
-        v-if="userStore.sellerVideo.length > 0"
-        :videoSrc="userStore.sellerVideo[0].file"
-        :introText="userStore.sellerVideo[0].text"
-      />
-      <MainPageProductCard
-        @click="handleNavigation(each.id)"
-        v-for="each in userStore.seller_products"
-        :product="each"
-        :palette="generalData.paletteName"
-      />
-    </div>
+  <div v-if="!isLoading" class="my-8">
+    <MainPageProductCardWithText
+      v-for="eachCategory in userStore.seller_products"
+      :products="eachCategory"
+    />
+  </div>
+  <div v-else>
+    <MainPageProductCardShimmer v-for="each in 3" />
   </div>
 </template>
 
 <script setup>
 import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
+import { productsGrouper } from "~/utils/constant";
 const generalData = useGeneralData();
+const isLoading = ref(true);
 const userStore = useUserData();
-import { ref, onMounted, onBeforeUnmount } from "vue";
-const props = defineProps({
-  title: String,
-  seller_products: Array,
-});
-const showOptions = ref(false);
-const filterWrapper = ref(null);
 
-const filterOptions = ref(["All Products", "High to Low", "Low to High"]);
-const selectedOption = ref(filterOptions.value[0]);
+// const showOptions = ref(false);
+// const filterWrapper = ref(null);
 
-const handleNavigation = async (each) => {
-  await navigateTo(`/product/${each}`);
-  // to reset the filter when page changes
-  getProductsByOrdering("All Products");
-};
-const toggleOptions = () => {
-  showOptions.value = !showOptions.value;
-};
+// const filterOptions = ref(["All Products", "High to Low", "Low to High"]);
+// const selectedOption = ref(filterOptions.value[0]);
 
-const handleChangeOptions = (option) => {
-  showOptions.value = false;
-  selectedOption.value = option;
-  getProductsByOrdering(option);
-};
+// const toggleOptions = () => {
+//   showOptions.value = !showOptions.value;
+// };
 
-const getProductsByOrdering = async (filterTag) => {
-  const sellerId = userStore.sellerId;
-  let response;
-  if (filterTag === "All Products") {
-    response = await useFetch(`${apiAuthority}/api/product`, {
-      query: {
-        seller: sellerId,
-        limit: 1000,
-      },
-    });
-  } else if (filterTag === "High to Low") {
-    response = await useFetch(`${apiAuthority}/api/product`, {
-      query: {
-        seller: sellerId,
-        ordering: "-price",
-        limit: 1000,
-      },
-    });
-  } else {
-    response = await useFetch(`${apiAuthority}/api/product`, {
-      query: {
-        seller: sellerId,
-        ordering: "price",
-        limit: 1000,
-      },
-    });
-  }
+// const handleChangeOptions = (option) => {
+//   showOptions.value = false;
+//   selectedOption.value = option;
+//   getProductsByOrdering(option);
+// };
 
-  // setting products to the store
-  if (response.data.value.results.length > 0) {
-    userStore.setSellerProduct(response.data.value.results);
-  }
-};
+// const getProductsByOrdering = async (filterTag) => {
+//   const sellerId = userStore.sellerId;
+//   let response;
+//   if (filterTag === "All Products") {
+//     response = await useFetch(`${apiAuthority}/api/product`, {
+//       query: {
+//         seller: sellerId,
+//         limit: 1000,
+//       },
+//     });
+//   } else if (filterTag === "High to Low") {
+//     response = await useFetch(`${apiAuthority}/api/product`, {
+//       query: {
+//         seller: sellerId,
+//         ordering: "-price",
+//         limit: 1000,
+//       },
+//     });
+//   } else {
+//     response = await useFetch(`${apiAuthority}/api/product`, {
+//       query: {
+//         seller: sellerId,
+//         ordering: "price",
+//         limit: 1000,
+//       },
+//     });
+//   }
 
-// outside click close dropdown
-const closeDropdownOnOutsideClick = (event) => {
-  if (filterWrapper.value && !filterWrapper.value.contains(event.target)) {
-    showOptions.value = false;
-  }
-};
+//   // setting products to the store
+//   if (response.data.value.results.length > 0) {
+//     userStore.setSellerProduct(response.data.value.results);
+//   }
+// };
+
+// // outside click close dropdown
+// const closeDropdownOnOutsideClick = (event) => {
+//   if (filterWrapper.value && !filterWrapper.value.contains(event.target)) {
+//     showOptions.value = false;
+//   }
+// };
 const getProducts = async () => {
+  console.log("called");
   const response = await $fetch(
-    `${apiAuthority}/api/product/?seller=${userStore.sellerId}`
+    `${apiAuthority}/api/product/?seller=${userStore.sellerId}&limit=1000`
   );
 
-  userStore.setSellerProduct(response.results);
-};
-const getSellerVideo = async () => {
-  const response = await $fetch(`${apiAuthority}/api/seller-video/`, {
-    query: {
-      seller: userStore.sellerId,
-    },
-  });
-  // console.log(response);
-  userStore.setSellerVideo(response.results);
+  return response;
 };
 
-onMounted(() => {
-  getProducts();
-  getSellerVideo();
-  document.addEventListener("click", closeDropdownOnOutsideClick);
+onMounted(async () => {
+  // if (Object.keys(userStore.seller_products).length > 0) return;
+  const response = await getProducts();
+
+  const groupedProducts = productsGrouper(response.results);
+  //   const sortedGroupedProducts = Object.entries(groupedProducts.value).sort(
+  //   (a, b) => b[1].length - a[1].length
+  // );
+  userStore.setSellerProduct(groupedProducts);
+  isLoading.value = false;
+  // document.addEventListener("click", closeDropdownOnOutsideClick);
 });
 
-onBeforeUnmount(() => {
-  document.removeEventListener("click", closeDropdownOnOutsideClick);
-});
+// onBeforeUnmount(() => {
+//   document.removeEventListener("click", closeDropdownOnOutsideClick);
+// });
 </script>
 
-<style scoped>
-.grip_section {
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  align-items: stretch;
-}
-@media screen and (min-width: 768px) {
-  .grip_section {
-    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
-  }
-}
-</style>
+<style scoped></style>

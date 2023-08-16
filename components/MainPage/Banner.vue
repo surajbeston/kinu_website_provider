@@ -9,14 +9,14 @@
   >
     <SwiperSlide v-for="each in banners" :key="each">
       <nuxt-img
-        class="w-full h-[224px] hidden md:block md:h-[448px]"
+        class="w-full hidden md:block"
         :src="apiAuthority + each.src"
         alt=""
         width="100%"
         height="100%"
       />
       <nuxt-img
-        class="w-full h-[224px] md:h-[448px] md:hidden"
+        class="w-full md:hidden"
         :src="apiAuthority + each.mblSrc"
         alt=""
         width="100%"

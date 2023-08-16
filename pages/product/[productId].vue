@@ -62,10 +62,7 @@
         <DetailsPageTextReviewCard />
       </div>
     </section> -->
-    <MainPageProductSeaction
-      title="You might also like"
-      :seller_products="products"
-    />
+    <MainPageProductSeaction />
   </div>
 </template>
 

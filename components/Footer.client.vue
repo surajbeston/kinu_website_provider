@@ -3,29 +3,23 @@
     <div class="max-w-[1400px] w-[90%] md:w-[95%] mx-auto border-t py-6">
       <div class="flex flex-col md:flex-row gap-10 items-center">
         <div class="w-[95%] mx-auto md:w-[40%]">
-          <p
+          <!-- <p
             :style="{ color: `var(--${generalData.paletteName}-text)` }"
             class="py-2 font-['Nexa'] text-base font-semibold"
           >
             Our Shop
-          </p>
-          <div class="md:w-[344px] w-full h-[256px] relative">
-            <!-- <MapDisplay address="Dharan Nepal" /> -->
-            <Map
-              :lat="generalData.location.latitude"
-              :lon="generalData.location.longitude"
-            />
-          </div>
+          </p> -->
+
           <p
             :style="{ color: `var(--${generalData.paletteName}-text)` }"
-            class="font-['Nexa'] font-bold text-base py-2"
+            class="text-[30px] md:pr-14 font-['Poppins'] font-semibold"
           >
-            {{ formattedLocation }}
+            {{ sellerInfo.seller.description }}
           </p>
         </div>
         <div class="w-full md:w-[60%]">
           <div
-            class="flex flex-col md:flex-row gap-10 justify-center md:justify-between items-center"
+            class="flex flex-col md:flex-row gap-10 pb-8 justify-center md:justify-between items-center"
           >
             <div class="hidden md:block">
               <h1
@@ -229,14 +223,20 @@
               </ul>
             </div>
           </div>
-          <ul
+
+          <hr
+            :style="{
+              backgroundColor: `var(--${generalData.paletteName}-text)`,
+            }"
+          />
+          <!-- <ul
             class="flex gap-14 items-center justify-center md:justify-start border-t pt-4 mt-10"
           >
             <li>
               <a
                 :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="underline underline-offset-4 font-['Nexa'] font-bold text-base"
-                href=""
+                href="#"
                 >Privacy policy</a
               >
             </li>
@@ -244,11 +244,11 @@
               <a
                 :style="{ color: `var(--${generalData.paletteName}-text)` }"
                 class="underline underline-offset-4 font-['Nexa'] font-bold text-base"
-                href=""
+                href="#"
                 >Terms of use</a
               >
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <div class="flex justify-center pt-8 md:pt-auto md:justify-end">

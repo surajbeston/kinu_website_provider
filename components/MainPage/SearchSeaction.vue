@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="my-5 w-full gap-4 flex">
+  <div class="py-5">
+    <div class="my-5 w-full gap-4 flex relative">
       <input
         v-model="inputText"
         @keyup.enter="getSearchProducts"
@@ -25,24 +25,39 @@
           stroke-linejoin="round"
         />
       </svg>
+      <svg
+        v-if="inputText"
+        @click="clearFilter"
+        class="absolute right-[70px] md:right-[75px] w-[15px] h-[16px] md:w-[20px] md:h-[21px] top-3 md:top-[13.5px] stroke-[color:var(--red)] cursor-pointer"
+        viewBox="0 0 11 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.996704 10.4041L5.40084 6L9.80497 10.4041M9.80497 1.59589L5.4 6L0.996704 1.59589"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
     </div>
 
     <div
-      class="flex items-center gap-3 md:gap-6 justify-start md:justify-center flex-wrap"
+      class="flex items-center gap-3 md:gap-6 justify-start md:justify-center flex-wrap py-2"
     >
       <MainPageFilterTag
-        @click="handleFilterTag(tag)"
+        @click="scrollToCategory(tag.name)"
         v-for="(tag, index) in userStore.sellerInfo.seller.categories"
         :tag="tag"
         :key="index"
       />
-      <button
+      <!-- <button
         v-if="generalData.activeFilterTag"
         class="bg-[color:var(--red)] hover:scale-[1.02] text-[10px] font-semibold md:text-base duration-500 hover:shadow-sm text-[var(--white)] p-[8px] rounded-md"
         @click="clearFilter"
       >
         Clear filters
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
@@ -50,12 +65,11 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
+import { productsGrouper } from "~/utils/constant";
 
 const userStore = useUserData();
 const generalData = useGeneralData();
 const inputText = ref("");
-
-// console.log(sellerInfo.value.seller.categories);
 
 const getSearchProducts = async () => {
   if (inputText.value) {
@@ -66,26 +80,39 @@ const getSearchProducts = async () => {
         limit: 1000,
       },
     });
-    // console.log(response);
-    userStore.setSellerProduct(response.data.value.results);
+
+    const groupedProducts = productsGrouper(response.data.value.results);
+    userStore.setSellerProduct(groupedProducts);
   }
 };
-const getProductsByCategory = async (categoryId) => {
-  if (categoryId) {
-    const response = await useFetch(`${apiAuthority}/api/product`, {
-      query: {
-        seller: userStore.sellerId,
-        category: categoryId,
-        limit: 1000,
-      },
-    });
-    // console.log(response);
-    userStore.setSellerProduct(response.data.value.results);
+function scrollToCategory(categoryName) {
+  const targetElement = document.getElementById(categoryName);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth" });
   }
-};
+}
+
+// function handleFilterTag(clickedTag) {
+//   // // setting store
+//   // generalData.setActiveFilterTag(clickedTag.name);
+//   // generalData.setfilterTagText(`of ${clickedTag.name}`);
+//   // getProductsByCategory(clickedTag.id);
+// }
+
+// const getProductsByCategory = async (categoryId) => {
+//   if (categoryId) {
+//     const response = await useFetch(`${apiAuthority}/api/product`, {
+//       query: {
+//         seller: userStore.sellerId,
+//         category: categoryId,
+//         limit: 1000,
+//       },
+//     });
+//     // console.log(response);
+//     userStore.setSellerProduct(response.data.value.results);
+//   }
+// };
 const clearFilter = async () => {
-  inputText.value = "";
-  generalData.$patch({ activeFilterTag: "" });
   const response = await useFetch(`${apiAuthority}/api/product`, {
     query: {
       seller: userStore.sellerId,
@@ -93,25 +120,19 @@ const clearFilter = async () => {
     },
   });
   // console.log(response);
-  userStore.setSellerProduct(response.data.value.results);
+  const groupedProducts = productsGrouper(response.data.value.results);
+  userStore.setSellerProduct(groupedProducts);
+  inputText.value = "";
 };
 
-onMounted(() => {
-  if (generalData.activeFilterTag) {
-    const filterTag = userStore.sellerInfo.seller.categories.find(
-      (each) => each.name === generalData.activeFilterTag
-    );
+// onMounted(() => {
+//   if (generalData.activeFilterTag) {
+//     const filterTag = userStore.sellerInfo.seller.categories.find(
+//       (each) => each.name === generalData.activeFilterTag
+//     );
 
-    getProductsByCategory(filterTag.id);
-  }
-});
-function handleFilterTag(clickedTag) {
-  // setting store
-  generalData.setActiveFilterTag(clickedTag.name);
-  generalData.setfilterTagText(`of ${clickedTag.name}`);
-
-  getProductsByCategory(clickedTag.id);
-}
+//   }
+// });
 </script>
 
 <style scoped></style>
