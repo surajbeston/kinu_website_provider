@@ -50,6 +50,15 @@ if (response.status.value === "success") {
 }
 
 // console.log("layout called and api also");
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      href: `${apiAuthority}${userStore.sellerInfo.icon}`,
+    },
+  ],
+});
 </script>
 
 <style scoped></style>
