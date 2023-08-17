@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div v-if="!showNotFound" class="">
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
     <div
       class="flex flex-col mt-10 md:mt-auto md:flex-row gap-10 justify-between border-b pb-10"
@@ -64,6 +64,7 @@
     </section> -->
     <MainPageProductSeaction />
   </div>
+  <NotFound v-else />
 </template>
 
 <script setup>
@@ -76,14 +77,12 @@ import generateRandomString from "~/utils/randomKeyGenerator";
 const url = useRequestURL();
 const userStore = useUserData();
 const route = useRoute();
+const showNotFound = ref(false);
 
 // refs
 // const activeTab = ref("Reviews");
 const showModal = ref(false);
-const products = ref([]);
 const breadcrumbTags = ref(["Home"]);
-
-products.value = userStore.seller_products;
 
 const medias = computed({
   get() {
@@ -101,6 +100,25 @@ const medias = computed({
 const { data: product } = await useFetch(
   `${apiAuthority}/api/product/${route.params.productId}/`
 );
+const currentSellerId = product.value.seller.id;
+
+const response = await useFetch(
+  `${apiAuthority}/website/info/get_info_by_domain/`,
+  {
+    method: "POST",
+    body: {
+      domain: url.hostname,
+    },
+  }
+);
+const domainSellerId = response.data.value.website_info.seller.id;
+if (currentSellerId !== domainSellerId) {
+  showModal.value = true;
+}
+// const getDomainInfo = async () => {
+
+//   console.log(response);
+// };
 
 // setting breadcrumb values
 breadcrumbTags.value.push(product.value.category.name);
