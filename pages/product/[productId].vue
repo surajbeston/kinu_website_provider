@@ -113,7 +113,7 @@ const response = await useFetch(
 );
 const domainSellerId = response.data.value.website_info.seller.id;
 if (currentSellerId !== domainSellerId) {
-  showModal.value = true;
+  showNotFound = true;
 }
 // const getDomainInfo = async () => {
 
