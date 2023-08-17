@@ -75,7 +75,6 @@ const userStore = useUserData();
 //   }
 // };
 const getProducts = async () => {
-  console.log("called");
   const response = await $fetch(
     `${apiAuthority}/api/product/?seller=${userStore.sellerId}&limit=1000`
   );

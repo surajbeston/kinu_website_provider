@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!showNotFound"
+    v-if="!generalData.showErrorPage"
     :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
   >
     <Header />
@@ -20,7 +20,7 @@ import { useUserData } from "~~/store/userData";
 const generalData = useGeneralData();
 const userStore = useUserData();
 const url = useRequestURL();
-const showNotFound = ref(false);
+// const showNotFound = ref(false);
 
 const response = await useFetch(
   `${apiAuthority}/website/info/get_info_by_domain/`,
@@ -46,7 +46,8 @@ if (response.status.value === "success") {
   // setting location to the store
   generalData.setLocation(location.value);
 } else {
-  showNotFound.value = true;
+  generalData.setShowErrorPage();
+  // showNotFound.value = true;
 }
 
 // console.log("layout called and api also");

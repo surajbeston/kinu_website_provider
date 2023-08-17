@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!showNotFound" class="">
+  <div class="">
     <DetailsPageBreadCumb :tags="breadcrumbTags" />
     <div
       class="flex flex-col mt-10 md:mt-auto md:flex-row gap-10 justify-between border-b pb-10"
@@ -64,11 +64,11 @@
     </section> -->
     <MainPageProductSeaction />
   </div>
-  <NotFound v-else />
 </template>
 
 <script setup>
 import { useUserData } from "~~/store/userData";
+import { useGeneralData } from "~~/store/index";
 
 import removeMarkdown from "~/utils/markDownRemove";
 import nuxtStorage from "nuxt-storage";
@@ -77,7 +77,7 @@ import generateRandomString from "~/utils/randomKeyGenerator";
 const url = useRequestURL();
 const userStore = useUserData();
 const route = useRoute();
-const showNotFound = ref(false);
+const generalData = useGeneralData();
 
 // refs
 // const activeTab = ref("Reviews");
@@ -113,7 +113,7 @@ const response = await useFetch(
 );
 const domainSellerId = response.data.value.website_info.seller.id;
 if (currentSellerId !== domainSellerId) {
-  showNotFound.value = true;
+  generalData.setShowErrorPage();
 }
 // const getDomainInfo = async () => {
 

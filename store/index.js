@@ -2,11 +2,14 @@ import { defineStore } from "pinia";
 
 export const useGeneralData = defineStore("generalData", () => {
   const paletteName = ref("kinu-light");
+  const showErrorPage = ref(false);
   // const activeFilterTag = ref("");
   // const filterTagText = ref("for you");
   const location = ref(null);
   // const emitActiveFilterTag = ref(false);
-
+  function setShowErrorPage() {
+    showErrorPage.value = true;
+  }
   function setPaletteName(value) {
     paletteName.value = value;
   }
@@ -29,6 +32,8 @@ export const useGeneralData = defineStore("generalData", () => {
     // activeFilterTag,
     // filterTagText,
     // setfilterTagText,
+    showErrorPage,
+    setShowErrorPage,
     setLocation,
     location,
   };
