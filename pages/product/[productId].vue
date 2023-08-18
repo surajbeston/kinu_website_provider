@@ -112,9 +112,7 @@ const response = await useFetch(
   }
 );
 const domainSellerId = response.data.value.website_info.seller.id;
-if (currentSellerId !== domainSellerId) {
-  generalData.setShowErrorPage();
-}
+
 // const getDomainInfo = async () => {
 
 //   console.log(response);
@@ -126,6 +124,9 @@ breadcrumbTags.value.push(product.value.name);
 
 // analytics
 onMounted(() => {
+  if (currentSellerId !== domainSellerId) {
+    generalData.setShowErrorPage();
+  }
   let userKey;
   // getting userkey
   userKey = nuxtStorage.localStorage.getData("userKey");
