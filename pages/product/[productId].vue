@@ -122,11 +122,13 @@ const domainSellerId = response.data.value.website_info.seller.id;
 breadcrumbTags.value.push(product.value.category.name);
 breadcrumbTags.value.push(product.value.name);
 
-// analytics
-onMounted(() => {
+onBeforeMount(() => {
   if (currentSellerId !== domainSellerId) {
     generalData.setShowErrorPage();
   }
+});
+// analytics
+onMounted(() => {
   let userKey;
   // getting userkey
   userKey = nuxtStorage.localStorage.getData("userKey");
