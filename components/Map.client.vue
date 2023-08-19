@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+// console.log(paletteName);
 const props = defineProps({
   lat: Number,
   lon: Number,
@@ -24,7 +25,7 @@ onMounted(() => {
   lat.value = props.lat;
   lon.value = props.lon;
 });
-
+console.log("dark map");
 // geocoding  url
 // const response = await fetch(
 //   ` https://nominatim.openstreetmap.org/search.php?q=${encodeURIComponent(
@@ -42,5 +43,18 @@ onMounted(() => {
 <style>
 .leaflet-control-attribution.leaflet-control {
   display: none;
+}
+
+/* .leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+} */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
 </style>

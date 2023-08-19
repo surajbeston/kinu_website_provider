@@ -65,6 +65,7 @@ import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
 const generalData = useGeneralData();
 const userStore = useUserData();
+console.log(generalData.paletteName);
 
 const getSellerVideo = async () => {
   const response = await $fetch(`${apiAuthority}/api/seller-video/`, {
