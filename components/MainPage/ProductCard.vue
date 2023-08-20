@@ -1,5 +1,6 @@
 <template>
   <div
+    :id="product.id"
     :style="{ backgroundColor: `var(--${palette}-light)` }"
     class="bg-[color:var(--white)] px-3 md:px-6 pt-6 pb-6 max-w-[150px] md:max-w-[268px] w-full rounded-[10px] h-full"
   >

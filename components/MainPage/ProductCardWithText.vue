@@ -9,7 +9,10 @@
       </h3>
     </div>
 
-    <div class="grid gap-6 my-4 md:min-h-[200px] grip_section">
+    <div
+      id="product_container"
+      class="grid gap-6 my-4 md:min-h-[200px] grid_section"
+    >
       <MainPageProductCard
         @click="handleNavigation(each.id)"
         v-for="each in products"
@@ -36,12 +39,12 @@ const handleNavigation = async (each) => {
 </script>
 
 <style scoped>
-.grip_section {
+.grid_section {
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   align-items: stretch;
 }
 @media screen and (min-width: 768px) {
-  .grip_section {
+  .grid_section {
     grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
   }
 }
