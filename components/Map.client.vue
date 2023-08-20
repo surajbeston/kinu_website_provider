@@ -12,20 +12,29 @@
 </template>
 
 <script setup>
-// console.log(paletteName);
 const props = defineProps({
   lat: Number,
   lon: Number,
+  paletteName: String,
 });
-// console.log(props.location);
 let lat = ref(27.700769);
 let lon = ref(85.30014);
 
 onMounted(() => {
   lat.value = props.lat;
   lon.value = props.lon;
+  setTimeout(() => {
+    if (props.paletteName !== "kinu-light") {
+      document.querySelector(".leaflet-layer").style.filter =
+        "invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%)";
+      document.querySelector(".leaflet-control-zoom-in").style.filter =
+        "invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%)";
+      document.querySelector(".leaflet-control-zoom-out").style.filter =
+        "invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%)";
+    }
+  }, 100);
 });
-console.log("dark map");
+
 // geocoding  url
 // const response = await fetch(
 //   ` https://nominatim.openstreetmap.org/search.php?q=${encodeURIComponent(
@@ -41,9 +50,9 @@ console.log("dark map");
 </script>
 
 <style>
-.leaflet-control-attribution.leaflet-control {
+/* .leaflet-control-attribution.leaflet-control {
   display: none;
-}
+} */
 
 /* .leaflet-layer,
 .leaflet-control-zoom-in,
@@ -51,10 +60,10 @@ console.log("dark map");
 .leaflet-control-attribution {
   filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 } */
-.leaflet-layer,
+/* .leaflet-layer,
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out,
 .leaflet-control-attribution {
   filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
-}
+} */
 </style>

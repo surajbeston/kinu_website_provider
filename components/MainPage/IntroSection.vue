@@ -31,6 +31,7 @@
       </div>
       <div class="h-[345px] w-full rounded-[8px] overflow-hidden">
         <Map
+          :paletteName="generalData.paletteName"
           :lat="generalData.location.latitude"
           :lon="generalData.location.longitude"
         />
@@ -65,7 +66,6 @@ import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
 const generalData = useGeneralData();
 const userStore = useUserData();
-console.log(generalData.paletteName);
 
 const getSellerVideo = async () => {
   const response = await $fetch(`${apiAuthority}/api/seller-video/`, {
