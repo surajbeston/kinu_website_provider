@@ -201,7 +201,7 @@ const recaptcha = async () => {
 };
 
 const onSubmit = async (values) => {
-  console.log(values);
+  // console.log(values);
   console.log(rememberMe.value);
   if (rememberMe.value) {
     const localData = {

@@ -11,11 +11,11 @@
       src="~assets/icons/play_button.svg"
       alt="play"
     />
-    <p
+    <!-- <p
       class="absolute bottom-4 left-4 max-w-[90%] font-semibold text-[color:var(--default-text)] rounded-[8px] text-[10px] bg-[color:var(--white-2)] px-4"
     >
       {{ introText }}
-    </p>
+    </p> -->
     <svg
       v-show="isPlaying"
       class="absolute top-3 right-3 fill-white cursor-pointer w-[20px] h-[20px] md:w-[25px] md:h-[25px]"

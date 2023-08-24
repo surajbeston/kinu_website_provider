@@ -12,7 +12,7 @@
 
           <p
             :style="{ color: `var(--${generalData.paletteName}-text)` }"
-            class="text-[24px] md:text-[30px] md:pr-14 font-['Poppins'] font-semibold text-center md:text-start"
+            class="text-[16px] md:text-[20px] md:pr-14 font-['Poppins'] font-semibold text-center md:text-start"
           >
             {{ sellerInfo.seller.description }}
           </p>
