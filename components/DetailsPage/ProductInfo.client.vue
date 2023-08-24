@@ -62,7 +62,10 @@
         />
       </div>
     </div> -->
-    <div class="flex items-center gap-8 pb-10 pt-4">
+    <div
+      v-if="userData.sellerInfo.seller.seller_type !== 'menu'"
+      class="flex items-center gap-8 pb-10 pt-4"
+    >
       <div
         class="flex border bg-[color:var(--white)] w-max px-4 rounded-[11px] py-2"
       >

@@ -32,7 +32,6 @@ const response = await useFetch(
   }
 );
 
-// console.log(response);
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);
   // userStore.setSellerProduct(response.data.value.seller_products);
