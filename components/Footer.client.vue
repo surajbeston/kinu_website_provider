@@ -68,6 +68,7 @@
               <ul class="flex items-center gap-3">
                 <li>
                   <svg
+                    v-if="sellerInfo.facebook_link"
                     :style="{ fill: `var(--${generalData.paletteName}-text)` }"
                     class="cursor-pointer hover:!fill-[#3b5998] duration-300"
                     @click="openLink(sellerInfo.facebook_link)"
@@ -86,6 +87,7 @@
 
                 <li>
                   <svg
+                    v-if="sellerInfo.instagram_link"
                     :style="{ fill: `var(--${generalData.paletteName}-text)` }"
                     class="cursor-pointer hover:!fill-[#d62976] duration-300"
                     @click="openLink(sellerInfo.instagram_link)"
@@ -104,6 +106,7 @@
                 <li>
                   <!-- tiktok logo -->
                   <svg
+                    v-if="sellerInfo.tiktok_link"
                     @click="openLink(sellerInfo.tiktok_link)"
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
@@ -161,6 +164,7 @@
                 <li>
                   <!-- youtube logo -->
                   <svg
+                  v-if="sellerInfo.youtube_link"
                     @click="openLink(sellerInfo.youtube_link)"
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
