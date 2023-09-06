@@ -33,8 +33,9 @@
           <p>Call Us: {{ sellerInfo.seller.phone_number }}</p>
           <div class="flex gap-2 items-center">
             <!-- facebook logo -->
-
+            
             <svg
+              v-if="sellerInfo.facebook_link"
               @click="openLink(sellerInfo.facebook_link)"
               class="fill-white hover:fill-[#3b5998] cursor-pointer duration-300"
               width="20"
@@ -50,6 +51,7 @@
             <!-- instagram logo -->
 
             <svg
+              v-if="sellerInfo.instagram_link"
               @click="openLink(sellerInfo.instagram_link)"
               class="hover:fill-[#d62976] duration-300 cursor-pointer fill-white"
               width="20"
@@ -63,6 +65,7 @@
             </svg>
             <!-- tiktok logo -->
             <svg
+              v-if="sellerInfo.tiktok_link"
               @click="openLink(sellerInfo.tiktok_link)"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -116,6 +119,7 @@
             </svg>
             <!-- youtube logo -->
             <svg
+              v-if="sellerInfo.youtube_link"
               @click="openLink(sellerInfo.youtube_link)"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
