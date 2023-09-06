@@ -1,6 +1,5 @@
 <template>
   <div
-    v-show="!generalData.activeFilterTag"
     @click="toggleVideo"
     class="relative w-full flex justify-center items-center md:max-w-[368px] h-[269px] md:h-[344px] rounded-[8px] overflow-hidden cursor-pointer border border-green-400 bg_gradient"
   >
