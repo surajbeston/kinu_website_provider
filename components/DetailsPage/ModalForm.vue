@@ -53,7 +53,7 @@
               color: `var(--${generalData.paletteName}-form-placeholder-text)`,
               backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
             }"
-            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-semibold font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             name="userName"
             :rules="validateName"
@@ -67,7 +67,7 @@
               backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
             }"
             title="Please enter a 10-digit phone number"
-            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-semibold font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="number"
             name="phoneNumber"
             :rules="validatePhoneNumber"
@@ -82,7 +82,7 @@
               color: `var(--${generalData.paletteName}-form-placeholder-text)`,
               backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
             }"
-            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] my-4 py-[18px] text-[10px] md:text-[16px] font-semibold font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="email"
             name="email"
             :rules="validateEmail"
@@ -95,7 +95,7 @@
               color: `var(--${generalData.paletteName}-form-placeholder-text)`,
               backgroundColor: `var(--${generalData.paletteName}-form-placeholder)`,
             }"
-            class="px-[28px] py-[18px] my-4 text-[10px] md:text-[16px] font-normal font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
+            class="px-[28px] py-[18px] my-4 text-[10px] md:text-[16px] font-semibold font-['Poppins'] placeholder:text-[color:var(--gray-color-1)] text-[color:var(--black)] block outline-none w-full text-center border-none"
             type="text"
             name="additionalMessage"
             placeholder="Additional message (optional)"

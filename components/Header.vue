@@ -211,11 +211,12 @@ import { useGeneralData } from "~/store/index";
 import { locationFormatter } from "~/utils/constant";
 const generalData = useGeneralData();
 const { sellerInfo } = useUserData();
+const formattedLocation = ref("");
 
 // formatting location
-const formattedLocation = computed(() =>
-  locationFormatter(generalData.location)
-);
+if (generalData.location) {
+  formattedLocation.value = locationFormatter(generalData.location);
+}
 const openLink = (link) => {
   window.open(link, "_blank");
 };

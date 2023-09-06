@@ -8,7 +8,7 @@ export const locationFormatter = (location) => {
   if (city) fullLocation += `${city}, `;
   if (district) fullLocation += `${district}, `;
   if (province) fullLocation += `${province}, `;
-  if (nation) fullLocation += `${nation}, `;
+  if (nation) fullLocation += `${nation} `;
 
   return fullLocation;
 };

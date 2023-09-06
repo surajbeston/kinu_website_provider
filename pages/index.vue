@@ -59,6 +59,10 @@ useHead({
     },
     { rel: "canonical", href: url.href },
     { name: "language", content: "en" },
+    {
+      property: "og:image",
+      content: apiAuthority + userData.sellerInfo.mobile_image,
+    },
   ],
 });
 </script>

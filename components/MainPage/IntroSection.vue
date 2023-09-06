@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col md:flex-row gap-8 my-14">
-    <div>
+    <div v-if="userStore.sellerVideo.length > 0">
       <h1
         :style="{ color: `var(--${generalData.paletteName}-text)` }"
         class="text-[18px] md:text-[24px] py-2 font-['Nexa'] font-bold"
@@ -8,8 +8,7 @@
         Our Intro
       </h1>
       <MainPageIntroCard
-        v-if="userStore.sellerVideo.length > 0"
-        :videoSrc="userStore.sellerVideo[0].file"
+        :videoSrc="userStore.sellerVideo[0].sellerformat_set[0].file"
         :introText="userStore.sellerVideo[0].text"
       />
     </div>
@@ -66,6 +65,7 @@ import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
 const generalData = useGeneralData();
 const userStore = useUserData();
+const formattedLocation = ref("");
 // console.log(userStore.sellerVideo);
 
 const getSellerVideo = async () => {
@@ -77,8 +77,9 @@ const getSellerVideo = async () => {
   // console.log(response);
   userStore.setSellerVideo(response.results);
 };
-
-const formattedLocation = locationFormatter(generalData.location);
+if (generalData.location) {
+  formattedLocation.value = locationFormatter(generalData.location);
+}
 
 onMounted(() => {
   getSellerVideo();

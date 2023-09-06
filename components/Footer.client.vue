@@ -256,7 +256,7 @@
           :style="{ color: `var(--${generalData.paletteName}-text)` }"
           class="font-['Nexa'] font-bold text-[14px]"
         >
-          &copy Copyright All rights reserved
+          &copy {{ year }} All rights reserved
         </p>
       </div>
     </div>
@@ -266,13 +266,15 @@
 <script setup>
 import { useUserData } from "~~/store/userData";
 import { useGeneralData } from "~/store/index";
-import { locationFormatter } from "~/utils/constant";
+
 const generalData = useGeneralData();
 
 const { sellerInfo } = useUserData();
-// formatting location
-const formattedLocation = locationFormatter(generalData.location);
 
+const year = computed(() => {
+  const d = new Date();
+  return d.getFullYear();
+});
 const openLink = (link) => {
   window.open(link, "_blank");
 };
