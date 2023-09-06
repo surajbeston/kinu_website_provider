@@ -1,7 +1,12 @@
 <template>
-  <div v-if="!generalData.showErrorPage" :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }">
+  <div
+    v-if="!generalData.showErrorPage"
+    :style="{ backgroundColor: `var(--${generalData.paletteName}-bg)` }"
+  >
     <Header />
-    <div class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section min-h-screen">
+    <div
+      class="max-w-[1400px] mx-auto w-[90%] md:w-[95%] main_section min-h-screen"
+    >
       <slot />
     </div>
     <Footer />
@@ -17,36 +22,28 @@ const userStore = useUserData();
 const url = useRequestURL();
 // const showNotFound = ref(false);
 
-
 async function fetchData() {
-  if (url.hostname != 'menu.kinu.app') {
-    return await useFetch(
-      `${apiAuthority}/website/info/get_info_by_domain/`,
-      {
-        method: "POST",
-        body: {
-          domain: url.hostname,
-        },
-      }
-    );
-  }
-  else{
-    var id = url.pathname.split("/")[1]
+  if (url.hostname != "menu.kinu.app") {
+    return await useFetch(`${apiAuthority}/website/info/get_info_by_domain/`, {
+      method: "POST",
+      body: {
+        domain: url.hostname,
+      },
+    });
+  } else {
+    var id = url.pathname.split("/")[1];
     return await useFetch(
       `${apiAuthority}/website/qr/${id}/get_info_by_qrcode/`,
       {
-        method: "GET"
+        method: "GET",
       }
     );
   }
 }
 
+const response = await fetchData();
 
-const response = await fetchData()
-
-
-console.log(response.data)
-
+// console.log(response.data);
 
 if (response.status.value === "success") {
   userStore.setSellerInfo(response.data.value.website_info);

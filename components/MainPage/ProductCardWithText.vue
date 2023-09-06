@@ -34,6 +34,17 @@ const props = defineProps({
 //   // to reset the filter when page changes
 //   // getProductsByOrdering("All Products");
 // };
+onMounted(() => {
+  if (generalData.activeFilterTag) {
+    scrollToCategory(generalData.activeFilterTag);
+  }
+});
+function scrollToCategory(categoryName) {
+  const targetElement = document.getElementById(categoryName);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth" });
+  }
+}
 </script>
 
 <style scoped>

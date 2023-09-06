@@ -40,6 +40,7 @@ const postLandingPageView = async (session_key) => {
     },
   });
 };
+
 // console.log(userData.sellerInfo);
 
 const keywords = userData.sellerInfo.seller.categories.map((each) => each.name);

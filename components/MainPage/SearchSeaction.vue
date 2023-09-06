@@ -47,7 +47,7 @@
     >
       <MainPageFilterTag
         @click="scrollToCategory(tag.name)"
-        v-for="(tag, index) in userStore.sellerInfo.seller.categories"
+        v-for="(tag, index) in categories"
         :tag="tag"
         :key="index"
       />
@@ -70,6 +70,11 @@ import { productsGrouper } from "~/utils/constant";
 const userStore = useUserData();
 const generalData = useGeneralData();
 const inputText = ref("");
+const categories = ref(null);
+
+categories.value = userStore.sellerInfo.seller.categories.filter(
+  (each) => each.products_number > 0
+);
 
 const getSearchProducts = async () => {
   if (inputText.value) {

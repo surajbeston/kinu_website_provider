@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useGeneralData = defineStore("generalData", () => {
   const paletteName = ref("kinu-light");
   const showErrorPage = ref(false);
-  // const activeFilterTag = ref("");
+  const activeFilterTag = ref("");
   // const filterTagText = ref("for you");
   const location = ref(null);
   // const emitActiveFilterTag = ref(false);
@@ -13,9 +13,9 @@ export const useGeneralData = defineStore("generalData", () => {
   function setPaletteName(value) {
     paletteName.value = value;
   }
-  // function setActiveFilterTag(value) {
-  //   activeFilterTag.value = value;
-  // }
+  function setActiveFilterTag(value) {
+    activeFilterTag.value = value;
+  }
   // function setfilterTagText(value) {
   //   filterTagText.value = value;
   // }
@@ -28,8 +28,8 @@ export const useGeneralData = defineStore("generalData", () => {
   return {
     paletteName,
     setPaletteName,
-    // setActiveFilterTag,
-    // activeFilterTag,
+    setActiveFilterTag,
+    activeFilterTag,
     // filterTagText,
     // setfilterTagText,
     showErrorPage,

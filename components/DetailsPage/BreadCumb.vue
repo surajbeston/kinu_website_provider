@@ -7,7 +7,7 @@
   >
     <ul class="flex">
       <li
-        @click="handleClick(index)"
+        @click="handleClick(index, tag)"
         v-for="(tag, index) in tags"
         :key="index"
         class="flex items-center cursor-pointer"
@@ -41,8 +41,15 @@ const props = defineProps({
   required: true,
 });
 
-const handleClick = async (index) => {
-  if (index == 2) return;
+const handleClick = async (index, tag) => {
+  if (index === 2) return;
+  else if (index === 1) {
+    generalData.setActiveFilterTag(tag);
+
+    await navigateTo("/");
+
+    return;
+  }
   await navigateTo("/");
 };
 </script>
