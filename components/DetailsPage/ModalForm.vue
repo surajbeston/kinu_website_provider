@@ -306,7 +306,7 @@ const validateName = (value) => {
   if (!value) {
     return "This field is required";
   }
-  if (value.length < 5) {
+  if (value.length < 4) {
     return "This field must have a vaild full name";
   }
   return true;
