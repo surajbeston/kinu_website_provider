@@ -2,11 +2,12 @@ import { SitemapStream, streamToPromise } from "sitemap";
 import { generateSitemap } from "../../utils/sitemap";
 
 export default defineEventHandler(async (event) => {
-  const url = getRequestURL(event).host;
+  const url = getRequestURL(event);
 
-  const links = await generateSitemap(`https://${url}`);
+  const links = await generateSitemap(`${url.protocol}//${url.host}`);
+
   const sitemap = new SitemapStream({
-    hostname: `https://${url}`,
+    hostname: `${url.protocol}//${url.host}`,
   });
 
   for (const doc of links) {
