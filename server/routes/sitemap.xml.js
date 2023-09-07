@@ -3,24 +3,16 @@ import { generateSitemap } from "../../utils/sitemap";
 
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event);
-
-  const links = await generateSitemap("https://kinu-women.kinu.app");
-  console.log(links);
+  const links = await generateSitemap(`http://${url.host}`);
   const sitemap = new SitemapStream({
-    hostname: `https://${url.host}`,
+    hostname: `http://${url.host}`,
   });
 
-  //   for (const link of links) {
-  if (links) {
+  for (const link of links) {
     sitemap.write({
-      url: `kinu.com-${links.length} https://${url.host}`,
-    });
-  } else {
-    sitemap.write({
-      url: `kinu.com-${links}-https://${url.host}`,
+      url: link,
     });
   }
-  //   }
   sitemap.end();
   return streamToPromise(sitemap);
 });
