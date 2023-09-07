@@ -4,20 +4,17 @@ import { generateSitemap } from "../../utils/sitemap";
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event);
 
-  const links = await generateSitemap(`${url.protocol}//${url.host}`);
+  const links = await generateSitemap(`https://${url.host}`);
   console.log(links);
   const sitemap = new SitemapStream({
-    hostname: `${url.protocol}//${url.host}`,
+    hostname: `https://${url.host}`,
   });
 
-  // for (const link of links) {
-  //   sitemap.write({
-  //     url: link,
-  //   });
-  // }
-  sitemap.write({
-    url: "kinu.com.np",
-  });
+  for (const link of links) {
+    sitemap.write({
+      url: link,
+    });
+  }
   sitemap.end();
   return streamToPromise(sitemap);
 });
