@@ -16,5 +16,6 @@ export async function generateSitemap(websiteUrl) {
     return links;
   } catch (error) {
     console.log("something went wrong sorry");
+    return [];
   }
 }
