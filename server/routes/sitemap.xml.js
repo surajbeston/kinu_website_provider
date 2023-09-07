@@ -3,9 +3,9 @@ import { generateSitemap } from "../../utils/sitemap";
 
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event);
-  const links = await generateSitemap(`http://${url.host}`);
+  const links = await generateSitemap(`https://${url.host}`);
   const sitemap = new SitemapStream({
-    hostname: `http://${url.host}`,
+    hostname: `https://${url.host}`,
   });
 
   for (const link of links) {
