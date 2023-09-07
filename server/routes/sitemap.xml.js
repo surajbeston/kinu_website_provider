@@ -13,11 +13,11 @@ export default defineEventHandler(async (event) => {
   //   for (const link of links) {
   if (links) {
     sitemap.write({
-      url: `kinu.com.${links.length} https://${url.host}`,
+      url: `kinu.com.${links.length}-https://${url.host}`,
     });
   } else {
     sitemap.write({
-      url: `kinu.com.${links} https://${url.host}`,
+      url: `kinu.com.${links}-https://${url.host}`,
     });
   }
   //   }
