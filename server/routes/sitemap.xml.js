@@ -7,11 +7,12 @@ export default defineEventHandler(async (event) => {
   const sitemap = new SitemapStream({
     hostname: `https://${url.host}`,
   });
-
-  for (const link of links) {
-    sitemap.write({
-      url: link,
-    });
+  if (links.length > 0) {
+    for (const link of links) {
+      sitemap.write({
+        url: link,
+      });
+    }
   }
   sitemap.end();
   return streamToPromise(sitemap);
