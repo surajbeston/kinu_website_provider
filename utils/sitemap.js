@@ -1,22 +1,23 @@
 // generateSitemap.ts
 
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
 
 export async function generateSitemap(websiteUrl) {
-  try {
-    const browser = await puppeteer.launch({ headless: "new" });
-
-    const page = await browser.newPage();
-
-    await page.goto(websiteUrl, { waitUntil: "networkidle0" });
-
-    const links = await page.evaluate(() =>
-      Array.from(document.querySelectorAll("a"), (each) => each.href)
-    );
-
-    browser.close();
-    return links;
-  } catch (error) {
-    console.log("something went wrong sorry");
-  }
+  let links = [];
+  const url = new URL(websiteUrl);
+  const response = await $fetch(
+    `https://api.kinu.app/website/info/get_info_by_domain/`,
+    {
+      method: "POST",
+      body: {
+        domain: url.hostname,
+      },
+    }
+  );
+  // console.log(response.website_info.seller.id);
+  const productResponse = await $fetch(
+    `https://api.kinu.app/api/product/?seller=${response.website_info.seller.id}&limit=1000`
+  );
+  productResponse.results.map((each) => links.push(each.id));
+  return links;
 }

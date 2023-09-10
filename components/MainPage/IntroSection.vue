@@ -74,7 +74,7 @@ const getSellerVideo = async () => {
       seller: userStore.sellerId,
     },
   });
-  // console.log(response);
+  // console.log(response.results);
   userStore.setSellerVideo(response.results);
 };
 if (generalData.location) {
