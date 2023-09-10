@@ -3,10 +3,10 @@ import { generateSitemap } from "../../utils/sitemap";
 
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event);
-  const links = await generateSitemap(`http://${url.host}`);
-  console.log(links);
+  const links = await generateSitemap(`https://${url.host}`);
+
   const sitemap = new SitemapStream({
-    hostname: `http://${url.host}`,
+    hostname: `https://${url.host}`,
   });
   if (links.length > 0) {
     for (const link of links) {
@@ -15,6 +15,9 @@ export default defineEventHandler(async (event) => {
       });
     }
   }
+  sitemap.write({
+    url: `https://${url.host}`,
+  });
 
   sitemap.end();
   return streamToPromise(sitemap);

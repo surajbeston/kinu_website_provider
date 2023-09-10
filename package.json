@@ -19,6 +19,7 @@
     "sitemap": "^7.1.1"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^3.0.0",
     "@pinia/nuxt": "^0.4.11",
     "@vee-validate/nuxt": "^4.11.1",
     "nuxt-storage": "^1.2.2",

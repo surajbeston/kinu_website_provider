@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
@@ -7,6 +8,16 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt3-leaflet",
     "@vee-validate/nuxt",
+    [
+      "@nuxtjs/robots",
+      {
+        UserAgent: "*",
+        Allow: "/ads.txt",
+        Disallow: "/ads",
+
+        Sitemap: (req: any) => `https://${req.headers.host}/sitemap.xml`,
+      },
+    ],
   ],
   runtimeConfig: {
     public: {

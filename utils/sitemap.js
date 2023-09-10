@@ -1,7 +1,3 @@
-// generateSitemap.ts
-
-// import puppeteer from "puppeteer";
-
 export async function generateSitemap(websiteUrl) {
   let links = [];
   const url = new URL(websiteUrl);
@@ -14,7 +10,6 @@ export async function generateSitemap(websiteUrl) {
       },
     }
   );
-  // console.log(response.website_info.seller.id);
   const productResponse = await $fetch(
     `https://api.kinu.app/api/product/?seller=${response.website_info.seller.id}&limit=1000`
   );
