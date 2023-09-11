@@ -8,17 +8,11 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt3-leaflet",
     "@vee-validate/nuxt",
-    [
-      "@nuxtjs/robots",
-      {
-        UserAgent: "*",
-        Allow: "/ads.txt",
-        Disallow: "/ads",
-
-        Sitemap: (req: any) => `https://${req.headers.host}/sitemap.xml`,
-      },
-    ],
+    "@nuxtjs/robots",
   ],
+  robots: {
+    configPath: "robots.txt.js",
+  },
   runtimeConfig: {
     public: {
       RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
