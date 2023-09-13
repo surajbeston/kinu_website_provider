@@ -102,16 +102,16 @@ const { data: product } = await useFetch(
 );
 const currentSellerId = product.value.seller.id;
 
-const response = await useFetch(
-  `${apiAuthority}/website/info/get_info_by_domain/`,
-  {
-    method: "POST",
-    body: {
-      domain: url.hostname,
-    },
-  }
-);
-const domainSellerId = response.data.value.website_info.seller.id;
+// const response = await useFetch(
+//   `${apiAuthority}/website/info/get_info_by_domain/`,
+//   {
+//     method: "POST",
+//     body: {
+//       domain: url.hostname,
+//     },
+//   }
+// );
+// const domainSellerId = response.data.value.website_info.seller.id;
 
 // const getDomainInfo = async () => {
 
@@ -123,7 +123,7 @@ breadcrumbTags.value.push(product.value.category.name);
 breadcrumbTags.value.push(product.value.name);
 
 onBeforeMount(() => {
-  if (currentSellerId !== domainSellerId) {
+  if (currentSellerId !== userStore.sellerId) {
     generalData.setShowErrorPage();
   }
 });
