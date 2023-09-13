@@ -140,8 +140,8 @@ onMounted(() => {
   postLandingPageView(userKey);
 });
 
-const postLandingPageView = async (session_key) => {
-  const response = await $fetch(`${apiAuthority}/website/product-view/`, {
+const postLandingPageView = (session_key) => {
+  const response = $fetch(`${apiAuthority}/website/product-view/`, {
     method: "POST",
     body: {
       domain: userStore.domainName,

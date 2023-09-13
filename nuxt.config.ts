@@ -22,15 +22,15 @@ export default defineNuxtConfig({
     transpile: ["vue-toastification"],
   },
   css: ["~~/layouts/global.css"],
-  app: {
-    head: {
-      link: [
-        {
-          rel: "icon",
-          type: "image/x-icon",
-          href: "favicon.png",
-        },
-      ],
-    },
-  },
+  // app: {
+  //   head: {
+  //     link: [
+  //       {
+  //         rel: "icon",
+  //         type: "image/x-icon",
+  //         href: "favicon.png",
+  //       },
+  //     ],
+  //   },
+  // },
 });
