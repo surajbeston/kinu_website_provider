@@ -1,6 +1,12 @@
 <template>
-  <div class="flex flex-col md:flex-row gap-8 my-14">
-    <div v-if="userStore.sellerVideo.length > 0">
+  <div
+    v-if="
+      userStore.sellerVideo.sellerformat_set > 0 &&
+      generalData.location.latitude
+    "
+    class="flex flex-col md:flex-row gap-8 my-14"
+  >
+    <div v-if="userStore.sellerVideo.sellerformat_set > 0">
       <h1
         :style="{ color: `var(--${generalData.paletteName}-text)` }"
         class="text-[18px] md:text-[24px] py-2 font-['Nexa'] font-bold"
@@ -30,6 +36,7 @@
       </div>
       <div class="h-[345px] w-full rounded-[8px] overflow-hidden">
         <Map
+          v-if="generalData.location.latitude"
           :paletteName="generalData.paletteName"
           :lat="generalData.location.latitude"
           :lon="generalData.location.longitude"
@@ -73,7 +80,7 @@ const getSellerVideo = async () => {
       seller: userStore.sellerId,
     },
   });
-  // console.log(response.results);
+  console.log(response.results);
   userStore.setSellerVideo(response.results);
 };
 if (generalData.location) {
