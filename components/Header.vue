@@ -7,7 +7,7 @@
       >
         <div>
           <p
-            v-show="sellerInfo.opening_time"
+            v-show="sellerInfo.opening_time !== null"
             class="text-[color:var(--gray-color-2)] text-[12px] font-semibold font-['Poppins']"
           >
             Sun-Sat :
@@ -33,7 +33,7 @@
           <p>Call Us: {{ sellerInfo.seller.phone_number }}</p>
           <div class="flex gap-2 items-center">
             <!-- facebook logo -->
-            
+
             <svg
               v-if="sellerInfo.facebook_link"
               @click="openLink(sellerInfo.facebook_link)"

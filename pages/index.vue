@@ -30,16 +30,18 @@ onMounted(() => {
 });
 
 //  analytics post
-const postLandingPageView = async (session_key) => {
-  await $fetch(`${apiAuthority}/website/landing-page-view/`, {
-    method: "POST",
-    body: {
-      domain: userData.domainName,
-      session_key: session_key,
-      website_info: userData.websiteId,
-    },
-  });
-};
+if (userData.domainName) {
+  var postLandingPageView = async (session_key) => {
+    await $fetch(`${apiAuthority}/website/landing-page-view/`, {
+      method: "POST",
+      body: {
+        domain: userData.domainName,
+        session_key: session_key,
+        website_info: userData.websiteId,
+      },
+    });
+  };
+}
 
 // console.log(userData.sellerInfo);
 
