@@ -31,6 +31,8 @@ async function fetchData() {
         domain: url.hostname,
       },
     });
+  } else if (url.hostname === "kinu.com.np") {
+    router.replace(url.href);
   } else {
     var id = url.pathname.split("/")[1];
     return await useFetch(
