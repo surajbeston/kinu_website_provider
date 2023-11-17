@@ -109,6 +109,9 @@ onBeforeMount(() => {
   if (url.hostname === "kinu.com.np") {
     console.log("called kinu.com.np");
     showSharePage.value = true;
+    definePageMeta({
+      layout: "none",
+    });
   } else {
     console.log("details pages l");
     if (currentSellerId !== userStore.sellerId) {

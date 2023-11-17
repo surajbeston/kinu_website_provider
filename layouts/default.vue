@@ -17,10 +17,11 @@
 <script setup>
 import { useGeneralData } from "~~/store/index";
 import { useUserData } from "~~/store/userData";
+import { useRouter } from "vue-router";
 const generalData = useGeneralData();
 const userStore = useUserData();
 const url = useRequestURL();
-// const showNotFound = ref(false);
+const router = useRouter();
 
 async function fetchData() {
   if (url.hostname != "menu.kinu.app") {
@@ -60,13 +61,11 @@ if (response.status.value === "success") {
 } else {
   if (url.hostname === "kinu.com.np") {
     console.log("kinu.com.np");
+    router.replace(url.href);
   } else {
     generalData.setShowErrorPage();
   }
-  // showNotFound.value = true;
 }
-
-// console.log("layout called and api also");
 useHead({
   link: [
     {
