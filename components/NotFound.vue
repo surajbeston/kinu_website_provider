@@ -5,7 +5,7 @@
         <b>404</b>
       </div>
       <div class="text">
-        <b> PAGE NOT FOUND </b>
+        <b> PAGE NOT FOUN </b>
       </div>
       <div class="text-center mt-16">
         <a href="https://kinu.app/"
