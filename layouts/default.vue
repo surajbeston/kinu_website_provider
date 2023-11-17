@@ -59,6 +59,7 @@ if (response.status.value === "success") {
   generalData.setLocation(location.value);
 } else {
   if (url.hostname === "kinu.com.np") {
+    console.log("kinu.com.np");
   } else {
     generalData.setShowErrorPage();
   }
