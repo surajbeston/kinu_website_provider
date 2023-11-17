@@ -17,11 +17,10 @@
 <script setup>
 import { useGeneralData } from "~~/store/index";
 import { useUserData } from "~~/store/userData";
-import { useRouter } from "vue-router";
 const generalData = useGeneralData();
 const userStore = useUserData();
 const url = useRequestURL();
-const router = useRouter();
+// const showNotFound = ref(false);
 
 async function fetchData() {
   if (url.hostname != "menu.kinu.app") {
@@ -31,8 +30,6 @@ async function fetchData() {
         domain: url.hostname,
       },
     });
-  } else if (url.hostname === "kinu.com.np") {
-    router.replace(url.href);
   } else {
     var id = url.pathname.split("/")[1];
     return await useFetch(
@@ -61,13 +58,11 @@ if (response.status.value === "success") {
   // setting location to the store
   generalData.setLocation(location.value);
 } else {
-  if (url.hostname === "kinu.com.np") {
-    console.log("kinu.com.np");
-    router.replace(url.href);
-  } else {
-    generalData.setShowErrorPage();
-  }
+  generalData.setShowErrorPage();
+  // showNotFound.value = true;
 }
+
+// console.log("layout called and api also");
 useHead({
   link: [
     {
