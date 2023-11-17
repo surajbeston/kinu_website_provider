@@ -58,7 +58,10 @@ if (response.status.value === "success") {
   // setting location to the store
   generalData.setLocation(location.value);
 } else {
-  generalData.setShowErrorPage();
+  if (url.hostname === "kinu.com.np") {
+  } else {
+    generalData.setShowErrorPage();
+  }
   // showNotFound.value = true;
 }
 

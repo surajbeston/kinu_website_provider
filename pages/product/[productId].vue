@@ -106,14 +106,8 @@ breadcrumbTags.value.push(product.value.category.name);
 breadcrumbTags.value.push(product.value.name);
 
 onBeforeMount(() => {
-  if (url.hostname === "kinu.com.np") {
-    console.log("called kinu.com.np");
-    showSharePage.value = true;
-  } else {
-    console.log("details pages l");
-    if (currentSellerId !== userStore.sellerId) {
-      // generalData.setShowErrorPage();
-    }
+  if (currentSellerId !== userStore.sellerId) {
+    generalData.setShowErrorPage();
   }
 });
 // analytics
