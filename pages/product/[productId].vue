@@ -112,7 +112,7 @@ onBeforeMount(() => {
   } else {
     console.log("details pages l");
     if (currentSellerId !== userStore.sellerId) {
-      generalData.setShowErrorPage();
+      // generalData.setShowErrorPage();
     }
   }
 });
